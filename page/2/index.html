@@ -738,7 +738,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-28T14:00:01-07:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-28T14:00:00-07:00">
                 2017-08-28
               </time>
             
@@ -828,7 +828,7 @@
 </blockquote>
 <p>4.在xxxxx_client_vpn.ovpn所在目录执行命令</p>
 <blockquote>
-<p>/usr/local/Cellar/openvpn/2.4.3/sbin/openvpn ./xxxxx_client_vpn.ovpn</p>
+<p>sudo /usr/local/Cellar/openvpn/2.4.3/sbin/openvpn ./xxxxx_client_vpn.ovpn</p>
 </blockquote>
 
           
@@ -1359,7 +1359,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/08/22/ubuntu-e4-b8-8b-e5-ae-89-e8-a3-85-e9-85-8d-e7-bd-aeopenvpn-e5-ae-a2-e6-88-b7-e7-ab-af-trashed/" itemprop="url">Ubuntu下安装配置openvpn客户端</a></h1>
+                <a class="post-title-link" href="/2017/08/22/ubuntu-e4-b8-8b-e5-ae-89-e8-a3-85-e9-85-8d-e7-bd-aeopenvpn-e5-ae-a2-e6-88-b7-e7-ab-af-trashed/" itemprop="url">Ubuntu以及MAC下安装配置openvpn客户端</a></h1>
         
 
         <div class="post-meta">
@@ -1433,7 +1433,7 @@
       
         
           
-            <p>1.安装openvpn客户端</p>
+            <h3 id="Ubuntu下安装"><a href="#Ubuntu下安装" class="headerlink" title="Ubuntu下安装"></a>Ubuntu下安装</h3><p>1.安装openvpn客户端</p>
 <blockquote>
 <p>sudo apt-get install openvpn</p>
 </blockquote>
@@ -1445,6 +1445,23 @@
 </blockquote>
 <p>注意：命令需要在/etc/openvpn目录下执行，否则可能出现No such file or directory错误</p>
 <p><img src="/images/pasted-12.png" alt="upload successful"></p>
+<h3 id="MAC下安装"><a href="#MAC下安装" class="headerlink" title="MAC下安装"></a>MAC下安装</h3><p>MAC有tunnelblick软件进行图形化安装，下边主要是通过命令行安装</p>
+<p>1.安装brew<br>2.通过brew进行安装</p>
+<blockquote>
+<p>brew install openvpn</p>
+</blockquote>
+<p>To have launchd start openvpn now and restart at startup（如果想要启动openvpn或者在启动时重启可以执行命令）:</p>
+<blockquote>
+<p>sudo brew services start openvpn</p>
+</blockquote>
+<p>3.安装目录</p>
+<blockquote>
+<p> /usr/local/Cellar/openvpn/2.4.3/</p>
+</blockquote>
+<p>4.在xxxxx_client_vpn.ovpn所在目录执行命令</p>
+<blockquote>
+<p>sudo /usr/local/Cellar/openvpn/2.4.3/sbin/openvpn ./xxxxx_client_vpn.ovpn</p>
+</blockquote>
 
           
         
