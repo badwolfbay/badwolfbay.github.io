@@ -71,20 +71,20 @@
 
 
 
-<meta name="description" content="有三台机器172.21.3.124/125/126，需要在这三台机器配置免密码登陆能够互相访问 1.在一台机器上执行命令，如172.21.3.124，期间会输入三次回车  ssh-keygen -t rsa  2.命令会在当前用户的家目录的.ssh的目录下生成id_rsa和id_rsa.pub文件，将id_rsa.pub文件copy到其他主机(172.21.3.125)的.ssh/authoriz">
+<meta name="description" content="有三台机器172.21.3.124/125/126，需要在这三台机器配置免密码登陆能够互相访问 1.在一台机器上执行命令，如172.21.3.124，期间会输入三次回车  ssh-keygen -t rsa   2.命令会在当前用户的家目录的.ssh的目录下生成id_rsa和id_rsa.pub文件，将id_rsa.pub文件copy到其他主机(172.21.3.125)的.ssh/authori">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ssh免密码登陆">
 <meta property="og:url" content="http://yoursite.com/2017/08/30/ssh-e5-85-8d-e5-af-86-e7-a0-81-e7-99-bb-e9-99-86/index.html">
 <meta property="og:site_name" content="BADWOLFBAY">
-<meta property="og:description" content="有三台机器172.21.3.124/125/126，需要在这三台机器配置免密码登陆能够互相访问 1.在一台机器上执行命令，如172.21.3.124，期间会输入三次回车  ssh-keygen -t rsa  2.命令会在当前用户的家目录的.ssh的目录下生成id_rsa和id_rsa.pub文件，将id_rsa.pub文件copy到其他主机(172.21.3.125)的.ssh/authoriz">
+<meta property="og:description" content="有三台机器172.21.3.124/125/126，需要在这三台机器配置免密码登陆能够互相访问 1.在一台机器上执行命令，如172.21.3.124，期间会输入三次回车  ssh-keygen -t rsa   2.命令会在当前用户的家目录的.ssh的目录下生成id_rsa和id_rsa.pub文件，将id_rsa.pub文件copy到其他主机(172.21.3.125)的.ssh/authori">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://www.badwolfbay.cn/wp-content/uploads/2017/08/QQ截图20170830092126-300x215.jpg">
-<meta property="og:image" content="http://www.badwolfbay.cn/wp-content/uploads/2017/08/QQ截图20170830092747-300x115.jpg">
-<meta property="og:updated_time" content="2017-09-19T13:32:51.000Z">
+<meta property="og:image" content="http://yoursite.com/images/pasted-14.png">
+<meta property="og:image" content="http://yoursite.com/images/pasted-15.png">
+<meta property="og:updated_time" content="2017-09-19T14:09:42.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ssh免密码登陆">
-<meta name="twitter:description" content="有三台机器172.21.3.124/125/126，需要在这三台机器配置免密码登陆能够互相访问 1.在一台机器上执行命令，如172.21.3.124，期间会输入三次回车  ssh-keygen -t rsa  2.命令会在当前用户的家目录的.ssh的目录下生成id_rsa和id_rsa.pub文件，将id_rsa.pub文件copy到其他主机(172.21.3.125)的.ssh/authoriz">
-<meta name="twitter:image" content="http://www.badwolfbay.cn/wp-content/uploads/2017/08/QQ截图20170830092126-300x215.jpg">
+<meta name="twitter:description" content="有三台机器172.21.3.124/125/126，需要在这三台机器配置免密码登陆能够互相访问 1.在一台机器上执行命令，如172.21.3.124，期间会输入三次回车  ssh-keygen -t rsa   2.命令会在当前用户的家目录的.ssh的目录下生成id_rsa和id_rsa.pub文件，将id_rsa.pub文件copy到其他主机(172.21.3.125)的.ssh/authori">
+<meta name="twitter:image" content="http://yoursite.com/images/pasted-14.png">
 
 
 
@@ -319,10 +319,11 @@
         <p>有三台机器172.21.3.124/125/126，需要在这三台机器配置免密码登陆能够互相访问</p>
 <p>1.在一台机器上执行命令，如172.21.3.124，期间会输入三次回车</p>
 <blockquote>
-<p>ssh-keygen -t rsa<br><img src="http://www.badwolfbay.cn/wp-content/uploads/2017/08/QQ截图20170830092126-300x215.jpg" alt=""></p>
+<p>ssh-keygen -t rsa</p>
 </blockquote>
+<p><img src="/images/pasted-14.png" alt="upload successful"></p>
 <p>2.命令会在当前用户的家目录的.ssh的目录下生成id_rsa和id_rsa.pub文件，将id_rsa.pub文件copy到其他主机(172.21.3.125)的.ssh/authorized_keys目录下</p>
-<p><img src="http://www.badwolfbay.cn/wp-content/uploads/2017/08/QQ截图20170830092747-300x115.jpg" alt=""></p>
+<p><img src="/images/pasted-15.png" alt="upload successful"></p>
 <p>因为我的是root用户，所以copy到/root/.ssh目录下。</p>
 <p>3.这样再登陆172.21.3.125就可以不用输入密码了。需要注意的是</p>
 <p><strong>authorized_keys的权限需要是600</strong>。(chmod 600 .ssh/authorized_keys)</p>

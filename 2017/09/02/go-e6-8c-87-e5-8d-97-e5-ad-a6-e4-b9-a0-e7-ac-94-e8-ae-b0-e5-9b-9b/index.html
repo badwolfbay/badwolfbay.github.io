@@ -71,17 +71,17 @@
 
 
 
-<meta name="description" content="1.结构体struct 1type Vertex struct &amp;#123;	X int	Y int&amp;#125;func main()&amp;#123;	v := Vertex&amp;#123;1,2&amp;#125;	v.X = 4	fmt.Println(v.X) // 4&amp;#125; 2.结构体指针 1v := Vertex&amp;#123;1,2&amp;#125;p := &amp;amp;amp;vp.">
+<meta name="description" content="1.结构体struct 12345678910type Vertex struct &amp;#123;	X int	Y int&amp;#125;func main()&amp;#123;	v := Vertex&amp;#123;1,2&amp;#125;	v.X = 4	fmt.Println(v.X) // 4&amp;#125; 2.结构体指针 1234v := Vertex&amp;#123;1,2&amp;#125;p := &amp;amp;amp;v">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Go 指南学习笔记四">
 <meta property="og:url" content="http://yoursite.com/2017/09/02/go-e6-8c-87-e5-8d-97-e5-ad-a6-e4-b9-a0-e7-ac-94-e8-ae-b0-e5-9b-9b/index.html">
 <meta property="og:site_name" content="BADWOLFBAY">
-<meta property="og:description" content="1.结构体struct 1type Vertex struct &amp;#123;	X int	Y int&amp;#125;func main()&amp;#123;	v := Vertex&amp;#123;1,2&amp;#125;	v.X = 4	fmt.Println(v.X) // 4&amp;#125; 2.结构体指针 1v := Vertex&amp;#123;1,2&amp;#125;p := &amp;amp;amp;vp.">
+<meta property="og:description" content="1.结构体struct 12345678910type Vertex struct &amp;#123;	X int	Y int&amp;#125;func main()&amp;#123;	v := Vertex&amp;#123;1,2&amp;#125;	v.X = 4	fmt.Println(v.X) // 4&amp;#125; 2.结构体指针 1234v := Vertex&amp;#123;1,2&amp;#125;p := &amp;amp;amp;v">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-09-19T13:32:50.000Z">
+<meta property="og:updated_time" content="2017-09-19T14:05:55.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Go 指南学习笔记四">
-<meta name="twitter:description" content="1.结构体struct 1type Vertex struct &amp;#123;	X int	Y int&amp;#125;func main()&amp;#123;	v := Vertex&amp;#123;1,2&amp;#125;	v.X = 4	fmt.Println(v.X) // 4&amp;#125; 2.结构体指针 1v := Vertex&amp;#123;1,2&amp;#125;p := &amp;amp;amp;vp.">
+<meta name="twitter:description" content="1.结构体struct 12345678910type Vertex struct &amp;#123;	X int	Y int&amp;#125;func main()&amp;#123;	v := Vertex&amp;#123;1,2&amp;#125;	v.X = 4	fmt.Println(v.X) // 4&amp;#125; 2.结构体指针 1234v := Vertex&amp;#123;1,2&amp;#125;p := &amp;amp;amp;v">
 
 
 
@@ -314,11 +314,11 @@
 
       
         <p>1.结构体struct</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">type</span> Vertex <span class="keyword">struct</span> &#123;	X <span class="keyword">int</span>	Y <span class="keyword">int</span>&#125;<span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span>&#123;	v := Vertex&#123;<span class="number">1</span>,<span class="number">2</span>&#125;	v.X = <span class="number">4</span>	fmt.Println(v.X) <span class="comment">// 4</span>&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">type</span> Vertex <span class="keyword">struct</span> &#123;</div><div class="line">	X <span class="keyword">int</span></div><div class="line">	Y <span class="keyword">int</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">	v := Vertex&#123;<span class="number">1</span>,<span class="number">2</span>&#125;</div><div class="line">	v.X = <span class="number">4</span></div><div class="line">	fmt.Println(v.X) <span class="comment">// 4</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>2.结构体指针</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">v := Vertex&#123;<span class="number">1</span>,<span class="number">2</span>&#125;p := &amp;amp;vp.X = <span class="number">1e9</span>fmt.Println(p.X) <span class="comment">//1000000000</span></div></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">v := Vertex&#123;<span class="number">1</span>,<span class="number">2</span>&#125;</div><div class="line">p := &amp;amp;v</div><div class="line">p.X = <span class="number">1e9</span></div><div class="line">fmt.Println(p.X) <span class="comment">//1000000000</span></div></pre></td></tr></table></figure>
 <p>3.结构体语法，可以仅列出部分字段；&amp;可以指向结构体的指针</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> (	v1 = Vertex&#123;<span class="number">1</span>, <span class="number">2</span>&#125;	v2 = Vertex&#123;X: <span class="number">1</span>&#125;	v3 = Vertex&#123;&#125;	p = *Vertex&#123;<span class="number">1</span>, <span class="number">2</span>&#125;)fmt.Println(v1, v2, v3, p)<span class="comment">//&#123;1 2&#125; &#123;1 0&#125; &#123;0 0&#125; *&#123;1 2&#125;</span></div></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> (</div><div class="line">	v1 = Vertex&#123;<span class="number">1</span>, <span class="number">2</span>&#125;</div><div class="line">	v2 = Vertex&#123;X: <span class="number">1</span>&#125;</div><div class="line">	v3 = Vertex&#123;&#125;</div><div class="line">	p = *Vertex&#123;<span class="number">1</span>, <span class="number">2</span>&#125;</div><div class="line">)</div><div class="line">fmt.Println(v1, v2, v3, p)<span class="comment">//&#123;1 2&#125; &#123;1 0&#125; &#123;0 0&#125; *&#123;1 2&#125;</span></div></pre></td></tr></table></figure>
       
     </div>
     

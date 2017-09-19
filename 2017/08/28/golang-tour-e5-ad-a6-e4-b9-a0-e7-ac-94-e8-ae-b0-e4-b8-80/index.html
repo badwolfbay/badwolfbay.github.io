@@ -71,17 +71,17 @@
 
 
 
-<meta name="description" content="Golang提供了官方的学习手册，tour地址：https://tour.go-zh.org同时，鉴于国内的网络环境，可以自己安装进行离线访问Go指南  1go get github.com/Go-zh/tour/gotour 然后就可以得到go tour了 1cd $GOPATH/bin./gotour 2.包 每个 Go 程序都是由包组成的。 程序运行的入口是包 main 。 一般情况下，">
+<meta name="description" content="Golang提供了官方的学习手册，tour地址：https://tour.go-zh.org同时，鉴于国内的网络环境，可以自己安装进行离线访问Go指南  1go get github.com/Go-zh/tour/gotour 然后就可以得到go tour了 12cd $GOPATH/bin./gotour 2.包 每个 Go 程序都是由包组成的。 程序运行的入口是包 main 。 一般情况下，">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Go 指南学习笔记一">
 <meta property="og:url" content="http://yoursite.com/2017/08/28/golang-tour-e5-ad-a6-e4-b9-a0-e7-ac-94-e8-ae-b0-e4-b8-80/index.html">
 <meta property="og:site_name" content="BADWOLFBAY">
-<meta property="og:description" content="Golang提供了官方的学习手册，tour地址：https://tour.go-zh.org同时，鉴于国内的网络环境，可以自己安装进行离线访问Go指南  1go get github.com/Go-zh/tour/gotour 然后就可以得到go tour了 1cd $GOPATH/bin./gotour 2.包 每个 Go 程序都是由包组成的。 程序运行的入口是包 main 。 一般情况下，">
+<meta property="og:description" content="Golang提供了官方的学习手册，tour地址：https://tour.go-zh.org同时，鉴于国内的网络环境，可以自己安装进行离线访问Go指南  1go get github.com/Go-zh/tour/gotour 然后就可以得到go tour了 12cd $GOPATH/bin./gotour 2.包 每个 Go 程序都是由包组成的。 程序运行的入口是包 main 。 一般情况下，">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-09-19T13:32:50.000Z">
+<meta property="og:updated_time" content="2017-09-19T14:02:15.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Go 指南学习笔记一">
-<meta name="twitter:description" content="Golang提供了官方的学习手册，tour地址：https://tour.go-zh.org同时，鉴于国内的网络环境，可以自己安装进行离线访问Go指南  1go get github.com/Go-zh/tour/gotour 然后就可以得到go tour了 1cd $GOPATH/bin./gotour 2.包 每个 Go 程序都是由包组成的。 程序运行的入口是包 main 。 一般情况下，">
+<meta name="twitter:description" content="Golang提供了官方的学习手册，tour地址：https://tour.go-zh.org同时，鉴于国内的网络环境，可以自己安装进行离线访问Go指南  1go get github.com/Go-zh/tour/gotour 然后就可以得到go tour了 12cd $GOPATH/bin./gotour 2.包 每个 Go 程序都是由包组成的。 程序运行的入口是包 main 。 一般情况下，">
 
 
 
@@ -318,21 +318,21 @@
 </ol>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">go get github.com/Go-zh/tour/gotour</div></pre></td></tr></table></figure>
 <p>然后就可以得到go tour了</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> <span class="variable">$GOPATH</span>/bin./gotour</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> <span class="variable">$GOPATH</span>/bin</div><div class="line">./gotour</div></pre></td></tr></table></figure>
 <p>2.包</p>
 <p>每个 Go 程序都是由包组成的。</p>
 <p>程序运行的入口是包 <code>main</code> 。</p>
 <p>一般情况下，包名与导入路径的最后一个目录一致。</p>
 <p>3.包的导入</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> <span class="string">"fmt"</span><span class="keyword">import</span> <span class="string">"math"</span></div></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> <span class="string">"fmt"</span></div><div class="line"><span class="keyword">import</span> <span class="string">"math"</span></div></pre></td></tr></table></figure>
 <p>或者更多时候是下面的导入形式</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> (	<span class="string">"fmt"</span>	<span class="string">"math"</span>)</div></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> (</div><div class="line">	<span class="string">"fmt"</span></div><div class="line">	<span class="string">"math"</span></div><div class="line">)</div></pre></td></tr></table></figure>
 <p>4.大小写</p>
 <p>首字母大写的名字是被导出的，可以被其他包引用，名称为小写的名称不会被导出</p>
 <p>如：</p>
 <p>可以引用fmt.Println()，而不能是fmt.println()</p>
 <p>5.函数定义</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">add</span><span class="params">(x <span class="keyword">int</span>, y <span class="keyword">int</span>)</span> <span class="title">int</span></span>&#123;	<span class="keyword">return</span> x + y&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">add</span><span class="params">(x <span class="keyword">int</span>, y <span class="keyword">int</span>)</span> <span class="title">int</span></span>&#123;</div><div class="line">	<span class="keyword">return</span> x + y</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>Golang和其他语言不同，变量名在类型之前,函数返回值再最后。</p>
 <p>如果参数类型相同，则可以合并，如上可以写成 x, y int 。</p>
 <p>函数返回值可以返回多个，形式为(int, int)</p>

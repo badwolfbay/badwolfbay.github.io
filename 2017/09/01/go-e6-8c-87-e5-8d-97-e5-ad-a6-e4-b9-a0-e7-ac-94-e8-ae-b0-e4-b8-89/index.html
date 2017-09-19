@@ -71,19 +71,19 @@
 
 
 
-<meta name="description" content="1.指针：指针保存了变量的内存地址。  T是指向类型T的值指针，其零值是nil  *符号会生成一个其作用对象的指针 1var p *intfmt.Println(p)i := 42p = *ifmt.Println(p) 输出结果为  *表示指针指向底层的值 1fmt.Println(*p) 并且可以通过修改指针修改底层的值 1*p = 21 这就是常说的”间接引用”。与C语言不同，">
+<meta name="description" content="1.指针：指针保存了变量的内存地址。  T是指向类型T的值指针，其零值是nil  *符号会生成一个其作用对象的指针 12345678var p *intfmt.Println(p)i := 42p = *ifmt.Println(p) 输出结果为  *表示指针指向底层的值 1fmt.Println(*p) 并且可以通过修改指针修改底层的值 1*p = 21 这就是常说的”间接引用”。与C语言不同，">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Go 指南学习笔记三">
 <meta property="og:url" content="http://yoursite.com/2017/09/01/go-e6-8c-87-e5-8d-97-e5-ad-a6-e4-b9-a0-e7-ac-94-e8-ae-b0-e4-b8-89/index.html">
 <meta property="og:site_name" content="BADWOLFBAY">
-<meta property="og:description" content="1.指针：指针保存了变量的内存地址。  T是指向类型T的值指针，其零值是nil  *符号会生成一个其作用对象的指针 1var p *intfmt.Println(p)i := 42p = *ifmt.Println(p) 输出结果为  *表示指针指向底层的值 1fmt.Println(*p) 并且可以通过修改指针修改底层的值 1*p = 21 这就是常说的”间接引用”。与C语言不同，">
+<meta property="og:description" content="1.指针：指针保存了变量的内存地址。  T是指向类型T的值指针，其零值是nil  *符号会生成一个其作用对象的指针 12345678var p *intfmt.Println(p)i := 42p = *ifmt.Println(p) 输出结果为  *表示指针指向底层的值 1fmt.Println(*p) 并且可以通过修改指针修改底层的值 1*p = 21 这就是常说的”间接引用”。与C语言不同，">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://www.badwolfbay.cn/wp-content/uploads/2017/09/QQ20170901-203754@2x-300x40.png">
-<meta property="og:updated_time" content="2017-09-19T13:32:49.000Z">
+<meta property="og:image" content="http://yoursite.com/images/pasted-13.png">
+<meta property="og:updated_time" content="2017-09-19T14:06:47.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Go 指南学习笔记三">
-<meta name="twitter:description" content="1.指针：指针保存了变量的内存地址。  T是指向类型T的值指针，其零值是nil  *符号会生成一个其作用对象的指针 1var p *intfmt.Println(p)i := 42p = *ifmt.Println(p) 输出结果为  *表示指针指向底层的值 1fmt.Println(*p) 并且可以通过修改指针修改底层的值 1*p = 21 这就是常说的”间接引用”。与C语言不同，">
-<meta name="twitter:image" content="http://www.badwolfbay.cn/wp-content/uploads/2017/09/QQ20170901-203754@2x-300x40.png">
+<meta name="twitter:description" content="1.指针：指针保存了变量的内存地址。  T是指向类型T的值指针，其零值是nil  *符号会生成一个其作用对象的指针 12345678var p *intfmt.Println(p)i := 42p = *ifmt.Println(p) 输出结果为  *表示指针指向底层的值 1fmt.Println(*p) 并且可以通过修改指针修改底层的值 1*p = 21 这就是常说的”间接引用”。与C语言不同，">
+<meta name="twitter:image" content="http://yoursite.com/images/pasted-13.png">
 
 
 
@@ -320,9 +320,9 @@
 <li>T是指向类型T的值指针，其零值是nil</li>
 </ul>
 <p>*符号会生成一个其作用对象的指针</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> p *<span class="keyword">int</span>fmt.Println(p)i := <span class="number">42</span>p = *ifmt.Println(p)</div></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> p *<span class="keyword">int</span></div><div class="line"></div><div class="line">fmt.Println(p)</div><div class="line"></div><div class="line">i := <span class="number">42</span></div><div class="line">p = *i</div><div class="line"></div><div class="line">fmt.Println(p)</div></pre></td></tr></table></figure>
 <p>输出结果为</p>
-<p><img src="http://www.badwolfbay.cn/wp-content/uploads/2017/09/QQ20170901-203754@2x-300x40.png" alt=""></p>
+<p><img src="/images/pasted-13.png" alt="upload successful"></p>
 <p>*表示指针指向底层的值</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">fmt.Println(*p)</div></pre></td></tr></table></figure>
 <p>并且可以通过修改指针修改底层的值</p>
