@@ -4,6 +4,24 @@
 
     
   <url>
+    <loc>http://yoursite.com/2017/08/28/ubuntu-e4-b8-8b-e5-ae-89-e8-a3-85-e9-85-8d-e7-bd-aeopenvpn-e5-ae-a2-e6-88-b7-e7-ab-af/</loc>
+    <lastmod>2017-09-19T16:13:59.000Z</lastmod>
+    <data>
+        <display>
+        <title>Ubuntu及mac下安装配置openvpn客户端</title>
+        <pubTime>2017-08-28T21:00:01.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="linux" url="http://yoursite.com/categories/linux/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2017/08/28/golang-tour-e5-ad-a6-e4-b9-a0-e7-ac-94-e8-ae-b0-e4-b8-80/</loc>
     <lastmod>2017-09-19T14:28:42.000Z</lastmod>
     <data>
@@ -267,24 +285,6 @@
            
              
               <breadCrumb title="java" url="http://yoursite.com/categories/java/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2017/08/28/ubuntu-e4-b8-8b-e5-ae-89-e8-a3-85-e9-85-8d-e7-bd-aeopenvpn-e5-ae-a2-e6-88-b7-e7-ab-af/</loc>
-    <lastmod>2017-09-19T13:32:51.000Z</lastmod>
-    <data>
-        <display>
-        <title>Ubuntu下安装配置openvpn客户端</title>
-        <pubTime>2017-08-28T21:00:01.000Z</pubTime>
-        
-         
-           
-             
-              <breadCrumb title="linux" url="http://yoursite.com/categories/linux/"/>
           
         </display>
     </data>

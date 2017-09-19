@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2017/08/28/ubuntu-e4-b8-8b-e5-ae-89-e8-a3-85-e9-85-8d-e7-bd-aeopenvpn-e5-ae-a2-e6-88-b7-e7-ab-af/</loc>
+    
+    <lastmod>2017-09-19T16:13:59.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2017/08/28/golang-tour-e5-ad-a6-e4-b9-a0-e7-ac-94-e8-ae-b0-e4-b8-80/</loc>
     
     <lastmod>2017-09-19T14:28:42.000Z</lastmod>
@@ -101,13 +108,6 @@
   
   <url>
     <loc>http://yoursite.com/2017/09/06/zookeeper-e5-ae-89-e8-a3-85/</loc>
-    
-    <lastmod>2017-09-19T13:32:51.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2017/08/28/ubuntu-e4-b8-8b-e5-ae-89-e8-a3-85-e9-85-8d-e7-bd-aeopenvpn-e5-ae-a2-e6-88-b7-e7-ab-af/</loc>
     
     <lastmod>2017-09-19T13:32:51.000Z</lastmod>
     
