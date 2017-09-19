@@ -1,0 +1,45 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>Go 指南学习笔记一 | BADWOLFBAY</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/7.0.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">Go 指南学习笔记一</h1><a id="logo" href="/.">BADWOLFBAY</a><p class="description"></p></div><div id="nav-menu"><a href="/." class="current"><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a></div></div><div id="layout" class="pure-g"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">Go 指南学习笔记一</h1><div class="post-meta">Aug 28, 2017<span> | </span><span class="category"><a href="/categories/golang/">golang</a></span></div><div class="post-content"><ol>
+<li>Golang提供了官方的学习手册，tour地址：<a href="https://tour.go-zh.org" target="_blank" rel="external">https://tour.go-zh.org</a><br>同时，鉴于国内的网络环境，可以自己安装进行离线访问Go指南<blockquote>
+<p>go get github.com/Go-zh/tour/gotour<br>然后就可以得到go tour了<br>cd $GOPATH/bin</p>
+<p>./gotour<br>2.包</p>
+</blockquote>
+</li>
+</ol>
+<p>每个 Go 程序都是由包组成的。</p>
+<p>程序运行的入口是包 <code>main</code> 。</p>
+<p>一般情况下，包名与导入路径的最后一个目录一致。</p>
+<p>3.包的导入</p>
+<blockquote>
+<p>import “fmt”</p>
+<p>import “math”<br>或者更多时候是下面的导入形式<br>import (</p>
+<p>“fmt”</p>
+<p>“math”</p>
+<p>)<br>4.大小写</p>
+</blockquote>
+<p>首字母大写的名字是被导出的，可以被其他包引用，名称为小写的名称不会被导出</p>
+<p>如：</p>
+<p>可以引用fmt.Println()，而不能是fmt.println()</p>
+<p>5.函数定义</p>
+<blockquote>
+<p>func add(x int, y int) int{</p>
+<p>return x + y</p>
+<p>}<br>Golang和其他语言不同，变量名在类型之前,函数返回值再最后。</p>
+</blockquote>
+<p>如果参数类型相同，则可以合并，如上可以写成 x, y int 。</p>
+<p>函数返回值可以返回多个，形式为(int, int)</p>
+<p>6.变量定义</p>
+<blockquote>
+<p>var x ,y<br>可以定义在包级别或者函数级别。</p>
+</blockquote>
+<p>函数赋值var x int = 1,可以省略类型，如var x = 1。</p>
+<p>更可以简写成x :=1,这种情况下不能在函数外使用。</p>
+<p>变量在没有初始化为默认为<strong><em>零值：</em></strong></p>
+<ul>
+<li>数值类型为 <code>0</code> ，</li>
+<li>布尔类型为 <code>false</code> ，</li>
+<li>字符串为 <code>&quot;&quot;</code> （空字符串）<br>不同类型之间的转换需要显示转换,如 int(i)</li>
+</ul>
+<p>7.常量</p>
+<p>常量定义与变量类似，不同的是不能使用:=定义</p>
+<p>&nbsp;</p>
+</div><div class="tags"></div><div class="post-nav"><a href="/2017/08/29/python-args-kwargs-e7-90-86-e8-a7-a3/" class="pre">python *args **kwargs理解</a><a href="/2017/08/28/ubuntu-e4-b8-8b-e5-ae-89-e8-a3-85-e9-85-8d-e7-bd-aeopenvpn-e5-ae-a2-e6-88-b7-e7-ab-af/" class="next">Ubuntu下安装配置openvpn客户端</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" class="search-form"><input type="text" name="q" maxlength="20" placeholder="Search"/><input type="hidden" name="sitesearch" value="http://yoursite.com"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/golang/">golang</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/nodejs/">nodejs</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/09/15/go-e6-8c-87-e5-8d-97-e5-ad-a6-e4-b9-a0-e7-ac-94-e8-ae-b0-e4-b9-9d/">Go 指南学习笔记九</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/11/go-e6-8c-87-e5-8d-97-e5-ad-a6-e4-b9-a0-e7-ac-94-e8-ae-b0-e5-85-ab/">Go 指南学习笔记八</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/07/go-e6-8c-87-e5-8d-97-e5-ad-a6-e4-b9-a0-e7-ac-94-e8-ae-b0-e4-b8-83/">Go 指南学习笔记七</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/06/zookeeper-e5-ae-89-e8-a3-85/">zookeeper安装</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/05/go-e6-8c-87-e5-8d-97-e5-ad-a6-e4-b9-a0-e7-ac-94-e8-ae-b0-e5-85-ad/">Go 指南学习笔记六</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/03/go-e6-8c-87-e5-8d-97-e5-ad-a6-e4-b9-a0-e7-ac-94-e8-ae-b0-e4-ba-94/">Go 指南学习笔记五</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/02/go-e6-8c-87-e5-8d-97-e5-ad-a6-e4-b9-a0-e7-ac-94-e8-ae-b0-e5-9b-9b/">Go 指南学习笔记四</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/01/go-e6-8c-87-e5-8d-97-e5-ad-a6-e4-b9-a0-e7-ac-94-e8-ae-b0-e4-b8-89/">Go 指南学习笔记三</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/31/e5-88-a9-e7-94-a8dockerhubgithub-e8-87-aa-e5-ae-9a-e4-b9-89-e5-88-b6-e4-bd-9c-e9-95-9c-e5-83-8f/">利用Dockerhub+github自定义制作镜像</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/30/go-e6-8c-87-e5-8d-97-e5-ad-a6-e4-b9-a0-e7-ac-94-e8-ae-b0-e4-ba-8c/">Go 指南学习笔记二</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="http://badwolfbay.cn" title="badwolfbay" target="_blank">badwolfbay</a><ul></ul><a href="http://yimoson.cn" title="badwolfbay" target="_blank">badwolfbay</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2017 <a href="/." rel="nofollow">BADWOLFBAY.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a id="rocket" href="#top" class="show"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/3.1.20/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/3.1.20/jquery.fancybox.min.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
