@@ -71,17 +71,17 @@
 
 
 
-<meta name="description" content="1.for循环 go语言只有一个循环语句，即for。如下  sum := 0 for i:= 0;i&amp;amp;lt;10;i++{   &amp;amp;nbsp; &amp;amp;nbsp; sum += i   }   不像java,python等，条件表达式不需要()小括号，循环体需要{} 初始化条件和后置判断条件不是必须的，如for ; i&amp;lt;10; {} 在java等语言中while循环在go语言">
+<meta name="description" content="1.for循环  go语言只有一个循环语句，即for.  1sum := 0for i:= 0;i&amp;lt;10;i++&amp;#123;	sum += i&amp;#125;  不像java,python等，条件表达式不需要()小括号，循环体需要{} 初始化条件和后置判断条件不是必须的，如for ; i&amp;lt;10; {} 在java等语言中while循环在go语言中写法  1for i &amp;lt; 10">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Go 指南学习笔记二">
 <meta property="og:url" content="http://yoursite.com/2017/08/30/go-e6-8c-87-e5-8d-97-e5-ad-a6-e4-b9-a0-e7-ac-94-e8-ae-b0-e4-ba-8c/index.html">
 <meta property="og:site_name" content="BADWOLFBAY">
-<meta property="og:description" content="1.for循环 go语言只有一个循环语句，即for。如下  sum := 0 for i:= 0;i&amp;amp;lt;10;i++{   &amp;amp;nbsp; &amp;amp;nbsp; sum += i   }   不像java,python等，条件表达式不需要()小括号，循环体需要{} 初始化条件和后置判断条件不是必须的，如for ; i&amp;lt;10; {} 在java等语言中while循环在go语言">
+<meta property="og:description" content="1.for循环  go语言只有一个循环语句，即for.  1sum := 0for i:= 0;i&amp;lt;10;i++&amp;#123;	sum += i&amp;#125;  不像java,python等，条件表达式不需要()小括号，循环体需要{} 初始化条件和后置判断条件不是必须的，如for ; i&amp;lt;10; {} 在java等语言中while循环在go语言中写法  1for i &amp;lt; 10">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-09-18T16:22:45.000Z">
+<meta property="og:updated_time" content="2017-09-19T13:32:50.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Go 指南学习笔记二">
-<meta name="twitter:description" content="1.for循环 go语言只有一个循环语句，即for。如下  sum := 0 for i:= 0;i&amp;amp;lt;10;i++{   &amp;amp;nbsp; &amp;amp;nbsp; sum += i   }   不像java,python等，条件表达式不需要()小括号，循环体需要{} 初始化条件和后置判断条件不是必须的，如for ; i&amp;lt;10; {} 在java等语言中while循环在go语言">
+<meta name="twitter:description" content="1.for循环  go语言只有一个循环语句，即for.  1sum := 0for i:= 0;i&amp;lt;10;i++&amp;#123;	sum += i&amp;#125;  不像java,python等，条件表达式不需要()小括号，循环体需要{} 初始化条件和后置判断条件不是必须的，如for ; i&amp;lt;10; {} 在java等语言中while循环在go语言中写法  1for i &amp;lt; 10">
 
 
 
@@ -314,228 +314,48 @@
 
       
         <p>1.for循环</p>
-<pre><code>go语言只有一个循环语句，即for。如下
-</code></pre><blockquote>
-<p>sum := 0</p>
-<pre><code>for i:= 0;i&amp;lt;10;i++{
-
-
-&amp;nbsp; &amp;nbsp; sum += i
-
-
-}
-</code></pre></blockquote>
+<blockquote>
+<p>go语言只有一个循环语句，即for.</p>
+</blockquote>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sum := <span class="number">0</span><span class="keyword">for</span> i:= <span class="number">0</span>;i&lt;<span class="number">10</span>;i++&#123;	sum += i&#125;</div></pre></td></tr></table></figure>
 <ul>
 <li>不像java,python等，条件表达式不需要()小括号，循环体需要{}</li>
 <li>初始化条件和后置判断条件不是必须的，如for ; i&lt;10; {}</li>
 <li>在java等语言中while循环在go语言中写法</li>
 </ul>
-<blockquote>
-<p>for i&lt; 10 {</p>
-<pre><code>&amp;nbsp; &amp;nbsp; sum += i
-
-
-}
-</code></pre></blockquote>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> i &lt; <span class="number">10</span> &#123;	sum += i&#125;</div></pre></td></tr></table></figure>
 <ul>
 <li>死循环</li>
 </ul>
-<blockquote>
-<p>for {</p>
-<pre><code>&amp;nbsp; &amp;nbsp; sum += i
-
-
-}
-</code></pre></blockquote>
-<pre><code>2.if语句
-</code></pre><ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> &#123;	sum += i&#125;</div></pre></td></tr></table></figure>
+<p>2.if语句</p>
+<ul>
 <li>同for循环一样,if语句的判断条件语句也不需要()</li>
 </ul>
-<blockquote>
-<p>if i&lt;10 {</p>
-<pre><code>}
-</code></pre></blockquote>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> i&lt;<span class="number">10</span> &#123;&#125;</div></pre></td></tr></table></figure>
 <ul>
 <li>同for循环一样，条件之前也可以是一个简单的语句</li>
 </ul>
-<blockquote>
-<p>i := 10</p>
-<pre><code>if j:= 10; i&amp;lt;j {
-
-
-&amp;nbsp; &amp;nbsp; return j
-
-
-}
-</code></pre></blockquote>
-<ul>
-<li>else</li>
-</ul>
-<blockquote>
-<p>i := 10</p>
-<pre><code>if j := 10; i&amp;lt;j {
-
-
-&amp;nbsp; &amp;nbsp; return j
-
-
-} else {
-
-
-&amp;nbsp; &amp;nbsp; return i
-
-
-}
-</code></pre></blockquote>
-<pre><code>3.switch语句
-</code></pre><blockquote>
-<p>package main</p>
-<pre><code>&amp;nbsp;
-
-
-import (
-
-
-&amp;nbsp; &amp;nbsp; &amp;quot;fmt&amp;quot;
-
-
-&amp;nbsp; &amp;nbsp; &amp;quot;runtime&amp;quot;
-
-
-)
-
-
-&amp;nbsp;
-
-
-func main() {
-
-
-&amp;nbsp; &amp;nbsp; fmt.Print(&amp;quot;Go runs on &amp;quot;)
-
-
-&amp;nbsp; &amp;nbsp; switch os := runtime.GOOS; os {
-
-
-&amp;nbsp; &amp;nbsp; case &amp;quot;darwin&amp;quot;:
-
-
-&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; fmt.Println(&amp;quot;OS X.&amp;quot;)
-
-
-&amp;nbsp; &amp;nbsp; case &amp;quot;linux&amp;quot;:
-
-&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; fmt.Println(&amp;quot;Linux.&amp;quot;)
-
-
-&amp;nbsp; &amp;nbsp; default:
-
-
-&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; fmt.Printf(&amp;quot;%s.&amp;quot;, os)
-
-
-&amp;nbsp; &amp;nbsp; }
-
-
-}
-</code></pre></blockquote>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">i := <span class="number">10</span><span class="keyword">if</span> j := <span class="number">10</span>; i&lt;j &#123;	<span class="keyword">return</span> j&#125; <span class="keyword">else</span> &#123;	<span class="keyword">return</span> i&#125;</div></pre></td></tr></table></figure>
+<p>3.switch语句</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> main<span class="keyword">import</span> (	<span class="string">"fmt"</span>	<span class="string">"runtime"</span>)<span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;	fmt.Print(<span class="string">"Go runs on "</span>)	<span class="keyword">switch</span> os := runtime.GOOS; os &#123;	<span class="keyword">case</span> <span class="string">"darwin"</span>:		fmt.Println(<span class="string">"OS X."</span>)	<span class="keyword">case</span> <span class="string">"linux"</span>:</div><div class="line">		fmt.Println(<span class="string">"Linux."</span>)	<span class="keyword">default</span>:		fmt.Printf(<span class="string">"%s."</span>, os)	&#125;&#125;</div></pre></td></tr></table></figure>
 <ul>
 <li>按照条件从上到下执行，直到匹配到成功为止，执行成功后，后边的条件不再执行</li>
-<li><p>没有条件的switch，如switch {},同switch true {}一样</p>
+<li>没有条件的switch，如switch {},同switch true {}一样</li>
+</ul>
 <p>4.defer语句</p>
-</li>
+<ul>
 <li><p>defer 语句会延迟函数的执行直到上层函数返回。</p>
 <p>延迟调用的参数会立刻生成，但是在上层函数返回前函数都不会被调用</p>
 </li>
 </ul>
-<blockquote>
-<p>package main</p>
-<pre><code>import &amp;quot;fmt&amp;quot;
-
-
-func main(){
-
-
-&amp;nbsp; &amp;nbsp; defer fmt.Println(&amp;quot;world&amp;quot;)
-
-
-&amp;nbsp; &amp;nbsp; fmt.Print(&amp;quot;hello&amp;quot;)
-
-
-}
-</code></pre></blockquote>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> main<span class="keyword">import</span> <span class="string">"fmt"</span>;<span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span>&#123;	<span class="keyword">defer</span> fmt.Println(<span class="string">"world&amp;quot;)	fmt.Print("</span>hello<span class="string">")&#125;</span></div></pre></td></tr></table></figure>
 <ul>
 <li>defer栈，延迟的函数调用会被压入一个栈中。</li>
 </ul>
-<blockquote>
-<div><br><br>        <div><br><br>            package main<br><br>        </div>
-
-
-<pre><code>    &lt;div&gt;
-
-        import &amp;quot;fmt&amp;quot;
-
-    &lt;/div&gt;
-
-
-    &lt;div&gt;
-
-        func main() {
-
-    &lt;/div&gt;
-
-
-    &lt;div&gt;
-
-        &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;fmt.Println(&amp;quot;counting&amp;quot;)
-
-    &lt;/div&gt;
-
-
-    &lt;div&gt;
-
-        &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;for i := 0; i &amp;lt; 10; i++ {
-
-    &lt;/div&gt;
-
-
-    &lt;div&gt;
-
-        &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;defer fmt.Println(i)
-
-    &lt;/div&gt;
-
-
-    &lt;div&gt;
-
-        &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;}
-
-    &lt;/div&gt;
-
-
-    &lt;div&gt;
-
-        &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;fmt.Println(&amp;quot;done&amp;quot;)
-
-    &lt;/div&gt;
-
-
-    &lt;div&gt;
-
-        }
-
-    &lt;/div&gt;
-
-
-        &amp;nbsp;
-
-
-&lt;/div&gt;
-</code></pre></div></blockquote>
-<pre><code>输出结果如下图：
-
-![](http://www.badwolfbay.cn/wp-content/uploads/2017/08/QQ20170830-211806@2x-300x97.png)
-</code></pre>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> main</div><div class="line"></div><div class="line"><span class="keyword">import</span> <span class="string">"fmt"</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</div><div class="line">	fmt.Println(<span class="string">"counting"</span>)</div><div class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">10</span>; i++ &#123;</div><div class="line">		<span class="keyword">defer</span> fmt.Println(i)</div><div class="line">	&#125;</div><div class="line">	fmt.Println(<span class="string">"done"</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>输出结果如下：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">[Running] <span class="keyword">go</span> run <span class="string">"/Users/badwolf/Documents/go/hello/defer.go"</span></div><div class="line">counting</div><div class="line">done</div><div class="line"><span class="number">9</span></div><div class="line"><span class="number">8</span></div><div class="line"><span class="number">7</span></div><div class="line"><span class="number">6</span></div><div class="line"><span class="number">5</span></div><div class="line"><span class="number">4</span></div><div class="line"><span class="number">3</span></div><div class="line"><span class="number">2</span></div><div class="line"><span class="number">1</span></div><div class="line"><span class="number">0</span></div></pre></td></tr></table></figure>
       
     </div>
     

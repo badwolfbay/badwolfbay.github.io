@@ -80,7 +80,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://www.badwolfbay.cn/wp-content/uploads/2017/08/QQ截图20170830092126-300x215.jpg">
 <meta property="og:image" content="http://www.badwolfbay.cn/wp-content/uploads/2017/08/QQ截图20170830092747-300x115.jpg">
-<meta property="og:updated_time" content="2017-09-18T16:22:46.000Z">
+<meta property="og:updated_time" content="2017-09-19T13:32:51.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ssh免密码登陆">
 <meta name="twitter:description" content="有三台机器172.21.3.124/125/126，需要在这三台机器配置免密码登陆能够互相访问 1.在一台机器上执行命令，如172.21.3.124，期间会输入三次回车  ssh-keygen -t rsa  2.命令会在当前用户的家目录的.ssh的目录下生成id_rsa和id_rsa.pub文件，将id_rsa.pub文件copy到其他主机(172.21.3.125)的.ssh/authoriz">
@@ -330,8 +330,6 @@
 <p>将以上的命令和步骤重复在172.21.3.125/126分别执行，</p>
 <p>注意已经存在authorized_keys文件不能覆盖，需要在文件内容后追加其他主机的id_rsa.pub的内容。</p>
 <p>这样就可以三台机器 间互相免密码访问了。</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
 
       
     </div>

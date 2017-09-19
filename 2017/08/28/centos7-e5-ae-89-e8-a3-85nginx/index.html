@@ -71,17 +71,17 @@
 
 
 
-<meta name="description" content="CentOS7上通过yum的方式安装nginx: 1.增加CentOS 7 EPEL repository sudo yum install -y epel-release 2.安装nginx sudo yum install -y nginx 3.启动nginx服务 sudo systemctl start nginx 4.如果在docker中安装nginx，Dockerfile如下： FROM">
+<meta name="description" content="CentOS7上通过yum的方式安装nginx: 1.增加CentOS 7 EPEL repository  sudo yum install -y epel-release  2.安装nginx  sudo yum install -y nginx  3.启动nginx服务  sudo systemctl start nginx  4.如果在docker中安装nginx，Dockerfile如下">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CentOS7安装nginx">
 <meta property="og:url" content="http://yoursite.com/2017/08/28/centos7-e5-ae-89-e8-a3-85nginx/index.html">
 <meta property="og:site_name" content="BADWOLFBAY">
-<meta property="og:description" content="CentOS7上通过yum的方式安装nginx: 1.增加CentOS 7 EPEL repository sudo yum install -y epel-release 2.安装nginx sudo yum install -y nginx 3.启动nginx服务 sudo systemctl start nginx 4.如果在docker中安装nginx，Dockerfile如下： FROM">
+<meta property="og:description" content="CentOS7上通过yum的方式安装nginx: 1.增加CentOS 7 EPEL repository  sudo yum install -y epel-release  2.安装nginx  sudo yum install -y nginx  3.启动nginx服务  sudo systemctl start nginx  4.如果在docker中安装nginx，Dockerfile如下">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-09-18T16:22:45.000Z">
+<meta property="og:updated_time" content="2017-09-19T13:32:49.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CentOS7安装nginx">
-<meta name="twitter:description" content="CentOS7上通过yum的方式安装nginx: 1.增加CentOS 7 EPEL repository sudo yum install -y epel-release 2.安装nginx sudo yum install -y nginx 3.启动nginx服务 sudo systemctl start nginx 4.如果在docker中安装nginx，Dockerfile如下： FROM">
+<meta name="twitter:description" content="CentOS7上通过yum的方式安装nginx: 1.增加CentOS 7 EPEL repository  sudo yum install -y epel-release  2.安装nginx  sudo yum install -y nginx  3.启动nginx服务  sudo systemctl start nginx  4.如果在docker中安装nginx，Dockerfile如下">
 
 
 
@@ -315,16 +315,19 @@
       
         <p>CentOS7上通过yum的方式安装nginx:</p>
 <p>1.增加CentOS 7 EPEL repository</p>
+<blockquote>
 <p>sudo yum install -y epel-release</p>
+</blockquote>
 <p>2.安装nginx</p>
+<blockquote>
 <p>sudo yum install -y nginx</p>
+</blockquote>
 <p>3.启动nginx服务</p>
+<blockquote>
 <p>sudo systemctl start nginx</p>
+</blockquote>
 <p>4.如果在docker中安装nginx，Dockerfile如下：</p>
-<p>FROM cenos:7</p>
-<p>CMD yum install -y epel-release</p>
-<p>CMD yum install -y nginx</p>
-<p>ENTRYPOINT [“nginx”, “-g”, “daemon off;”]</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">FROM</span> cenos:<span class="number">7</span></div><div class="line"></div><div class="line"><span class="keyword">CMD</span> yum install -y epel-release</div><div class="line"></div><div class="line">CMD yum install -y nginx</div><div class="line"></div><div class="line">ENTRYPOINT ["nginx", "-g", "daemon off;"]</div></pre></td></tr></table></figure>
 <p>在docker中不能使用systemctl start nginx命令启动nginx</p>
 
       
