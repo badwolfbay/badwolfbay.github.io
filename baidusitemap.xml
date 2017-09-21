@@ -3,6 +3,7 @@
 
 
     
+    
   <url>
     <loc>http://yoursite.com/2017/09/21/install-docker-via-dlite/</loc>
     <lastmod>2017-09-21T13:19:49.000Z</lastmod>
@@ -17,6 +18,24 @@
            
              
               <breadCrumb title="docker" url="http://yoursite.com/categories/docker/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/09/06/zookeeper-e5-ae-89-e8-a3-85/</loc>
+    <lastmod>2017-09-21T13:17:31.000Z</lastmod>
+    <data>
+        <display>
+        <title>zookeeper安装</title>
+        <pubTime>2017-09-06T02:33:09.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="java" url="http://yoursite.com/categories/java/"/>
           
         </display>
     </data>
@@ -289,24 +308,6 @@
            
              
               <breadCrumb title="golang" url="http://yoursite.com/categories/golang/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2017/09/06/zookeeper-e5-ae-89-e8-a3-85/</loc>
-    <lastmod>2017-09-19T13:32:51.000Z</lastmod>
-    <data>
-        <display>
-        <title>zookeeper安装</title>
-        <pubTime>2017-09-06T02:33:09.000Z</pubTime>
-        
-         
-           
-             
-              <breadCrumb title="java" url="http://yoursite.com/categories/java/"/>
           
         </display>
     </data>
