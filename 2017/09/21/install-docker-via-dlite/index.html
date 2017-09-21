@@ -53,7 +53,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="docker," />
 
 
 
@@ -71,17 +71,18 @@
 
 
 
-<meta name="description" content="1.map map在使用之前必须使用make来创建，值为nil的map是空的，并且不能对它赋值 1234567891011121314151617package mainimport (  &quot;fmt&quot;)type Vertex struct&amp;#123;  Lat, Long float64&amp;#125;var m map[string]Vertexfunc main() &amp;#123;  m = mak">
+<meta name="description" content="在MAC上安装docker for mac后，docker程序会在用户登录mac后自动启动，而如果用户没有登录，而是通过ssh远程登录的情况下，docker是无法启动的，在配置launchctl也无法配置自动启动命令。 经过一番搜索后，可以使用dlite来通过命令启动docker。 1.项目地址：  https://github.com/nlf/dlite  2.在release中下载编译好的二进">
+<meta name="keywords" content="docker">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Go 指南学习笔记六">
-<meta property="og:url" content="http://yoursite.com/2017/09/05/go-e6-8c-87-e5-8d-97-e5-ad-a6-e4-b9-a0-e7-ac-94-e8-ae-b0-e5-85-ad/index.html">
+<meta property="og:title" content="MAC上安装docker">
+<meta property="og:url" content="http://yoursite.com/2017/09/21/install-docker-via-dlite/index.html">
 <meta property="og:site_name" content="BADWOLFBAY">
-<meta property="og:description" content="1.map map在使用之前必须使用make来创建，值为nil的map是空的，并且不能对它赋值 1234567891011121314151617package mainimport (  &quot;fmt&quot;)type Vertex struct&amp;#123;  Lat, Long float64&amp;#125;var m map[string]Vertexfunc main() &amp;#123;  m = mak">
+<meta property="og:description" content="在MAC上安装docker for mac后，docker程序会在用户登录mac后自动启动，而如果用户没有登录，而是通过ssh远程登录的情况下，docker是无法启动的，在配置launchctl也无法配置自动启动命令。 经过一番搜索后，可以使用dlite来通过命令启动docker。 1.项目地址：  https://github.com/nlf/dlite  2.在release中下载编译好的二进">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-09-19T14:23:32.000Z">
+<meta property="og:updated_time" content="2017-09-21T13:19:49.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Go 指南学习笔记六">
-<meta name="twitter:description" content="1.map map在使用之前必须使用make来创建，值为nil的map是空的，并且不能对它赋值 1234567891011121314151617package mainimport (  &quot;fmt&quot;)type Vertex struct&amp;#123;  Lat, Long float64&amp;#125;var m map[string]Vertexfunc main() &amp;#123;  m = mak">
+<meta name="twitter:title" content="MAC上安装docker">
+<meta name="twitter:description" content="在MAC上安装docker for mac后，docker程序会在用户登录mac后自动启动，而如果用户没有登录，而是通过ssh远程登录的情况下，docker是无法启动的，在配置launchctl也无法配置自动启动命令。 经过一番搜索后，可以使用dlite来通过命令启动docker。 1.项目地址：  https://github.com/nlf/dlite  2.在release中下载编译好的二进">
 
 
 
@@ -111,13 +112,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/09/05/go-e6-8c-87-e5-8d-97-e5-ad-a6-e4-b9-a0-e7-ac-94-e8-ae-b0-e5-85-ad/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/09/21/install-docker-via-dlite/"/>
 
 
 
 
 
-  <title>Go 指南学习笔记六 | BADWOLFBAY</title>
+  <title>MAC上安装docker | BADWOLFBAY</title>
   
 
 
@@ -244,7 +245,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/05/go-e6-8c-87-e5-8d-97-e5-ad-a6-e4-b9-a0-e7-ac-94-e8-ae-b0-e5-85-ad/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/21/install-docker-via-dlite/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="BADWOLF">
@@ -261,7 +262,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">Go 指南学习笔记六</h2>
+          <h2 class="post-title" itemprop="name headline">MAC上安装docker</h2>
         
 
         <div class="post-meta">
@@ -273,8 +274,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-05T09:48:36+08:00">
-                2017-09-05
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-21T21:09:47+08:00">
+                2017-09-21
               </time>
             
 
@@ -296,8 +297,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/golang/" itemprop="url" rel="index">
-                    <span itemprop="name">golang</span>
+                  <a href="/categories/docker/" itemprop="url" rel="index">
+                    <span itemprop="name">docker</span>
                   </a>
                 </span>
 
@@ -333,20 +334,71 @@
       
 
       
-        <p>1.map</p>
-<p>map在使用之前必须使用make来创建，值为nil的map是空的，并且不能对它赋值</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> main</div><div class="line"></div><div class="line"><span class="keyword">import</span> (</div><div class="line">  <span class="string">"fmt"</span></div><div class="line">)</div><div class="line"></div><div class="line"><span class="keyword">type</span> Vertex <span class="keyword">struct</span>&#123;</div><div class="line">  Lat, Long <span class="keyword">float64</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> m <span class="keyword">map</span>[<span class="keyword">string</span>]Vertex</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</div><div class="line">  m = <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="keyword">string</span>]Vertex)</div><div class="line">  m[<span class="string">"Bell Labs"</span>] = Vertex&#123;<span class="number">40.68433</span>, <span class="number">-74.39967</span>&#125;</div><div class="line">  fmt.Println(m[<span class="string">"Bell Labs"</span>])<span class="comment">// &#123;40.68433 -74.39967&#125;</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>2.和结构体语法类似</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> n = <span class="keyword">map</span>[<span class="keyword">string</span>]Vertex &#123;</div><div class="line">  <span class="string">"Bell Labs"</span>: Vertex&#123;<span class="number">40.68433</span>, <span class="number">-74.39967</span>,&#125;,</div><div class="line">  <span class="string">"Google"</span>:Vertex&#123;<span class="number">37.42202</span>, <span class="number">-122.08408</span>,&#125;,</div><div class="line">&#125;</div><div class="line">fmt.Println(n) <span class="comment">//map[Bell Labs:&#123;40.68433 -74.39967&#125; Google:&#123;37.42202 -122.08408&#125;]</span></div></pre></td></tr></table></figure>
-<p>如果map的value值只是一个类型，可以在{}中将类型省略</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> k = <span class="keyword">map</span>[<span class="keyword">string</span>]Vertex&#123;</div><div class="line">  <span class="string">"Bell Labs"</span>: &#123;<span class="number">40.68433</span>, <span class="number">-74.39967</span>&#125;,</div><div class="line">  <span class="string">"Google"</span>: &#123;<span class="number">37.42202</span>, <span class="number">-122.08408</span>&#125;,</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>3.修改map</p>
-<ul>
-<li>插入或者修改元素: m[key] =&nbsp;<span style="white-space: pre-wrap; line-height: 1.6;">elem</span></li>
-<li>获得元素:&nbsp;<span style="white-space: pre-wrap; line-height: 1.6;">elem = m[key]</span></li>
-<li><span style="white-space: pre-wrap; line-height: 1.6;">删除元素: delete(m,key)</span></li>
-<li><span style="white-space: pre-wrap; line-height: 1.6;">检测是否存在: <span style="line-height: 1.6;">elem, ok = m[key]</span></span></li>
-</ul>
+        <p>在MAC上安装docker for mac后，docker程序会在用户登录mac后自动启动，而如果用户没有登录，而是通过ssh远程登录的情况下，docker是无法启动的，在配置launchctl也无法配置自动启动命令。</p>
+<p>经过一番搜索后，可以使用dlite来通过命令启动docker。</p>
+<p>1.项目地址：</p>
+<blockquote>
+<p><a href="https://github.com/nlf/dlite" target="_blank" rel="external">https://github.com/nlf/dlite</a></p>
+</blockquote>
+<p>2.在release中下载编译好的二进制文件，将文件放到<em>PATH</em>下，最简单的放到<em>/usr/local/bin/</em>目录下，然后执行</p>
+<blockquote>
+<p>sudo dlite init</p>
+</blockquote>
+<p>注意需要给dlite可执行权限</p>
+<blockquote>
+<p>chmod +x dlite</p>
+</blockquote>
+<p>3.执行命令后，开始询问创建虚拟机的参数，一路回车，但是最后报错</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Saving configuration: <span class="keyword">done</span></div><div class="line">Creating ssh key pair: <span class="keyword">done</span></div><div class="line">Adding host to ssh config: ERROR!</div><div class="line">Adding host to ssh config: | open /var/root/.ssh/config: no such file or directory</div></pre></td></tr></table></figure>
+<p>手动创建.ssh目录以及config文件</p>
+<blockquote>
+<p>sudo mkdir /var/root/.ssh</p>
+<p>sudo touch /var/root/.ssh/config</p>
+</blockquote>
+<p>然后重新执行sudo dlite init</p>
+<a id="more"></a>
+<p>而后报新的错误</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Creating tool binaries: <span class="keyword">done</span> Creating tool binaries: |</div><div class="line">Creating disk: ERROR!</div><div class="line">signal: trace/BPT <span class="built_in">trap</span></div></pre></td></tr></table></figure>
+<p>需要安装依赖</p>
+<blockquote>
+<p>brew install opam golang libev</p>
+<p>opam init</p>
+<p>eval <code>opam config env</code></p>
+<p>opam install uri qcow.0.7.0 conf-libev logs fmt qcow-format</p>
+</blockquote>
+<p>然后仍然报错,信息</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Next we<span class="string">'ll run a few steps that require sudo, you may be prompted for your password. </span></div><div class="line"><span class="string">Creating /etc/resoModifying /etc/exports: ERROR! done</span></div></pre></td></tr></table></figure>
+<p>根据github上的issue</p>
+<blockquote>
+<p><a href="https://github.com/nlf/dlite/issues/218" target="_blank" rel="external">https://github.com/nlf/dlite/issues/218</a></p>
+</blockquote>
+<p>问题在于执行sudo dlite init是不能加sudo,再次执行</p>
+<blockquote>
+<p>dlite init</p>
+</blockquote>
+<p>即可</p>
+<blockquote>
+<p>dlite start</p>
+</blockquote>
+<p>执行docker命令报错</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ docker ps</div><div class="line">Error response from daemon: Unable to connect to the virtual machine</div></pre></td></tr></table></figure>
+<p>执行ssh docker@local.docker 报错。 正常Dlite 会自动添加 local.docker 到 OS X 的 hosts 文件内。</p>
+<p>需要手动更改hosts文件</p>
+<blockquote>
+<p>dlite ip </p>
+</blockquote>
+<p>查看ip 为192.168.64.2</p>
+<blockquote>
+<p>sudo vi /etc/hosts</p>
+</blockquote>
+<p>增加一行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">192.168.64.2    local.docker</div></pre></td></tr></table></figure>
+<p>后执行docker ps就可以了</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ docker ps</div><div class="line">CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES</div></pre></td></tr></table></figure>
+<p>可参考链接</p>
+<blockquote>
+<p><a href="http://holys.im/2016/02/22/run-docker-on-osx-with-dlite/" target="_blank" rel="external">http://holys.im/2016/02/22/run-docker-on-osx-with-dlite/</a></p>
+</blockquote>
 
       
     </div>
@@ -362,6 +414,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/docker/" rel="tag"># docker</a>
+          
+        </div>
+      
 
       
       
@@ -371,8 +429,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/09/03/go-e6-8c-87-e5-8d-97-e5-ad-a6-e4-b9-a0-e7-ac-94-e8-ae-b0-e4-ba-94/" rel="next" title="Go 指南学习笔记五">
-                <i class="fa fa-chevron-left"></i> Go 指南学习笔记五
+              <a href="/2017/09/15/go-e6-8c-87-e5-8d-97-e5-ad-a6-e4-b9-a0-e7-ac-94-e8-ae-b0-e4-b9-9d/" rel="next" title="Go 指南学习笔记九">
+                <i class="fa fa-chevron-left"></i> Go 指南学习笔记九
               </a>
             
           </div>
@@ -380,10 +438,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/09/06/zookeeper-e5-ae-89-e8-a3-85/" rel="prev" title="zookeeper安装">
-                zookeeper安装 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
