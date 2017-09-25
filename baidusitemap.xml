@@ -4,14 +4,16 @@
 
     
   <url>
-    <loc>http://yoursite.com/2017/09/25/kubernetes-fluentd/</loc>
-    <lastmod>2017-09-25T14:56:54.000Z</lastmod>
+    <loc>http://yoursite.com/2017/09/25/docker-image-mirror/</loc>
+    <lastmod>2017-09-25T15:01:45.000Z</lastmod>
     <data>
         <display>
-        <title>kubernetes上部署fluentd采集日志</title>
-        <pubTime>2017-09-25T14:29:31.000Z</pubTime>
+        <title>Docker镜像中国加速</title>
+        <pubTime>2017-09-25T14:23:15.000Z</pubTime>
         
-        <tag>docker kubernetes</tag>
+        <tag>docker</tag>
+         
+        <tag>image</tag>
          
          
            
@@ -24,16 +26,16 @@
 
     
   <url>
-    <loc>http://yoursite.com/2017/09/25/docker-image-mirror/</loc>
-    <lastmod>2017-09-25T14:48:18.000Z</lastmod>
+    <loc>http://yoursite.com/2017/09/25/kubernetes-fluentd/</loc>
+    <lastmod>2017-09-25T15:01:40.000Z</lastmod>
     <data>
         <display>
-        <title>Docker镜像中国加速</title>
-        <pubTime>2017-09-25T14:23:15.000Z</pubTime>
+        <title>kubernetes上部署fluentd采集日志</title>
+        <pubTime>2017-09-25T14:29:31.000Z</pubTime>
         
         <tag>docker</tag>
          
-        <tag>image</tag>
+        <tag>kubernetes</tag>
          
          
            
