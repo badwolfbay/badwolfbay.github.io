@@ -4,6 +4,48 @@
 
     
   <url>
+    <loc>http://yoursite.com/2017/09/25/docker-image-mirror/</loc>
+    <lastmod>2017-09-25T14:48:18.000Z</lastmod>
+    <data>
+        <display>
+        <title>Docker镜像中国加速</title>
+        <pubTime>2017-09-25T14:23:15.000Z</pubTime>
+        
+        <tag>docker</tag>
+         
+        <tag>image</tag>
+         
+         
+           
+             
+              <breadCrumb title="docker" url="http://yoursite.com/categories/docker/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/09/25/kubernetes-fluentd/</loc>
+    <lastmod>2017-09-25T14:46:47.000Z</lastmod>
+    <data>
+        <display>
+        <title>kubernetes fluentd</title>
+        <pubTime>2017-09-25T14:29:31.000Z</pubTime>
+        
+        <tag>docker kubernetes</tag>
+         
+         
+           
+             
+              <breadCrumb title="docker" url="http://yoursite.com/categories/docker/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2017/09/25/harbor-api-token/</loc>
     <lastmod>2017-09-25T03:09:25.000Z</lastmod>
     <data>
