@@ -3,6 +3,26 @@
 
 
     
+  <url>
+    <loc>http://yoursite.com/2017/09/25/harbor-api-token/</loc>
+    <lastmod>2017-09-25T03:09:25.000Z</lastmod>
+    <data>
+        <display>
+        <title>调用Harbor RestAPI增加认证</title>
+        <pubTime>2017-09-25T02:57:19.000Z</pubTime>
+        
+        <tag>harbor</tag>
+         
+         
+           
+             
+              <breadCrumb title="harbor" url="http://yoursite.com/categories/harbor/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
     
   <url>
     <loc>http://yoursite.com/2017/09/21/install-docker-via-dlite/</loc>
