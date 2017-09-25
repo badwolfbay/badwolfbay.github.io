@@ -265,7 +265,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/09/25/kubernetes-fluentd/" itemprop="url">kubernetes fluentd</a></h2>
+                <a class="post-title-link" href="/2017/09/25/kubernetes-fluentd/" itemprop="url">kubernetes上部署fluentd采集日志</a></h2>
         
 
         <div class="post-meta">
@@ -349,7 +349,7 @@
 <p>./elasticsearch -d</p>
 </blockquote>
 <h3 id="2-制作fluent镜像"><a href="#2-制作fluent镜像" class="headerlink" title="2.制作fluent镜像"></a>2.制作fluent镜像</h3><p>Dockerfile内容如下:</p>
-<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">FROM</span>  badwolf/fluentd-es-image</div><div class="line"></div><div class="line"><span class="comment"># Ensure there are enough file descriptors for running Fluentd.</span></div><div class="line"><span class="comment">#RUN ulimit -n 65536</span></div><div class="line"></div><div class="line"><span class="comment"># Disable prompts from apt.</span></div><div class="line"></div><div class="line"><span class="comment"># Copy the Fluentd configuration file.</span></div><div class="line"><span class="keyword">COPY</span> td-agent.conf /etc/td-agent/td-agent.conf</div><div class="line"></div><div class="line"></div><div class="line">ENV LD_PRELOAD /opt/td-agent/embedded/lib/libjemalloc.so</div><div class="line"></div><div class="line"># Run the Fluentd service.</div><div class="line">ENTRYPOINT ["td-agent"]</div></pre></td></tr></table></figure>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">FROM</span>  badwolf/fluentd-es-image</div><div class="line"></div><div class="line"><span class="comment"># Ensure there are enough file descriptors for running Fluentd.</span></div><div class="line"><span class="comment">#RUN ulimit -n 65536</span></div><div class="line"></div><div class="line"><span class="comment"># Disable prompts from apt.</span></div><div class="line"></div><div class="line"><span class="comment"># Copy the Fluentd configuration file.</span></div><div class="line"><span class="keyword">COPY</span><span class="bash"> td-agent.conf /etc/td-agent/td-agent.conf</span></div><div class="line"><span class="bash"></span></div><div class="line"><span class="bash"></span></div><div class="line"><span class="bash">ENV LD_PRELOAD /opt/td-agent/embedded/lib/libjemalloc.so</span></div><div class="line"><span class="bash"></span></div><div class="line"><span class="bash"><span class="comment"># Run the Fluentd service.</span></span></div><div class="line"><span class="bash">ENTRYPOINT [<span class="string">"td-agent"</span>]</span></div></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/09/25/kubernetes-fluentd/#more" rel="contents">
@@ -1909,7 +1909,7 @@ v.Scale(<span class="number">5</span>)
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
