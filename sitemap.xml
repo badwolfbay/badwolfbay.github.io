@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2017/09/26/calico-install-on-kubernetes/</loc>
+    
+    <lastmod>2017-09-26T06:46:13.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2017/09/25/docker-image-mirror/</loc>
     
     <lastmod>2017-09-25T15:01:45.000Z</lastmod>

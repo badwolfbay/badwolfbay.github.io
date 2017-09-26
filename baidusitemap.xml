@@ -4,6 +4,28 @@
 
     
   <url>
+    <loc>http://yoursite.com/2017/09/26/calico-install-on-kubernetes/</loc>
+    <lastmod>2017-09-26T06:46:13.000Z</lastmod>
+    <data>
+        <display>
+        <title>Kubernetes网络组件Calico安装</title>
+        <pubTime>2017-09-26T06:43:51.000Z</pubTime>
+        
+        <tag>docker</tag>
+         
+        <tag>kubernetes</tag>
+         
+         
+           
+             
+              <breadCrumb title="docker" url="http://yoursite.com/categories/docker/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2017/09/25/docker-image-mirror/</loc>
     <lastmod>2017-09-25T15:01:45.000Z</lastmod>
     <data>
