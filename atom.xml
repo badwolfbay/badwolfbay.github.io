@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-09-27T03:11:43.000Z</updated>
+  <updated>2017-10-12T13:43:48.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Go指南学习笔记十</title>
+    <link href="http://yoursite.com/2017/10/12/go-tour-note-10/"/>
+    <id>http://yoursite.com/2017/10/12/go-tour-note-10/</id>
+    <published>2017-10-12T13:15:45.000Z</published>
+    <updated>2017-10-12T13:43:48.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="Stringers"><a href="#Stringers" class="headerlink" title="Stringers"></a>Stringers</h3><p>普遍存在的接口是<em>fmt</em>包中定义的Stringer</p><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">type</span> Stringer inferface &#123;</div><div class="line">    String() <span class="keyword">string</span></div><div class="line">&#125;</div></pre></td></tr></table></figure><p>Stringer是一个可以用字符串描述自己的类型。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">package main</div><div class="line"></div><div class="line">import (</div><div class="line">    &quot;fmt&quot;</div><div class="line">)</div><div class="line"></div><div class="line">type Person struct &#123;</div><div class="line">    Name string</div><div class="line">    Age  int</div><div class="line">&#125;</div><div class="line"></div><div class="line">func (p Person) String() string &#123;</div><div class="line">    return fmt.Sprintf(&quot;%v (%v years)&quot;, p.Name, p.Age)</div><div class="line">&#125;</div><div class="line">func main() &#123;</div><div class="line">    a := Person&#123;&quot;Dent&quot;, 42&#125;</div><div class="line">    z := Person&#123;&quot;Foo&quot;, 90&#125;</div><div class="line">    fmt.Println(a, z) // 输出Dent (42 years) Foo (90 years)</div><div class="line">&#125;</div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;Stringers&quot;&gt;&lt;a href=&quot;#Stringers&quot; class=&quot;headerlink&quot; title=&quot;Stringers&quot;&gt;&lt;/a&gt;Stringers&lt;/h3&gt;&lt;p&gt;普遍存在的接口是&lt;em&gt;fmt&lt;/em&gt;包中定义的Stringer&lt;/p&gt;
+&lt;fig
+      
+    
+    </summary>
+    
+      <category term="go" scheme="http://yoursite.com/categories/go/"/>
+    
+    
+      <category term="go" scheme="http://yoursite.com/tags/go/"/>
+    
+  </entry>
   
   <entry>
     <title>Kubernetes网络组件Calico安装</title>
@@ -565,34 +591,6 @@
 &lt;/blockquote&gt;
 &lt;p&gt;2.配置文件&lt;/p&gt;
 &lt;p&gt;复制认证所需要的文件(ca.crt xxxxx_c
-      
-    
-    </summary>
-    
-      <category term="linux" scheme="http://yoursite.com/categories/linux/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>CentOS7安装nginx</title>
-    <link href="http://yoursite.com/2017/08/28/centos7-e5-ae-89-e8-a3-85nginx/"/>
-    <id>http://yoursite.com/2017/08/28/centos7-e5-ae-89-e8-a3-85nginx/</id>
-    <published>2017-08-28T05:58:53.000Z</published>
-    <updated>2017-09-19T13:32:49.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>CentOS7上通过yum的方式安装nginx:</p><p>1.增加CentOS 7 EPEL repository</p><blockquote><p>sudo yum install -y epel-release</p></blockquote><p>2.安装nginx</p><blockquote><p>sudo yum install -y nginx</p></blockquote><p>3.启动nginx服务</p><blockquote><p>sudo systemctl start nginx</p></blockquote><p>4.如果在docker中安装nginx，Dockerfile如下：</p><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">FROM</span> cenos:<span class="number">7</span></div><div class="line"></div><div class="line"><span class="keyword">CMD</span> yum install -y epel-release</div><div class="line"></div><div class="line">CMD yum install -y nginx</div><div class="line"></div><div class="line">ENTRYPOINT ["nginx", "-g", "daemon off;"]</div></pre></td></tr></table></figure><p>在docker中不能使用systemctl start nginx命令启动nginx</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;CentOS7上通过yum的方式安装nginx:&lt;/p&gt;
-&lt;p&gt;1.增加CentOS 7 EPEL repository&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;sudo yum install -y epel-release&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;2.
       
     
     </summary>

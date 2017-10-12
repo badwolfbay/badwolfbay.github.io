@@ -55,7 +55,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="docker,image," />
+  <meta name="keywords" content="go," />
 
 
 
@@ -73,18 +73,18 @@
 
 
 
-<meta name="description" content="通过 Docker 官方镜像加速，中国区用户能够快速访问最流行的 Docker 镜像。该镜像托管于中国大陆，本地用户现在将会享受到更快的下载速度和更强的稳定性，从而能够更敏捷地开发和交付 Docker 化应用。 Docker 中国官方镜像加速可通过 registry.docker-cn.com 访问。该镜像库只包含流行的公有镜像。私有镜像仍需要从美国镜像库中拉取。 您可以使用以下命令直接从该镜像加">
-<meta name="keywords" content="docker,image">
+<meta name="description" content="Stringers普遍存在的接口是fmt包中定义的Stringer 123type Stringer inferface &amp;#123;    String() string&amp;#125; Stringer是一个可以用字符串描述自己的类型。 12345678910111213141516171819package mainimport (    &amp;quot;fmt&amp;quot;)type Person">
+<meta name="keywords" content="go">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Docker镜像中国加速">
-<meta property="og:url" content="http://yoursite.com/2017/09/25/docker-image-mirror/index.html">
+<meta property="og:title" content="Go指南学习笔记十">
+<meta property="og:url" content="http://yoursite.com/2017/10/12/go-tour-note-10/index.html">
 <meta property="og:site_name" content="BADWOLFBAY">
-<meta property="og:description" content="通过 Docker 官方镜像加速，中国区用户能够快速访问最流行的 Docker 镜像。该镜像托管于中国大陆，本地用户现在将会享受到更快的下载速度和更强的稳定性，从而能够更敏捷地开发和交付 Docker 化应用。 Docker 中国官方镜像加速可通过 registry.docker-cn.com 访问。该镜像库只包含流行的公有镜像。私有镜像仍需要从美国镜像库中拉取。 您可以使用以下命令直接从该镜像加">
+<meta property="og:description" content="Stringers普遍存在的接口是fmt包中定义的Stringer 123type Stringer inferface &amp;#123;    String() string&amp;#125; Stringer是一个可以用字符串描述自己的类型。 12345678910111213141516171819package mainimport (    &amp;quot;fmt&amp;quot;)type Person">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-09-25T15:01:45.000Z">
+<meta property="og:updated_time" content="2017-10-12T13:43:48.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Docker镜像中国加速">
-<meta name="twitter:description" content="通过 Docker 官方镜像加速，中国区用户能够快速访问最流行的 Docker 镜像。该镜像托管于中国大陆，本地用户现在将会享受到更快的下载速度和更强的稳定性，从而能够更敏捷地开发和交付 Docker 化应用。 Docker 中国官方镜像加速可通过 registry.docker-cn.com 访问。该镜像库只包含流行的公有镜像。私有镜像仍需要从美国镜像库中拉取。 您可以使用以下命令直接从该镜像加">
+<meta name="twitter:title" content="Go指南学习笔记十">
+<meta name="twitter:description" content="Stringers普遍存在的接口是fmt包中定义的Stringer 123type Stringer inferface &amp;#123;    String() string&amp;#125; Stringer是一个可以用字符串描述自己的类型。 12345678910111213141516171819package mainimport (    &amp;quot;fmt&amp;quot;)type Person">
 
 
 
@@ -114,13 +114,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/09/25/docker-image-mirror/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/10/12/go-tour-note-10/"/>
 
 
 
 
 
-  <title>Docker镜像中国加速 | BADWOLFBAY</title>
+  <title>Go指南学习笔记十 | BADWOLFBAY</title>
   
 
 
@@ -247,7 +247,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/25/docker-image-mirror/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/12/go-tour-note-10/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="badwolf">
@@ -264,7 +264,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">Docker镜像中国加速</h2>
+          <h2 class="post-title" itemprop="name headline">Go指南学习笔记十</h2>
         
 
         <div class="post-meta">
@@ -276,8 +276,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-25T22:23:15+08:00">
-                2017-09-25
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-12T21:15:45+08:00">
+                2017-10-12
               </time>
             
 
@@ -299,8 +299,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/docker/" itemprop="url" rel="index">
-                    <span itemprop="name">docker</span>
+                  <a href="/categories/go/" itemprop="url" rel="index">
+                    <span itemprop="name">go</span>
                   </a>
                 </span>
 
@@ -336,30 +336,10 @@
       
 
       
-        <p>通过 Docker 官方镜像加速，中国区用户能够快速访问最流行的 Docker 镜像。该镜像托管于中国大陆，本地用户现在将会享受到更快的下载速度和更强的稳定性，从而能够更敏捷地开发和交付 Docker 化应用。</p>
-<p>Docker 中国官方镜像加速可通过 registry.docker-cn.com 访问。该镜像库只包含流行的公有镜像。私有镜像仍需要从美国镜像库中拉取。</p>
-<p>您可以使用以下命令直接从该镜像加速地址进行拉取：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ docker pull registry.docker-cn.com/myname/myrepo:mytag</div></pre></td></tr></table></figure>
-<p>例如:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ docker pull registry.docker-cn.com/library/ubuntu:16.04</div></pre></td></tr></table></figure>
-<blockquote>
-<p>注: 除非您修改了 Docker 守护进程的 <code>--registry-mirror</code> 参数 (见下文), 否则您将需要完整地指定官方镜像的名称。例如，library/ubuntu、library/redis、library/nginx。</p>
-</blockquote>
-<a id="more"></a>
-<p><strong>使用 –registry-mirror 配置 Docker 守护进程</strong><br>您可以配置 Docker 守护进程默认使用 Docker 官方镜像加速。这样您可以默认通过官方镜像加速拉取镜像，而无需在每次拉取时指定 registry.docker-cn.com。</p>
-<p>您可以在 Docker 守护进程启动时传入 –registry-mirror 参数：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ docker --registry-mirror=https://registry.docker-cn.com daemon</div></pre></td></tr></table></figure>
-<p>为了永久性保留更改，您可以修改 /etc/docker/daemon.json 文件并添加上 registry-mirrors 键值。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="string">"registry-mirrors"</span>: [<span class="string">"https://registry.docker-cn.com"</span>]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>修改保存后重启 Docker 以使配置生效。</p>
-<blockquote>
-<p>注: 您也可以使用适用于 Mac 的 Docker 和适用于 Windows 的 Docker 来进行设置。</p>
-</blockquote>
-<p>原文连接:</p>
-<blockquote>
-<p><a href="https://www.docker-cn.com/registry-mirror" target="_blank" rel="external">https://www.docker-cn.com/registry-mirror</a></p>
-</blockquote>
-
+        <h3 id="Stringers"><a href="#Stringers" class="headerlink" title="Stringers"></a>Stringers</h3><p>普遍存在的接口是<em>fmt</em>包中定义的Stringer</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">type</span> Stringer inferface &#123;</div><div class="line">    String() <span class="keyword">string</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>Stringer是一个可以用字符串描述自己的类型。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">package main</div><div class="line"></div><div class="line">import (</div><div class="line">    &quot;fmt&quot;</div><div class="line">)</div><div class="line"></div><div class="line">type Person struct &#123;</div><div class="line">    Name string</div><div class="line">    Age  int</div><div class="line">&#125;</div><div class="line"></div><div class="line">func (p Person) String() string &#123;</div><div class="line">    return fmt.Sprintf(&quot;%v (%v years)&quot;, p.Name, p.Age)</div><div class="line">&#125;</div><div class="line">func main() &#123;</div><div class="line">    a := Person&#123;&quot;Dent&quot;, 42&#125;</div><div class="line">    z := Person&#123;&quot;Foo&quot;, 90&#125;</div><div class="line">    fmt.Println(a, z) // 输出Dent (42 years) Foo (90 years)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
       
     </div>
     
@@ -400,9 +380,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/docker/" rel="tag"># docker</a>
-          
-            <a href="/tags/image/" rel="tag"># image</a>
+            <a href="/tags/go/" rel="tag"># go</a>
           
         </div>
       
@@ -415,8 +393,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/09/25/harbor-api-token/" rel="next" title="调用Harbor RestAPI增加认证">
-                <i class="fa fa-chevron-left"></i> 调用Harbor RestAPI增加认证
+              <a href="/2017/09/26/calico-install-on-kubernetes/" rel="next" title="Kubernetes网络组件Calico安装">
+                <i class="fa fa-chevron-left"></i> Kubernetes网络组件Calico安装
               </a>
             
           </div>
@@ -424,10 +402,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/09/25/kubernetes-fluentd/" rel="prev" title="kubernetes上部署fluentd采集日志">
-                kubernetes上部署fluentd采集日志 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -479,8 +453,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           
             <img class="site-author-image" itemprop="image"
@@ -570,6 +553,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Stringers"><span class="nav-number">1.</span> <span class="nav-text">Stringers</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
