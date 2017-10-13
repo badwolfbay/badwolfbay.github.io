@@ -246,6 +246,158 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/13/not-root-run-docker/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="badwolf">
+      <meta itemprop="description" content="Run,You Clever Boy!">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BADWOLFBAY">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/13/not-root-run-docker/" itemprop="url">非root用户运行docker</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-13T09:31:04+08:00">
+                2017-10-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/docker/" itemprop="url" rel="index">
+                    <span itemprop="name">docker</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>转载：</p>
+<p>原文出处：</p>
+<blockquote>
+<p><a href="https://notes.wanghao.work/2017-07-11-Docker非Root用户运行.html" target="_blank" rel="external">https://notes.wanghao.work/2017-07-11-Docker非Root用户运行.html</a></p>
+</blockquote>
+<hr>
+<blockquote>
+<p>Docker Engine的Deamon进程是以root权限运行的，如果是普通用户要与之交互，需要使用<code>sudo</code>命令来提权与之交互。之前使用Docker官方的安装脚本安装完成之后，会给出一个提示将当前非root用户添加到doker组之中，以避免每次都需要输入<code>sudo</code>的麻烦。</p>
+</blockquote>
+<p>然而随着Docker版本的迭代和官网的安装方式的更改，现在官方给出的安装方式是添加仓库源地址，然后使用默认的<code>apt</code>或者<code>yum</code>包管理工具来完成后安装。并不再提示用户添加非root用户到组。</p>
+<p>默认情况下，完成Docker Engine的安装之后，Docker将会自动创建一个名为<code>docker</code>的用户组，所以<code>root</code>用户和在<code>docker</code>组中的用户都可以免去<code>sudo</code>来与Docker Engine交互。知道原理之后就简单了：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo usermod -aG docker <span class="variable">$&#123;whoami&#125;</span> <span class="comment">#添加当前用户到docker组</span></div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/12/go-tour-note-10/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1634,198 +1786,6 @@ v.Scale(<span class="number">5</span>)
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/06/zookeeper-e5-ae-89-e8-a3-85/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="badwolf">
-      <meta itemprop="description" content="Run,You Clever Boy!">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BADWOLFBAY">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/09/06/zookeeper-e5-ae-89-e8-a3-85/" itemprop="url">zookeeper安装</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-06T10:33:09+08:00">
-                2017-09-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/java/" itemprop="url" rel="index">
-                    <span itemprop="name">java</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>1.下载安装文件，下载地址：<a href="http://mirrors.hust.edu.cn/apache/zookeeper/" target="_blank" rel="external">http://mirrors.hust.edu.cn/apache/zookeeper/</a></p>
-<p>这里的下载的版本为zookeeper-3.4.10.tar.gz</p>
-<p>2.解压下载的安装文件</p>
-<blockquote>
-<p>tar -zxvf&nbsp;zookeeper-3.4.10.tar.gz</p>
-</blockquote>
-<p>3.修改配置文件</p>
-<blockquote>
-<p>zookeeper-3.4.10/conf<br>mv zoo_sample.cfg zoo.cfg</p>
-</blockquote>
-<p>zoo.cfg可以根据需要修改配置信息,如clientPort=2181</p>
-<p>4.启动zookeeper</p>
-<blockquote>
-<p>cd ../bin<br>./zkServer.sh start</p>
-</blockquote>
-<p>启动成功信息：</p>
-<p><span style="background-color:#D3D3D3;">ZooKeeper JMX enabled by default</span></p>
-<p><span style="background-color:#D3D3D3;">Using config: /root/zookeeper-3.4.10/bin/../conf/zoo.cfg</span></p>
-<p><span style="background-color:#D3D3D3;">Starting zookeeper … STARTED</span></p>
-<p>查看端口占用信息：</p>
-<blockquote>
-<p>netstat -an|grep 2181</p>
-</blockquote>
-<p>5.客户端连接测试</p>
-<blockquote>
-<p>./zkCli.sh -server 127.0.0.1</p>
-</blockquote>
-<p>连接成功后执行help命令可以查看帮助命令</p>
-<p><span style="background-color:#D3D3D3;">[zk: 127.0.0.1(CONNECTED) 0] help</span></p>
-<p><span style="background-color:#D3D3D3;">ZooKeeper -server host:port cmd args</span></p>
-<p><span style="background-color:#D3D3D3;"> stat path [watch]</span></p>
-<p><span style="background-color:#D3D3D3;"> set path data [version]</span></p>
-<p><span style="background-color:#D3D3D3;"> ls path [watch]</span></p>
-<p><span style="background-color:#D3D3D3;"> delquota [-n|-b] path</span></p>
-<p><span style="background-color:#D3D3D3;"> ls2 path [watch]</span></p>
-<p><span style="background-color:#D3D3D3;"> setAcl path acl</span></p>
-<p><span style="background-color:#D3D3D3;"> setquota -n|-b val path</span></p>
-<p><span style="background-color:#D3D3D3;"> history&nbsp;</span></p>
-<p><span style="background-color:#D3D3D3;"> redo cmdno</span></p>
-<p><span style="background-color:#D3D3D3;"> printwatches on|off</span></p>
-<p><span style="background-color:#D3D3D3;"> delete path [version]</span></p>
-<p><span style="background-color:#D3D3D3;"> sync path</span></p>
-<p><span style="background-color:#D3D3D3;"> listquota path</span></p>
-<p><span style="background-color:#D3D3D3;"> rmr path</span></p>
-<p><span style="background-color:#D3D3D3;"> get path [watch]</span></p>
-<p><span style="background-color:#D3D3D3;"> create [-s] [-e] path data acl</span></p>
-<p><span style="background-color:#D3D3D3;"> addauth scheme auth</span></p>
-<p><span style="background-color:#D3D3D3;"> quit&nbsp;</span></p>
-<p><span style="background-color:#D3D3D3;"> getAcl path</span></p>
-<p><span style="background-color:#D3D3D3;"> close&nbsp;</span></p>
-<p><span style="background-color:#D3D3D3;"> connect host:port</span></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1879,7 +1839,7 @@ v.Scale(<span class="number">5</span>)
             
               <a href="/archives/">
             
-                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-count">26</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

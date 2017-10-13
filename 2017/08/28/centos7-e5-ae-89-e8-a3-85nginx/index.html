@@ -349,7 +349,7 @@
 <p>sudo systemctl start nginx</p>
 </blockquote>
 <p>4.如果在docker中安装nginx，Dockerfile如下：</p>
-<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">FROM</span> cenos:<span class="number">7</span></div><div class="line"></div><div class="line"><span class="keyword">CMD</span><span class="bash"> yum install -y epel-release</span></div><div class="line"><span class="bash"></span></div><div class="line"><span class="bash">CMD yum install -y nginx</span></div><div class="line"><span class="bash"></span></div><div class="line"><span class="bash">ENTRYPOINT [<span class="string">"nginx"</span>, <span class="string">"-g"</span>, <span class="string">"daemon off;"</span>]</span></div></pre></td></tr></table></figure>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">FROM</span> cenos:<span class="number">7</span></div><div class="line"></div><div class="line"><span class="keyword">CMD</span> yum install -y epel-release</div><div class="line"></div><div class="line">CMD yum install -y nginx</div><div class="line"></div><div class="line">ENTRYPOINT ["nginx", "-g", "daemon off;"]</div></pre></td></tr></table></figure>
 <p>在docker中不能使用systemctl start nginx命令启动nginx</p>
 
       
@@ -482,7 +482,7 @@
             
               <a href="/archives/">
             
-                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-count">26</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
