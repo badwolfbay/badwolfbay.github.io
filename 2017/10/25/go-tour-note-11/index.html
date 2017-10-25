@@ -73,18 +73,18 @@
 
 
 
-<meta name="description" content="Stringers普遍存在的接口是fmt包中定义的Stringer 123type Stringer inferface &amp;#123;    String() string&amp;#125; Stringer是一个可以用字符串描述自己的类型。 12345678910111213141516171819package mainimport (    &amp;quot;fmt&amp;quot;)type Person">
+<meta name="description" content="错误Go使用error来标识错误状态。同fmt.Stringer一样，error类型也是个内建接口。 123type error interface &amp;#123;    Error() string&amp;#125; 通常函数会返回一个error值，调用它的代码应判断这个错误是否等于nil来进行错误处理。 1234567i, err := strconv.Atoi(&amp;quot;42&amp;quot;)if e">
 <meta name="keywords" content="go">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Go指南学习笔记十">
-<meta property="og:url" content="http://www.51yimo.com/2017/10/12/go-tour-note-10/index.html">
+<meta property="og:title" content="Go指南学习笔记十一">
+<meta property="og:url" content="http://www.51yimo.com/2017/10/25/go-tour-note-11/index.html">
 <meta property="og:site_name" content="BADWOLFBAY">
-<meta property="og:description" content="Stringers普遍存在的接口是fmt包中定义的Stringer 123type Stringer inferface &amp;#123;    String() string&amp;#125; Stringer是一个可以用字符串描述自己的类型。 12345678910111213141516171819package mainimport (    &amp;quot;fmt&amp;quot;)type Person">
+<meta property="og:description" content="错误Go使用error来标识错误状态。同fmt.Stringer一样，error类型也是个内建接口。 123type error interface &amp;#123;    Error() string&amp;#125; 通常函数会返回一个error值，调用它的代码应判断这个错误是否等于nil来进行错误处理。 1234567i, err := strconv.Atoi(&amp;quot;42&amp;quot;)if e">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-12T13:47:07.000Z">
+<meta property="og:updated_time" content="2017-10-25T01:52:40.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Go指南学习笔记十">
-<meta name="twitter:description" content="Stringers普遍存在的接口是fmt包中定义的Stringer 123type Stringer inferface &amp;#123;    String() string&amp;#125; Stringer是一个可以用字符串描述自己的类型。 12345678910111213141516171819package mainimport (    &amp;quot;fmt&amp;quot;)type Person">
+<meta name="twitter:title" content="Go指南学习笔记十一">
+<meta name="twitter:description" content="错误Go使用error来标识错误状态。同fmt.Stringer一样，error类型也是个内建接口。 123type error interface &amp;#123;    Error() string&amp;#125; 通常函数会返回一个error值，调用它的代码应判断这个错误是否等于nil来进行错误处理。 1234567i, err := strconv.Atoi(&amp;quot;42&amp;quot;)if e">
 
 
 
@@ -114,13 +114,13 @@
 
 
 
-  <link rel="canonical" href="http://www.51yimo.com/2017/10/12/go-tour-note-10/"/>
+  <link rel="canonical" href="http://www.51yimo.com/2017/10/25/go-tour-note-11/"/>
 
 
 
 
 
-  <title>Go指南学习笔记十 | BADWOLFBAY</title>
+  <title>Go指南学习笔记十一 | BADWOLFBAY</title>
   
 
 
@@ -281,7 +281,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.51yimo.com/2017/10/12/go-tour-note-10/">
+    <link itemprop="mainEntityOfPage" href="http://www.51yimo.com/2017/10/25/go-tour-note-11/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="badwolf">
@@ -298,7 +298,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">Go指南学习笔记十</h2>
+          <h2 class="post-title" itemprop="name headline">Go指南学习笔记十一</h2>
         
 
         <div class="post-meta">
@@ -310,8 +310,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-12T21:15:45+08:00">
-                2017-10-12
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-25T09:10:40+08:00">
+                2017-10-25
               </time>
             
 
@@ -375,10 +375,15 @@
       
 
       
-        <h3 id="Stringers"><a href="#Stringers" class="headerlink" title="Stringers"></a>Stringers</h3><p>普遍存在的接口是<em>fmt</em>包中定义的Stringer</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">type</span> Stringer inferface &#123;</div><div class="line">    String() <span class="keyword">string</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>Stringer是一个可以用字符串描述自己的类型。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">package main</div><div class="line"></div><div class="line">import (</div><div class="line">    &quot;fmt&quot;</div><div class="line">)</div><div class="line"></div><div class="line">type Person struct &#123;</div><div class="line">    Name string</div><div class="line">    Age  int</div><div class="line">&#125;</div><div class="line"></div><div class="line">func (p Person) String() string &#123;</div><div class="line">    return fmt.Sprintf(&quot;%v (%v years)&quot;, p.Name, p.Age)</div><div class="line">&#125;</div><div class="line">func main() &#123;</div><div class="line">    a := Person&#123;&quot;Dent&quot;, 42&#125;</div><div class="line">    z := Person&#123;&quot;Foo&quot;, 90&#125;</div><div class="line">    fmt.Println(a, z) // 输出Dent (42 years) Foo (90 years)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+        <h3 id="错误"><a href="#错误" class="headerlink" title="错误"></a>错误</h3><p>Go使用<code>error</code>来标识错误状态。<br>同<code>fmt.Stringer</code>一样，<code>error类型</code>也是个内建接口。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">type error interface &#123;</div><div class="line">    Error() string</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>通常函数会返回一个<code>error</code>值，调用它的代码应判断这个错误是否等于<code>nil</code>来进行错误处理。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">i, err := strconv.Atoi(&quot;42&quot;)</div><div class="line"></div><div class="line">if err ！= nil &#123;</div><div class="line">    fmt.Printf(&quot;conldn&apos;t convert number: %v\n&quot;, err)</div><div class="line">    return</div><div class="line">&#125;</div><div class="line">fmt.Printfln(&quot;Converted integer:&quot;, i)</div></pre></td></tr></table></figure>
+<p><code>error</code>为nil时表示成功；非<code>nil</code>的error表示错误</p>
+<a id="more"></a>
+<p>如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">package main</div><div class="line"></div><div class="line">import (</div><div class="line">    &quot;fmt&quot;</div><div class="line">    &quot;time&quot;</div><div class="line">)</div><div class="line"></div><div class="line">type MyError struct &#123;</div><div class="line">    When time.Time</div><div class="line">    What string</div><div class="line">&#125;</div><div class="line"></div><div class="line">func (e *MyError) Error() string &#123;</div><div class="line">    return fmt.Sprintf(&quot;at %v, %s&quot;, e.When, e.What)</div><div class="line">&#125;</div><div class="line"></div><div class="line">func run() error &#123;</div><div class="line">    return &amp;MyError&#123;time.Now(), &quot;it didn&apos;t work&quot;,&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">func main() &#123;</div><div class="line">    if err := run(); err != nil &#123;</div><div class="line">        fmt.Println(err) // </div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>运行输出结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">at 2017-10-25 09:31:30.9208855 +0800 CST, it didn&apos;t work</div></pre></td></tr></table></figure></p>
+
       
     </div>
     
@@ -422,7 +427,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://www.51yimo.com/2017/10/12/go-tour-note-10/" title="Go指南学习笔记十">http://www.51yimo.com/2017/10/12/go-tour-note-10/</a>
+    <a href="http://www.51yimo.com/2017/10/25/go-tour-note-11/" title="Go指南学习笔记十一">http://www.51yimo.com/2017/10/25/go-tour-note-11/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -450,8 +455,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/09/26/calico-install-on-kubernetes/" rel="next" title="Kubernetes网络组件Calico安装">
-                <i class="fa fa-chevron-left"></i> Kubernetes网络组件Calico安装
+              <a href="/2017/10/13/not-root-run-docker/" rel="next" title="非root用户运行docker">
+                <i class="fa fa-chevron-left"></i> 非root用户运行docker
               </a>
             
           </div>
@@ -459,10 +464,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/10/13/not-root-run-docker/" rel="prev" title="非root用户运行docker">
-                非root用户运行docker <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -626,7 +627,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Stringers"><span class="nav-number">1.</span> <span class="nav-text">Stringers</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#错误"><span class="nav-number">1.</span> <span class="nav-text">错误</span></a></li></ol></div>
             
 
           </div>

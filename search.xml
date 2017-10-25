@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Go指南学习笔记十一]]></title>
+    <url>%2F2017%2F10%2F25%2Fgo-tour-note-11%2F</url>
+    <content type="text"><![CDATA[错误Go使用error来标识错误状态。同fmt.Stringer一样，error类型也是个内建接口。 123type error interface &#123; Error() string&#125; 通常函数会返回一个error值，调用它的代码应判断这个错误是否等于nil来进行错误处理。 1234567i, err := strconv.Atoi(&quot;42&quot;)if err ！= nil &#123; fmt.Printf(&quot;conldn&apos;t convert number: %v\n&quot;, err) return&#125;fmt.Printfln(&quot;Converted integer:&quot;, i) error为nil时表示成功；非nil的error表示错误 如：12345678910111213141516171819202122232425package mainimport ( &quot;fmt&quot; &quot;time&quot;)type MyError struct &#123; When time.Time What string&#125;func (e *MyError) Error() string &#123; return fmt.Sprintf(&quot;at %v, %s&quot;, e.When, e.What)&#125;func run() error &#123; return &amp;MyError&#123;time.Now(), &quot;it didn&apos;t work&quot;,&#125;&#125;func main() &#123; if err := run(); err != nil &#123; fmt.Println(err) // &#125;&#125; 运行输出结果：1at 2017-10-25 09:31:30.9208855 +0800 CST, it didn&apos;t work]]></content>
+      <categories>
+        <category>golang</category>
+      </categories>
+      <tags>
+        <tag>go</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[非root用户运行docker]]></title>
     <url>%2F2017%2F10%2F13%2Fnot-root-run-docker%2F</url>
     <content type="text"><![CDATA[转载： 原文出处： https://notes.wanghao.work/2017-07-11-Docker非Root用户运行.html Docker Engine的Deamon进程是以root权限运行的，如果是普通用户要与之交互，需要使用sudo命令来提权与之交互。之前使用Docker官方的安装脚本安装完成之后，会给出一个提示将当前非root用户添加到doker组之中，以避免每次都需要输入sudo的麻烦。 然而随着Docker版本的迭代和官网的安装方式的更改，现在官方给出的安装方式是添加仓库源地址，然后使用默认的apt或者yum包管理工具来完成后安装。并不再提示用户添加非root用户到组。 默认情况下，完成Docker Engine的安装之后，Docker将会自动创建一个名为docker的用户组，所以root用户和在docker组中的用户都可以免去sudo来与Docker Engine交互。知道原理之后就简单了： 1sudo usermod -aG docker $&#123;whoami&#125; #添加当前用户到docker组]]></content>

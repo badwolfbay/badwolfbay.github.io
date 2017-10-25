@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.51yimo.com/"/>
-  <updated>2017-10-13T01:45:51.000Z</updated>
+  <updated>2017-10-25T01:52:40.000Z</updated>
   <id>http://www.51yimo.com/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Go指南学习笔记十一</title>
+    <link href="http://www.51yimo.com/2017/10/25/go-tour-note-11/"/>
+    <id>http://www.51yimo.com/2017/10/25/go-tour-note-11/</id>
+    <published>2017-10-25T01:10:40.000Z</published>
+    <updated>2017-10-25T01:52:40.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="错误"><a href="#错误" class="headerlink" title="错误"></a>错误</h3><p>Go使用<code>error</code>来标识错误状态。<br>同<code>fmt.Stringer</code>一样，<code>error类型</code>也是个内建接口。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">type error interface &#123;</div><div class="line">    Error() string</div><div class="line">&#125;</div></pre></td></tr></table></figure><p>通常函数会返回一个<code>error</code>值，调用它的代码应判断这个错误是否等于<code>nil</code>来进行错误处理。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">i, err := strconv.Atoi(&quot;42&quot;)</div><div class="line"></div><div class="line">if err ！= nil &#123;</div><div class="line">    fmt.Printf(&quot;conldn&apos;t convert number: %v\n&quot;, err)</div><div class="line">    return</div><div class="line">&#125;</div><div class="line">fmt.Printfln(&quot;Converted integer:&quot;, i)</div></pre></td></tr></table></figure><p><code>error</code>为nil时表示成功；非<code>nil</code>的error表示错误</p><a id="more"></a><p>如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">package main</div><div class="line"></div><div class="line">import (</div><div class="line">    &quot;fmt&quot;</div><div class="line">    &quot;time&quot;</div><div class="line">)</div><div class="line"></div><div class="line">type MyError struct &#123;</div><div class="line">    When time.Time</div><div class="line">    What string</div><div class="line">&#125;</div><div class="line"></div><div class="line">func (e *MyError) Error() string &#123;</div><div class="line">    return fmt.Sprintf(&quot;at %v, %s&quot;, e.When, e.What)</div><div class="line">&#125;</div><div class="line"></div><div class="line">func run() error &#123;</div><div class="line">    return &amp;MyError&#123;time.Now(), &quot;it didn&apos;t work&quot;,&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">func main() &#123;</div><div class="line">    if err := run(); err != nil &#123;</div><div class="line">        fmt.Println(err) // </div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p><p>运行输出结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">at 2017-10-25 09:31:30.9208855 +0800 CST, it didn&apos;t work</div></pre></td></tr></table></figure></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;错误&quot;&gt;&lt;a href=&quot;#错误&quot; class=&quot;headerlink&quot; title=&quot;错误&quot;&gt;&lt;/a&gt;错误&lt;/h3&gt;&lt;p&gt;Go使用&lt;code&gt;error&lt;/code&gt;来标识错误状态。&lt;br&gt;同&lt;code&gt;fmt.Stringer&lt;/code&gt;一样，&lt;code&gt;error类型&lt;/code&gt;也是个内建接口。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;type error interface &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    Error() string&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;通常函数会返回一个&lt;code&gt;error&lt;/code&gt;值，调用它的代码应判断这个错误是否等于&lt;code&gt;nil&lt;/code&gt;来进行错误处理。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;i, err := strconv.Atoi(&amp;quot;42&amp;quot;)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;if err ！= nil &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    fmt.Printf(&amp;quot;conldn&amp;apos;t convert number: %v\n&amp;quot;, err)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    return&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;fmt.Printfln(&amp;quot;Converted integer:&amp;quot;, i)&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;code&gt;error&lt;/code&gt;为nil时表示成功；非&lt;code&gt;nil&lt;/code&gt;的error表示错误&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="golang" scheme="http://www.51yimo.com/categories/golang/"/>
+    
+    
+      <category term="go" scheme="http://www.51yimo.com/tags/go/"/>
+    
+  </entry>
   
   <entry>
     <title>非root用户运行docker</title>
@@ -572,30 +598,6 @@
     </summary>
     
       <category term="python" scheme="http://www.51yimo.com/categories/python/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Go 指南学习笔记一</title>
-    <link href="http://www.51yimo.com/2017/08/28/golang-tour-e5-ad-a6-e4-b9-a0-e7-ac-94-e8-ae-b0-e4-b8-80/"/>
-    <id>http://www.51yimo.com/2017/08/28/golang-tour-e5-ad-a6-e4-b9-a0-e7-ac-94-e8-ae-b0-e4-b8-80/</id>
-    <published>2017-08-28T08:37:36.000Z</published>
-    <updated>2017-09-19T14:28:42.000Z</updated>
-    
-    <content type="html"><![CDATA[<ol><li>Golang提供了官方的学习手册，tour地址：<a href="https://tour.go-zh.org" target="_blank" rel="external">https://tour.go-zh.org</a><br>同时，鉴于国内的网络环境，可以自己安装进行离线访问Go指南</li></ol><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">go get github.com/Go-zh/tour/gotour</div></pre></td></tr></table></figure><p>然后就可以得到go tour了</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> <span class="variable">$GOPATH</span>/bin</div><div class="line">./gotour</div></pre></td></tr></table></figure><p>2.包</p><p>每个 Go 程序都是由包组成的。</p><p>程序运行的入口是包 <code>main</code> 。</p><p>一般情况下，包名与导入路径的最后一个目录一致。</p><p>3.包的导入</p><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> <span class="string">"fmt"</span></div><div class="line"><span class="keyword">import</span> <span class="string">"math"</span></div></pre></td></tr></table></figure><p>或者更多时候是下面的导入形式</p><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> (</div><div class="line"><span class="string">"fmt"</span></div><div class="line"><span class="string">"math"</span></div><div class="line">)</div></pre></td></tr></table></figure><p>4.大小写</p><p>首字母大写的名字是被导出的，可以被其他包引用，名称为小写的名称不会被导出</p><p>如：</p><p>可以引用fmt.Println()，而不能是fmt.println()</p><p>5.函数定义</p><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">add</span><span class="params">(x <span class="keyword">int</span>, y <span class="keyword">int</span>)</span> <span class="title">int</span></span>&#123;</div><div class="line"><span class="keyword">return</span> x + y</div><div class="line">&#125;</div></pre></td></tr></table></figure><p>Golang和其他语言不同，变量名在类型之前,函数返回值再最后。</p><p>如果参数类型相同，则可以合并，如上可以写成 x, y int 。</p><p>函数返回值可以返回多个，形式为(int, int)</p><p>6.变量定义</p><blockquote><p>var x ,y</p></blockquote><p>可以定义在包级别或者函数级别。</p><p>函数赋值var x int = 1,可以省略类型，如var x = 1。</p><p>更可以简写成x :=1,这种情况下不能在函数外使用。</p><p>变量在没有初始化为默认为<strong><em>零值：</em></strong></p><ul><li>数值类型为 <code>0</code> ，</li><li>布尔类型为 <code>false</code> ，</li><li>字符串为 <code>&quot;&quot;</code> （空字符串）<br>不同类型之间的转换需要显示转换,如 int(i)</li></ul><p>7.常量</p><p>常量定义与变量类似，不同的是不能使用:=定义</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;ol&gt;
-&lt;li&gt;Golang提供了官方的学习手册，tour地址：&lt;a href=&quot;https://tour.go-zh.org&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://tour.go-zh.org&lt;/a&gt;&lt;br&gt;同时，鉴于国内的网络环境，
-      
-    
-    </summary>
-    
-      <category term="golang" scheme="http://www.51yimo.com/categories/golang/"/>
     
     
   </entry>
