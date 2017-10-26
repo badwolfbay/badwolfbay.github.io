@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.51yimo.com/"/>
-  <updated>2017-10-26T12:18:06.000Z</updated>
+  <updated>2017-10-26T12:20:19.000Z</updated>
   <id>http://www.51yimo.com/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://www.51yimo.com/2017/10/26/java-interview/"/>
     <id>http://www.51yimo.com/2017/10/26/java-interview/</id>
     <published>2017-10-26T11:57:27.000Z</published>
-    <updated>2017-10-26T12:18:06.000Z</updated>
+    <updated>2017-10-26T12:20:19.000Z</updated>
     
     <content type="html"><![CDATA[<p>简单记录下百度Java面试题</p><ul><li>Java源码使用了哪些设计模式？列举你知道的类/包以及使用模式</li><li>写一个单例模式</li><li>Threadlocal有哪些特点，描述使用场景</li><li>快速排序</li><li>字符串常量池</li><li>类加载器</li><li>SpringMVC和Struts2有什么区别？(需要跟进新技术，为什么SpringMVC替代Struts2)</li><li>Java，Python和Go三个相比各自有什么优点和缺点(需要自己总结思考)</li><li>网络传输,应用层有哪些协议?(并问了Http头的详细信息)</li><li>设计一个互联网架构</li><li>接上：当访问量多比如秒杀可能的瓶颈在哪里,怎么解决这些瓶颈问题</li><li>数据库怎么读写分离，怎么分库分表</li><li>Java中HashMap的containsKey和containsValue的时间复杂度</li></ul><p>需要自己接下来深入学习JVM，网络层。<br>由底层原理–&gt;架构–&gt;项目/应用/数据/性能</p>]]></content>
     
@@ -40,10 +40,10 @@
     
     </summary>
     
-      <category term="Java" scheme="http://www.51yimo.com/categories/Java/"/>
+      <category term="java" scheme="http://www.51yimo.com/categories/java/"/>
     
     
-      <category term="Java" scheme="http://www.51yimo.com/tags/Java/"/>
+      <category term="java" scheme="http://www.51yimo.com/tags/java/"/>
     
   </entry>
   

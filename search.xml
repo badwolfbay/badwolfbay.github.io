@@ -5,10 +5,10 @@
     <url>%2F2017%2F10%2F26%2Fjava-interview%2F</url>
     <content type="text"><![CDATA[简单记录下百度Java面试题 Java源码使用了哪些设计模式？列举你知道的类/包以及使用模式 写一个单例模式 Threadlocal有哪些特点，描述使用场景 快速排序 字符串常量池 类加载器 SpringMVC和Struts2有什么区别？(需要跟进新技术，为什么SpringMVC替代Struts2) Java，Python和Go三个相比各自有什么优点和缺点(需要自己总结思考) 网络传输,应用层有哪些协议?(并问了Http头的详细信息) 设计一个互联网架构 接上：当访问量多比如秒杀可能的瓶颈在哪里,怎么解决这些瓶颈问题 数据库怎么读写分离，怎么分库分表 Java中HashMap的containsKey和containsValue的时间复杂度 需要自己接下来深入学习JVM，网络层。由底层原理–&gt;架构–&gt;项目/应用/数据/性能]]></content>
       <categories>
-        <category>Java</category>
+        <category>java</category>
       </categories>
       <tags>
-        <tag>Java</tag>
+        <tag>java</tag>
       </tags>
   </entry>
   <entry>
