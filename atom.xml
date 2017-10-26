@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.51yimo.com/"/>
-  <updated>2017-10-25T01:52:40.000Z</updated>
+  <updated>2017-10-26T12:18:06.000Z</updated>
   <id>http://www.51yimo.com/</id>
   
   <author>
@@ -15,6 +15,37 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>百度Java面试题汇总</title>
+    <link href="http://www.51yimo.com/2017/10/26/java-interview/"/>
+    <id>http://www.51yimo.com/2017/10/26/java-interview/</id>
+    <published>2017-10-26T11:57:27.000Z</published>
+    <updated>2017-10-26T12:18:06.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>简单记录下百度Java面试题</p><ul><li>Java源码使用了哪些设计模式？列举你知道的类/包以及使用模式</li><li>写一个单例模式</li><li>Threadlocal有哪些特点，描述使用场景</li><li>快速排序</li><li>字符串常量池</li><li>类加载器</li><li>SpringMVC和Struts2有什么区别？(需要跟进新技术，为什么SpringMVC替代Struts2)</li><li>Java，Python和Go三个相比各自有什么优点和缺点(需要自己总结思考)</li><li>网络传输,应用层有哪些协议?(并问了Http头的详细信息)</li><li>设计一个互联网架构</li><li>接上：当访问量多比如秒杀可能的瓶颈在哪里,怎么解决这些瓶颈问题</li><li>数据库怎么读写分离，怎么分库分表</li><li>Java中HashMap的containsKey和containsValue的时间复杂度</li></ul><p>需要自己接下来深入学习JVM，网络层。<br>由底层原理–&gt;架构–&gt;项目/应用/数据/性能</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;简单记录下百度Java面试题&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Java源码使用了哪些设计模式？列举你知道的类/包以及使用模式&lt;/li&gt;
+&lt;li&gt;写一个单例模式&lt;/li&gt;
+&lt;li&gt;Threadlocal有哪些特点，描述使用场景&lt;/li&gt;
+&lt;li&gt;快速排序&lt;/li&gt;
+&lt;li&gt;字符串常
+      
+    
+    </summary>
+    
+      <category term="Java" scheme="http://www.51yimo.com/categories/Java/"/>
+    
+    
+      <category term="Java" scheme="http://www.51yimo.com/tags/Java/"/>
+    
+  </entry>
   
   <entry>
     <title>Go指南学习笔记十一</title>
@@ -567,37 +598,6 @@
     </summary>
     
       <category term="linux" scheme="http://www.51yimo.com/categories/linux/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>python *args **kwargs理解</title>
-    <link href="http://www.51yimo.com/2017/08/29/python-args-kwargs-e7-90-86-e8-a7-a3/"/>
-    <id>http://www.51yimo.com/2017/08/29/python-args-kwargs-e7-90-86-e8-a7-a3/</id>
-    <published>2017-08-29T06:42:18.000Z</published>
-    <updated>2017-09-19T14:10:22.000Z</updated>
-    
-    <content type="html"><![CDATA[<ol><li><p>*args表示任意多个无名参数，是个tuple（元组）</p></li><li><p>**kwargs表示关键字参数，是个dict（字典）</p></li></ol><p>这两个是python中的可变参数</p><blockquote><p>注意：同时使用<em>args和**kwargs时，</em>args参数必须在**kwargs前边</p></blockquote><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">foo</span><span class="params">(*args, **kwargs)</span>:</span></div><div class="line"><span class="keyword">print</span> <span class="string">'args = '</span>, args</div><div class="line"><span class="keyword">print</span> <span class="string">'kwargs = '</span>, kwargs</div><div class="line">    </div><div class="line"><span class="keyword">if</span> name == <span class="string">'__main__'</span>:</div><div class="line">foo(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>)</div><div class="line">foo(a=<span class="number">1</span>, b=<span class="number">2</span>, c=<span class="number">3</span>, d=<span class="number">4</span>)</div><div class="line">foo(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,a=<span class="number">1</span>, b=<span class="number">2</span>, c=<span class="number">3</span>, b=<span class="number">4</span>)</div><div class="line">foo(<span class="string">'a'</span>, <span class="number">1</span>, <span class="keyword">None</span>, a=<span class="number">1</span>, b=<span class="string">'2'</span>, c=<span class="number">3</span>)</div></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;ol&gt;
-&lt;li&gt;&lt;p&gt;*args表示任意多个无名参数，是个tuple（元组）&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;**kwargs表示关键字参数，是个dict（字典）&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;这两个是python中的可变参数&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;
-      
-    
-    </summary>
-    
-      <category term="python" scheme="http://www.51yimo.com/categories/python/"/>
     
     
   </entry>

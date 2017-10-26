@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[百度Java面试题汇总]]></title>
+    <url>%2F2017%2F10%2F26%2Fjava-interview%2F</url>
+    <content type="text"><![CDATA[简单记录下百度Java面试题 Java源码使用了哪些设计模式？列举你知道的类/包以及使用模式 写一个单例模式 Threadlocal有哪些特点，描述使用场景 快速排序 字符串常量池 类加载器 SpringMVC和Struts2有什么区别？(需要跟进新技术，为什么SpringMVC替代Struts2) Java，Python和Go三个相比各自有什么优点和缺点(需要自己总结思考) 网络传输,应用层有哪些协议?(并问了Http头的详细信息) 设计一个互联网架构 接上：当访问量多比如秒杀可能的瓶颈在哪里,怎么解决这些瓶颈问题 数据库怎么读写分离，怎么分库分表 Java中HashMap的containsKey和containsValue的时间复杂度 需要自己接下来深入学习JVM，网络层。由底层原理–&gt;架构–&gt;项目/应用/数据/性能]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Go指南学习笔记十一]]></title>
     <url>%2F2017%2F10%2F25%2Fgo-tour-note-11%2F</url>
     <content type="text"><![CDATA[错误Go使用error来标识错误状态。同fmt.Stringer一样，error类型也是个内建接口。 123type error interface &#123; Error() string&#125; 通常函数会返回一个error值，调用它的代码应判断这个错误是否等于nil来进行错误处理。 1234567i, err := strconv.Atoi(&quot;42&quot;)if err ！= nil &#123; fmt.Printf(&quot;conldn&apos;t convert number: %v\n&quot;, err) return&#125;fmt.Printfln(&quot;Converted integer:&quot;, i) error为nil时表示成功；非nil的error表示错误 如：12345678910111213141516171819202122232425package mainimport ( &quot;fmt&quot; &quot;time&quot;)type MyError struct &#123; When time.Time What string&#125;func (e *MyError) Error() string &#123; return fmt.Sprintf(&quot;at %v, %s&quot;, e.When, e.What)&#125;func run() error &#123; return &amp;MyError&#123;time.Now(), &quot;it didn&apos;t work&quot;,&#125;&#125;func main() &#123; if err := run(); err != nil &#123; fmt.Println(err) // &#125;&#125; 运行输出结果：1at 2017-10-25 09:31:30.9208855 +0800 CST, it didn&apos;t work]]></content>
