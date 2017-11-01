@@ -5,10 +5,10 @@
     <url>%2F2017%2F10%2F26%2Fjava-interview%2F</url>
     <content type="text"><![CDATA[简单记录下百度Java面试题 Java源码使用了哪些设计模式？列举你知道的类/包以及使用模式 写一个单例模式 Threadlocal有哪些特点，描述使用场景 快速排序 Mysql事务隔离级别(Spring事务隔离级别) 字符串常量池 类加载器 SpringMVC和Struts2有什么区别？(需要跟进新技术，为什么SpringMVC替代Struts2) Java，Python和Go三个相比各自有什么优点和缺点(需要自己总结思考) 网络传输,应用层有哪些协议?(并问了Http头的详细信息) 设计一个互联网架构 接上：当访问量多比如秒杀可能的瓶颈在哪里,怎么解决这些瓶颈问题 数据库怎么读写分离，怎么分库分表 Java中HashMap的containsKey和containsValue的时间复杂度 需要自己接下来深入学习JVM，网络层。由底层原理–&gt;架构–&gt;项目/应用/数据/性能]]></content>
       <categories>
-        <category>java</category>
+        <category>Java</category>
       </categories>
       <tags>
-        <tag>java</tag>
+        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
@@ -131,7 +131,7 @@
     <url>%2F2017%2F09%2F06%2Fzookeeper-e5-ae-89-e8-a3-85%2F</url>
     <content type="text"><![CDATA[1.下载安装文件，下载地址：http://mirrors.hust.edu.cn/apache/zookeeper/ 这里的下载的版本为zookeeper-3.4.10.tar.gz 2.解压下载的安装文件 tar -zxvf&nbsp;zookeeper-3.4.10.tar.gz 3.修改配置文件 zookeeper-3.4.10/confmv zoo_sample.cfg zoo.cfg zoo.cfg可以根据需要修改配置信息,如clientPort=2181 4.启动zookeeper cd ../bin./zkServer.sh start 启动成功信息： ZooKeeper JMX enabled by default Using config: /root/zookeeper-3.4.10/bin/../conf/zoo.cfg Starting zookeeper … STARTED 查看端口占用信息： netstat -an|grep 2181 5.客户端连接测试 ./zkCli.sh -server 127.0.0.1 连接成功后执行help命令可以查看帮助命令 [zk: 127.0.0.1(CONNECTED) 0] help ZooKeeper -server host:port cmd args stat path [watch] set path data [version] ls path [watch] delquota [-n|-b] path ls2 path [watch] setAcl path acl setquota -n|-b val path history&nbsp; redo cmdno printwatches on|off delete path [version] sync path listquota path rmr path get path [watch] create [-s] [-e] path data acl addauth scheme auth quit&nbsp; getAcl path close&nbsp; connect host:port]]></content>
       <categories>
-        <category>java</category>
+        <category>Java</category>
       </categories>
   </entry>
   <entry>
@@ -227,7 +227,7 @@
     <url>%2F2017%2F08%2F28%2Fjenkins-e6-8f-92-e4-bb-b6-e5-bc-80-e5-8f-91%2F</url>
     <content type="text"><![CDATA[1.官网开发指南 https://wiki.jenkins.io/display/JENKINS/Plugin+tutorial 2.修改Maven的settting.xml文件 12345678910111213141516171819202122232425262728293031323334&lt;settings&gt; &lt;pluginGroups&gt; &lt;pluginGroup&gt;org.jenkins-ci.tools&lt;/pluginGroup&gt; &lt;/pluginGroups&gt; &lt;profiles&gt; &lt;!-- Give access to Jenkins plugins --&gt; &lt;profile&gt; &lt;id&gt;jenkins&lt;/id&gt; &lt;activation&gt; &lt;activeByDefault&gt;true&lt;/activeByDefault&gt; &lt;!-- change this to false, if you don't like to have it on per default --&gt; &lt;/activation&gt; &lt;repositories&gt; &lt;repository&gt; &lt;id&gt;repo.jenkins-ci.org&lt;/id&gt; &lt;url&gt;https://repo.jenkins-ci.org/public/&lt;/url&gt; &lt;/repository&gt; &lt;/repositories&gt; &lt;pluginRepositories&gt; &lt;pluginRepository&gt; &lt;id&gt;repo.jenkins-ci.org&lt;/id&gt; &lt;url&gt;https://repo.jenkins-ci.org/public/&lt;/url&gt; &lt;/pluginRepository&gt; &lt;/pluginRepositories&gt; &lt;/profile&gt; &lt;/profiles&gt; &lt;mirrors&gt; &lt;mirror&gt; &lt;id&gt;repo.jenkins-ci.org&lt;/id&gt; &lt;url&gt;https://repo.jenkins-ci.org/public/&lt;/url&gt; &lt;mirrorOf&gt;m.g.o-public&lt;/mirrorOf&gt; &lt;/mirror&gt; &lt;/mirrors&gt;&lt;/settings&gt; 3.创建新的插件，在命令行执行 mvn -U org.jenkins-ci.tools:maven-hpi-plugin:create 过程中要求输入插件的groupId和artifactId 编译新建的插件 mvn install 4.本地调试： set MAVEN_OPTS=-Xdebug -Xrunjdwp:transport=dt_socket,server=y,address=8000,suspend=n mvn hpi:run]]></content>
       <categories>
-        <category>java</category>
+        <category>Java</category>
       </categories>
   </entry>
   <entry>
