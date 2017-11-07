@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.51yimo.com/"/>
-  <updated>2017-11-01T06:17:07.000Z</updated>
+  <updated>2017-11-07T02:40:38.000Z</updated>
   <id>http://www.51yimo.com/</id>
   
   <author>
@@ -17,13 +17,44 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Go指南学习笔记十二</title>
+    <link href="http://www.51yimo.com/2017/11/07/go-tour-note-12/"/>
+    <id>http://www.51yimo.com/2017/11/07/go-tour-note-12/</id>
+    <published>2017-11-07T01:50:29.000Z</published>
+    <updated>2017-11-07T02:40:38.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="goroutine"><a href="#goroutine" class="headerlink" title="goroutine"></a>goroutine</h3><p><code>goroutine</code>是Go运行时环境管理的轻量级线程</p><blockquote><p>go f(x,y,z)</p></blockquote><p>开启一个新的goroutine执行。</p><p><code>f</code>,<code>x</code>,<code>y</code>,<code>z</code>是在当前goroutine中定义的，但是在新的goroutine中运行<code>f</code>。</p><p>goroutine在相同的地址空间中运行，因此访问共享内存必须同步。<code>sync</code>提供了这种可能，不过在Go中并不经常用到，因为还有其他办法。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">package main</div><div class="line"></div><div class="line">import (</div><div class="line">    &quot;fmt&quot;</div><div class="line">    &quot;time&quot;</div><div class="line">)</div><div class="line"></div><div class="line">func say(s string) &#123;</div><div class="line">    for i:=0; i&lt;5; i++ &#123;</div><div class="line">        time.Sleep(100 * time.Millisecond)</div><div class="line">        fmt.Println(s)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">func main() &#123;</div><div class="line">    go say(&quot;world&quot;)</div><div class="line">    say(&quot;hello&quot;)</div><div class="line">&#125;</div></pre></td></tr></table></figure><p>运行结果,<code>hello</code>和<code>world</code>交替运行。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">[Running] go run &quot;f:\study\go\smp\src\goroutine.go&quot;</div><div class="line">world</div><div class="line">hello</div><div class="line">hello</div><div class="line">world</div><div class="line">hello</div><div class="line">world</div><div class="line">hello</div><div class="line">world</div><div class="line">world</div><div class="line">hello</div></pre></td></tr></table></figure><a id="more"></a><h3 id="channel"><a href="#channel" class="headerlink" title="channel"></a>channel</h3><p>channel是有类型的管道，可以使用channel操作符<code>&lt;-</code>对齐发送或者接受值</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ch &lt;- v //将v送给channel ch</div><div class="line">v := &lt;-ch //从ch接收，并且赋值给v</div></pre></td></tr></table></figure><p>和map与slice一样，使用前必须创建</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ch := make(chan int)</div></pre></td></tr></table></figure><p>默认情况下，在另一端准备好之前，发送和接受都会阻塞。这使得goroutine可以在没有明确的锁或竞态变量的情况下进行同步。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">package main</div><div class="line"></div><div class="line">import (</div><div class="line">    &quot;fmt&quot;</div><div class="line">)</div><div class="line"></div><div class="line">func sum(a []int, c chan int) &#123;</div><div class="line">    sum := 0</div><div class="line">    for _, v := range a &#123;</div><div class="line">        sum += v</div><div class="line">    &#125;</div><div class="line">    c &lt;- sum // 将sum送入c</div><div class="line">&#125;</div><div class="line"></div><div class="line">func main() &#123;</div><div class="line">    a := []int&#123;7, 2, 8, -9, 4, 0&#125;</div><div class="line"></div><div class="line">    c := make(chan int)</div><div class="line">    go sum(a[:len(a)/2], c)</div><div class="line">    go sum(a[len(a)/2:], c)</div><div class="line">    x, y := &lt;-c, &lt;-c</div><div class="line"></div><div class="line">    fmt.Println(x, y , x+y)</div><div class="line">&#125;</div></pre></td></tr></table></figure><p>输出结果</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">-5 17 12 或者 17 -5 12</div></pre></td></tr></table></figure><h3 id="缓冲channel"><a href="#缓冲channel" class="headerlink" title="缓冲channel"></a>缓冲channel</h3><p>channel是可以带缓冲的。为<code>make</code>提供第二个参数作为缓冲长度来初始化一个缓冲channel</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ch := make(chan int, 100)</div></pre></td></tr></table></figure><p>向带缓冲的channel发送数据时，只有在缓冲区慢的时候才会发生阻塞。而当缓冲区为空时接受操作会阻塞。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">package main</div><div class="line"></div><div class="line">import (</div><div class="line">    &quot;fmt&quot;</div><div class="line">)</div><div class="line"></div><div class="line">func main() &#123;</div><div class="line">    ch := make(chan int, 2)</div><div class="line">    ch &lt;- 1</div><div class="line">    ch &lt;- 2</div><div class="line">    fmt.Println(&lt;-ch)</div><div class="line">    fmt.Println(&lt;-ch)</div><div class="line">&#125;</div></pre></td></tr></table></figure><p>输出结果<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">1</div><div class="line">2</div></pre></td></tr></table></figure></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;goroutine&quot;&gt;&lt;a href=&quot;#goroutine&quot; class=&quot;headerlink&quot; title=&quot;goroutine&quot;&gt;&lt;/a&gt;goroutine&lt;/h3&gt;&lt;p&gt;&lt;code&gt;goroutine&lt;/code&gt;是Go运行时环境管理的轻量级线程&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;go f(x,y,z)&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;开启一个新的goroutine执行。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;f&lt;/code&gt;,&lt;code&gt;x&lt;/code&gt;,&lt;code&gt;y&lt;/code&gt;,&lt;code&gt;z&lt;/code&gt;是在当前goroutine中定义的，但是在新的goroutine中运行&lt;code&gt;f&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;goroutine在相同的地址空间中运行，因此访问共享内存必须同步。&lt;code&gt;sync&lt;/code&gt;提供了这种可能，不过在Go中并不经常用到，因为还有其他办法。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;12&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;13&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;14&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;15&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;16&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;17&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;18&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;package main&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;import (&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &amp;quot;fmt&amp;quot;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &amp;quot;time&amp;quot;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;func say(s string) &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    for i:=0; i&amp;lt;5; i++ &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        time.Sleep(100 * time.Millisecond)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        fmt.Println(s)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;func main() &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    go say(&amp;quot;world&amp;quot;)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    say(&amp;quot;hello&amp;quot;)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;运行结果,&lt;code&gt;hello&lt;/code&gt;和&lt;code&gt;world&lt;/code&gt;交替运行。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;[Running] go run &amp;quot;f:\study\go\smp\src\goroutine.go&amp;quot;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;world&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;hello&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;hello&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;world&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;hello&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;world&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;hello&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;world&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;world&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;hello&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+    
+    </summary>
+    
+      <category term="golang" scheme="http://www.51yimo.com/categories/golang/"/>
+    
+    
+      <category term="go" scheme="http://www.51yimo.com/tags/go/"/>
+    
+  </entry>
+  
+  <entry>
     <title>百度Java面试题汇总</title>
     <link href="http://www.51yimo.com/2017/10/26/java-interview/"/>
     <id>http://www.51yimo.com/2017/10/26/java-interview/</id>
     <published>2017-10-26T11:57:27.000Z</published>
-    <updated>2017-11-01T06:17:07.000Z</updated>
+    <updated>2017-11-06T05:13:53.000Z</updated>
     
-    <content type="html"><![CDATA[<p>简单记录下百度Java面试题</p><ul><li>Java源码使用了哪些设计模式？列举你知道的类/包以及使用模式</li><li>写一个单例模式</li><li>Threadlocal有哪些特点，描述使用场景</li><li>快速排序</li><li>Mysql事务隔离级别(Spring事务隔离级别)</li><li>字符串常量池</li><li>类加载器</li><li>SpringMVC和Struts2有什么区别？(需要跟进新技术，为什么SpringMVC替代Struts2)</li><li>Java，Python和Go三个相比各自有什么优点和缺点(需要自己总结思考)</li><li>网络传输,应用层有哪些协议?(并问了Http头的详细信息)</li><li>设计一个互联网架构</li><li>接上：当访问量多比如秒杀可能的瓶颈在哪里,怎么解决这些瓶颈问题</li><li>数据库怎么读写分离，怎么分库分表</li><li>Java中HashMap的containsKey和containsValue的时间复杂度</li></ul><p>需要自己接下来深入学习JVM，网络层。<br>由底层原理–&gt;架构–&gt;项目/应用/数据/性能</p>]]></content>
+    <content type="html"><![CDATA[<p>简单记录下百度Java面试题</p><ul><li>Java源码使用了哪些设计模式？列举你知道的类/包以及使用模式</li><li>写一个单例模式</li><li>Threadlocal有哪些特点，描述使用场景</li><li>快速排序</li><li>Mysql事务隔离级别(Spring事务隔离级别)</li><li>字符串常量池</li><li>类加载器</li><li>SpringMVC和Struts2有什么区别？(需要跟进新技术，为什么SpringMVC替代Struts2)</li><li>Java，Python和Go三个相比各自有什么优点和缺点(需要自己总结思考)</li><li>网络传输,应用层有哪些协议?(并问了Http头的详细信息)</li><li>设计一个互联网架构</li><li>接上：当访问量多比如秒杀可能的瓶颈在哪里,怎么解决这些瓶颈问题</li><li>数据库怎么读写分离，怎么分库分表</li><li>Java中HashMap的containsKey和containsValue的时间复杂度</li><li>线程池的最大线程数和核心线程数</li><li>Spring事务的处理及回滚机制（事务的一致性）</li><li>JAVA的装饰者模式和IO流</li><li>Mybatis插入的返回值</li><li>Synchrosized的静态方法和普通方法上的区别</li><li>时间复杂度/空间复杂度</li></ul><p>需要自己接下来深入学习JVM，网络层。<br>由底层原理–&gt;架构–&gt;项目/应用/数据/性能</p>]]></content>
     
     <summary type="html">
     
@@ -571,33 +602,6 @@
     </summary>
     
       <category term="golang" scheme="http://www.51yimo.com/categories/golang/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>ssh免密码登陆</title>
-    <link href="http://www.51yimo.com/2017/08/30/ssh-e5-85-8d-e5-af-86-e7-a0-81-e7-99-bb-e9-99-86/"/>
-    <id>http://www.51yimo.com/2017/08/30/ssh-e5-85-8d-e5-af-86-e7-a0-81-e7-99-bb-e9-99-86/</id>
-    <published>2017-08-30T01:56:25.000Z</published>
-    <updated>2017-09-19T14:09:42.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>有三台机器172.21.3.124/125/126，需要在这三台机器配置免密码登陆能够互相访问</p><p>1.在一台机器上执行命令，如172.21.3.124，期间会输入三次回车</p><blockquote><p>ssh-keygen -t rsa</p></blockquote><p><img src="/images/pasted-14.png" alt="upload successful"></p><p>2.命令会在当前用户的家目录的.ssh的目录下生成id_rsa和id_rsa.pub文件，将id_rsa.pub文件copy到其他主机(172.21.3.125)的.ssh/authorized_keys目录下</p><p><img src="/images/pasted-15.png" alt="upload successful"></p><p>因为我的是root用户，所以copy到/root/.ssh目录下。</p><p>3.这样再登陆172.21.3.125就可以不用输入密码了。需要注意的是</p><p><strong>authorized_keys的权限需要是600</strong>。(chmod 600 .ssh/authorized_keys)</p><p>将id_rsa.pub文件Copy到172.21.3.126上就可以免密码登陆到172.21.3.126了。</p><p>将以上的命令和步骤重复在172.21.3.125/126分别执行，</p><p>注意已经存在authorized_keys文件不能覆盖，需要在文件内容后追加其他主机的id_rsa.pub的内容。</p><p>这样就可以三台机器 间互相免密码访问了。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;有三台机器172.21.3.124/125/126，需要在这三台机器配置免密码登陆能够互相访问&lt;/p&gt;
-&lt;p&gt;1.在一台机器上执行命令，如172.21.3.124，期间会输入三次回车&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;ssh-keygen -t rsa&lt;/p&gt;
-&lt;/b
-      
-    
-    </summary>
-    
-      <category term="linux" scheme="http://www.51yimo.com/categories/linux/"/>
     
     
   </entry>
