@@ -1490,8 +1490,8 @@ v.Scale(<span class="number">5</span>)
 <ul>
 <li>T是指向类型T的值指针，其零值是nil</li>
 </ul>
-<p>*符号会生成一个其作用对象的指针</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> p *<span class="keyword">int</span></div><div class="line"></div><div class="line">fmt.Println(p)</div><div class="line"></div><div class="line">i := <span class="number">42</span></div><div class="line">p = *i</div><div class="line"></div><div class="line">fmt.Println(p)</div></pre></td></tr></table></figure>
+<p><code>&amp;</code>符号会生成一个其作用对象的指针</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> p *<span class="keyword">int</span></div><div class="line"></div><div class="line">fmt.Println(p)</div><div class="line"></div><div class="line">i := <span class="number">42</span></div><div class="line">p = &amp;i</div><div class="line"></div><div class="line">fmt.Println(p)</div></pre></td></tr></table></figure>
 <p>输出结果为</p>
 <p><img src="/images/pasted-13.png" alt="upload successful"></p>
 <p>*表示指针指向底层的值</p>
