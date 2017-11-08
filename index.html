@@ -280,6 +280,158 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.51yimo.com/2017/11/08/go-tour-note-13/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="badwolf">
+      <meta itemprop="description" content="Run,You Clever Boy!">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BADWOLFBAY">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/11/08/go-tour-note-13/" itemprop="url">Go指南学习笔记十三</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-08T13:46:20+08:00">
+                2017-11-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/golang/" itemprop="url" rel="index">
+                    <span itemprop="name">golang</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="range和close"><a href="#range和close" class="headerlink" title="range和close"></a>range和close</h3><p>发送者可以通过<code>close</code>来关闭channel。<br>接受者可以通过传入第二个参数来测试channl是否被关闭</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">v, ok := &lt;-ch</div></pre></td></tr></table></figure>
+<p>循环<code>for i := range c</code>会不断从channl接受值，直到它被关闭。</p>
+<p><em>只有发送者能关闭channel,而不是接收者</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">package main</div><div class="line"></div><div class="line">import (</div><div class="line">    &quot;fmt&quot;</div><div class="line">)</div><div class="line"></div><div class="line">//斐波那契数列</div><div class="line">func fibonacci(n int, c chan int) &#123;</div><div class="line">    x, y := 0, 1</div><div class="line">    for i := 0; i &lt; n; i++ &#123;</div><div class="line">        c &lt;- x</div><div class="line">        x, y = y, x+y</div><div class="line">    &#125;</div><div class="line">    close(c)</div><div class="line">&#125;</div><div class="line"></div><div class="line">func main()&#123;</div><div class="line">    c := make(chan int, 10)</div><div class="line">    go fibonacci(cap(c), c)</div><div class="line">    for i := range c &#123;</div><div class="line">        fmt.Println(i)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>输出结果</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">0</div><div class="line">1</div><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">5</div><div class="line">8</div><div class="line">13</div><div class="line">21</div><div class="line">34</div></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/11/08/go-tour-note-13/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.51yimo.com/2017/11/07/go-tour-note-12/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1672,173 +1824,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.51yimo.com/2017/09/21/install-docker-via-dlite/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="badwolf">
-      <meta itemprop="description" content="Run,You Clever Boy!">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BADWOLFBAY">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/09/21/install-docker-via-dlite/" itemprop="url">MAC上安装docker</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-21T21:09:47+08:00">
-                2017-09-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/docker/" itemprop="url" rel="index">
-                    <span itemprop="name">docker</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>在MAC上安装docker for mac后，docker程序会在用户登录mac后自动启动，而如果用户没有登录，而是通过ssh远程登录的情况下，docker是无法启动的，在配置launchctl也无法配置自动启动命令。</p>
-<p>经过一番搜索后，可以使用dlite来通过命令启动docker。</p>
-<p>1.项目地址：</p>
-<blockquote>
-<p><a href="https://github.com/nlf/dlite" target="_blank" rel="external">https://github.com/nlf/dlite</a></p>
-</blockquote>
-<p>2.在release中下载编译好的二进制文件，将文件放到<em>PATH</em>下，最简单的放到<em>/usr/local/bin/</em>目录下，然后执行</p>
-<blockquote>
-<p>sudo dlite init</p>
-</blockquote>
-<p>注意需要给dlite可执行权限</p>
-<blockquote>
-<p>chmod +x dlite</p>
-</blockquote>
-<p>3.执行命令后，开始询问创建虚拟机的参数，一路回车，但是最后报错</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Saving configuration: <span class="keyword">done</span></div><div class="line">Creating ssh key pair: <span class="keyword">done</span></div><div class="line">Adding host to ssh config: ERROR!</div><div class="line">Adding host to ssh config: | open /var/root/.ssh/config: no such file or directory</div></pre></td></tr></table></figure>
-<p>手动创建.ssh目录以及config文件</p>
-<blockquote>
-<p>sudo mkdir /var/root/.ssh</p>
-<p>sudo touch /var/root/.ssh/config</p>
-</blockquote>
-<p>然后重新执行sudo dlite init</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/09/21/install-docker-via-dlite/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1892,7 +1877,7 @@
             
               <a href="/archives/">
             
-                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-count">30</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
