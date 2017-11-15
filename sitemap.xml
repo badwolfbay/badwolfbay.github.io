@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.51yimo.com/2017/11/15/jvm-study-1/</loc>
+    
+    <lastmod>2017-11-15T14:27:23.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.51yimo.com/2017/11/15/java-hashmap/</loc>
+    
+    <lastmod>2017-11-15T13:44:00.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.51yimo.com/2017/11/08/go-tour-note-13/</loc>
     
     <lastmod>2017-11-08T06:40:47.000Z</lastmod>

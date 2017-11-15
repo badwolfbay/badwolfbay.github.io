@@ -1,6 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[JVM学习一]]></title>
+    <url>%2F2017%2F11%2F15%2Fjvm-study-1%2F</url>
+    <content type="text"><![CDATA[OutOfMemoryError异常 JAVA堆溢出Java堆用来存储对象实例，只要不断的创建对象，只要在对象数量达到最大堆的容量限制后就会产生内存溢出 通过设置堆的最小值(-Xms)参数和最大值(-Xmx)设置相等来避免堆自动扩展 12345678910111213// VM args -Xmx20m -Xms20mpublic class HeapOOM &#123; static class OOMObject&#123; &#125; public static void main(String[] args)&#123; List&lt;OOMObject&gt; list = new ArrayList&lt;&gt;(); while(true)&#123; list.add(new OOMObject()); &#125; &#125;&#125; 报错信息 1Exception in thread &quot;main&quot; java.lang.OutOfMemoryError: Java heap space 虚拟机栈和本地方法溢出在HotSpot虚拟机中并不区分虚拟机栈和本地方法栈栈容量只能通过-Xss来设置存放基本数据类型(byte,char,boolean,shot,int,long,float,double)和对象的引用类型 1234567891011121314151617181920// VM args -Xss128kpublic class JavaVMStackSOF &#123; private int stackLength = -1; public void stackLeak()&#123; stackLength++; stackLeak(); &#125; public static void main(String[] args)&#123; JavaVMStackSOF oom = new JavaVMStackSOF(); try&#123; oom.stackLeak(); &#125;catch(Throwable e)&#123; System.out.println(&quot;stack length:&quot; + oom.stackLength); throw e; &#125; &#125;&#125; 方法区和运行时常量溢出JDK1.6以及之前的版本中，常量池分配在”永久代”中,JDK1.7以后开始“去永久代”通过-XX:PermSize和-XX:MaxPermSize限制方法区大小String.intern()是一个Native方法，在JDK1.6之前，intern()方法会将首次遇到的字符串实例复制到”永久代”中，返回的也是”永久代”中的实例，JDK1.7以后不会再复制实例123456789public class RuntimeConstantPoolOOM &#123; public static void main(String[] args) &#123; String str1 = new StringBuilder(&quot;计算机&quot;).append(&quot;软件&quot;).toString(); System.out.println(str1.intern() == str1); String str2 = new StringBuilder(&quot;ja&quot;).append(&quot;va&quot;).toString(); System.out.println(str2.intern() == str2); &#125;&#125; 所以在JDK1.6和JDK1.7上执行上边的代码会出现不同的结果；JDK1.6中会是两个false,JDK1.7上会是一个true，一个false 本机直接内存溢出]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[HashMap总结]]></title>
+    <url>%2F2017%2F11%2F15%2Fjava-hashmap%2F</url>
+    <content type="text"><![CDATA[基于Map接口实现，允许null键/值，非同步(线程不安全)，不保证有序，也不保证顺序不随时间变化；存储着Entry（hash,key,value,next）对象 两个重要参数容量(Capacity)和负载因子(Load factor) HashMap在new后并不会分配数组，而是在第一次put时进行初始化，类似ArrayList在第一次add时分配内存空间 HashMap的bucket数组大小一定是2的幂，如果是new的时候指定了容量且不是2的幂，实际容量会是最接近且大于指定容量的2的幂，如new HashMap&lt;&gt;(19)，实际容量为32 HashMap在put的元素大于Capacity LoadFactor(默认16 0.75)之后会进行扩容 JDK8处于提升性能的考虑，在哈希碰撞的链表长度达到TREEIFY_THRESHOLD(默认8)后，会把该链表转变成树结构 JDK8在resize的时候，通过巧妙的设计，减少了rehash的性能消耗;resize是扩容的两倍 http://yikun.github.io]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Go指南学习笔记十三]]></title>
     <url>%2F2017%2F11%2F08%2Fgo-tour-note-13%2F</url>
     <content type="text"><![CDATA[range和close发送者可以通过close来关闭channel。接受者可以通过传入第二个参数来测试channl是否被关闭 1v, ok := &lt;-ch 循环for i := range c会不断从channl接受值，直到它被关闭。 只有发送者能关闭channel,而不是接收者 1234567891011121314151617181920212223package mainimport ( &quot;fmt&quot;)//斐波那契数列func fibonacci(n int, c chan int) &#123; x, y := 0, 1 for i := 0; i &lt; n; i++ &#123; c &lt;- x x, y = y, x+y &#125; close(c)&#125;func main()&#123; c := make(chan int, 10) go fibonacci(cap(c), c) for i := range c &#123; fmt.Println(i) &#125;&#125; 输出结果 123456789100112358132134 selectselect使得一个goroutine在多个通讯操作中等待。 select会阻塞，直到条件分支中的某个可以继续执行，这时就会执行那个分支。当多个都准备好时，会随机选择一个。 12345678910111213141516171819202122232425262728package mainimport &quot;fmt&quot;func fibonacci(c, quit chan int) &#123; x, y := 0, 1 for &#123; select &#123; case c &lt;- x: x, y = y, x+y case &lt;-quit: fmt.Println(&quot;quit&quot;) return &#125; &#125;&#125;func main()&#123; c := make(chan int) quit := make(chan int) go func()&#123; for i := 0; i &lt; 10; i++ &#123; fmt.Println(&lt;-c) &#125; quit &lt;- 0 &#125;() fibonacci(c, quit)&#125; 输出结果12345678910110112358132134quit 默认选择当select中的其他分支都没有准备好的时候，default分支会被执行。为了非阻塞的发送或者接口，可以使用default分支。 123456789101112131415161718192021222324package mainimport ( &quot;fmt&quot; &quot;time&quot;)func main() &#123; tick := time.Tick(100 * time.Millisecond) boom := time.After(500 * time.Millisecond) for &#123; select &#123; case &lt;-tick: fmt.Println(&quot;tick.&quot;) case &lt;-boom: fmt.Println(&quot;BOOM!&quot;) return default: fmt.Println(&quot; .&quot;) time.Sleep(50 * time.Microsecond) &#125; &#125;&#125; sync.Mutex如果只想保证每个时刻，只有一个goroutine能访问一个共享的变量避免冲突怎么办？这里涉及的概念叫做互斥，使用互斥锁mutex来提供这个限制。Go标准库中提供了sync.Mutex类型以及两个方法 Lock Unlock 12345678910111213141516171819202122232425262728293031323334353637package mainimport ( &quot;fmt&quot; &quot;time&quot; &quot;sync&quot;)//并发是安全的type SafeCounter struct&#123; v map[string] int mux sync.Mutex&#125;func (c *SafeCounter) Inc(key string) &#123; c.mux.Lock() //lock之后同一时刻只有一个goroutine能访问c.v c.v[key]++ c.mux.Unlock()&#125;// Value 返回给定 key 的计数器的当前值。func (c *SafeCounter) Value(key string) int &#123; c.mux.Lock() // Lock 之后同一时刻只有一个 goroutine 能访问 c.v defer c.mux.Unlock() return c.v[key]&#125;func main() &#123; c := SafeCounter&#123;v: make(map[string] int)&#125; for i := 0; i &lt; 1000; i++ &#123; go c.Inc(&quot;somekey&quot;) &#125; time.Sleep(time.Second) fmt.Println(c.Value(&quot;somekey&quot;))&#125; 输出结果11000]]></content>

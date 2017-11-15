@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.51yimo.com/"/>
-  <updated>2017-11-08T06:40:47.000Z</updated>
+  <updated>2017-11-15T14:27:23.000Z</updated>
   <id>http://www.51yimo.com/</id>
   
   <author>
@@ -15,6 +15,62 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>JVM学习一</title>
+    <link href="http://www.51yimo.com/2017/11/15/jvm-study-1/"/>
+    <id>http://www.51yimo.com/2017/11/15/jvm-study-1/</id>
+    <published>2017-11-15T13:22:11.000Z</published>
+    <updated>2017-11-15T14:27:23.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>OutOfMemoryError异常</p><h3 id="JAVA堆溢出"><a href="#JAVA堆溢出" class="headerlink" title="JAVA堆溢出"></a>JAVA堆溢出</h3><p>Java堆用来存储对象实例，只要不断的创建对象，只要在对象数量达到最大堆的容量限制后就会产生内存溢出</p><p>通过设置堆的最小值(-Xms)参数和最大值(-Xmx)设置相等来避免堆自动扩展</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">// VM args -Xmx20m -Xms20m</div><div class="line">public class HeapOOM &#123;</div><div class="line"></div><div class="line">static class OOMObject&#123;</div><div class="line"></div><div class="line">&#125;</div><div class="line">public static void main(String[] args)&#123;</div><div class="line">List&lt;OOMObject&gt; list = new ArrayList&lt;&gt;();</div><div class="line">while(true)&#123;</div><div class="line">list.add(new OOMObject());</div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure><p>报错信息</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Exception in thread &quot;main&quot; java.lang.OutOfMemoryError: Java heap space</div></pre></td></tr></table></figure><h3 id="虚拟机栈和本地方法溢出"><a href="#虚拟机栈和本地方法溢出" class="headerlink" title="虚拟机栈和本地方法溢出"></a>虚拟机栈和本地方法溢出</h3><p>在HotSpot虚拟机中并不区分虚拟机栈和本地方法栈<br>栈容量只能通过-Xss来设置<br>存放基本数据类型(byte,char,boolean,shot,int,long,float,double)和对象的引用类型</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">// VM args -Xss128k</div><div class="line">public class JavaVMStackSOF &#123;</div><div class="line"></div><div class="line">private int stackLength = -1;</div><div class="line"></div><div class="line">public void stackLeak()&#123;</div><div class="line">stackLength++;</div><div class="line">stackLeak();</div><div class="line">&#125;</div><div class="line"></div><div class="line">public static void main(String[] args)&#123;</div><div class="line">JavaVMStackSOF oom = new JavaVMStackSOF();</div><div class="line">try&#123;</div><div class="line">oom.stackLeak();</div><div class="line">&#125;catch(Throwable e)&#123;</div><div class="line">System.out.println(&quot;stack length:&quot; + oom.stackLength);</div><div class="line">throw e;</div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure><a id="more"></a><h3 id="方法区和运行时常量溢出"><a href="#方法区和运行时常量溢出" class="headerlink" title="方法区和运行时常量溢出"></a>方法区和运行时常量溢出</h3><p>JDK1.6以及之前的版本中，常量池分配在”永久代”中,JDK1.7以后开始“去永久代”<br>通过-XX:PermSize和-XX:MaxPermSize限制方法区大小<br>String.intern()是一个Native方法，在JDK1.6之前，intern()方法会将首次遇到的字符串实例复制到”永久代”中，返回的也是”永久代”中的实例，JDK1.7以后不会再复制实例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">public class RuntimeConstantPoolOOM &#123;</div><div class="line"></div><div class="line">public static void main(String[] args) &#123;</div><div class="line">String str1 = new StringBuilder(&quot;计算机&quot;).append(&quot;软件&quot;).toString();</div><div class="line">System.out.println(str1.intern() == str1);</div><div class="line">String str2 = new StringBuilder(&quot;ja&quot;).append(&quot;va&quot;).toString();</div><div class="line">System.out.println(str2.intern() == str2);</div><div class="line">&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p><p>所以在JDK1.6和JDK1.7上执行上边的代码会出现不同的结果；JDK1.6中会是两个false,JDK1.7上会是一个true，一个false</p><h3 id="本机直接内存溢出"><a href="#本机直接内存溢出" class="headerlink" title="本机直接内存溢出"></a>本机直接内存溢出</h3>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;OutOfMemoryError异常&lt;/p&gt;
+&lt;h3 id=&quot;JAVA堆溢出&quot;&gt;&lt;a href=&quot;#JAVA堆溢出&quot; class=&quot;headerlink&quot; title=&quot;JAVA堆溢出&quot;&gt;&lt;/a&gt;JAVA堆溢出&lt;/h3&gt;&lt;p&gt;Java堆用来存储对象实例，只要不断的创建对象，只要在对象数量达到最大堆的容量限制后就会产生内存溢出&lt;/p&gt;
+&lt;p&gt;通过设置堆的最小值(-Xms)参数和最大值(-Xmx)设置相等来避免堆自动扩展&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;12&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;13&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;// VM args -Xmx20m -Xms20m&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;public class HeapOOM &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	static class OOMObject&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	public static void main(String[] args)&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		List&amp;lt;OOMObject&amp;gt; list = new ArrayList&amp;lt;&amp;gt;();&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		while(true)&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;			list.add(new OOMObject());&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;报错信息&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;Exception in thread &amp;quot;main&amp;quot; java.lang.OutOfMemoryError: Java heap space&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;虚拟机栈和本地方法溢出&quot;&gt;&lt;a href=&quot;#虚拟机栈和本地方法溢出&quot; class=&quot;headerlink&quot; title=&quot;虚拟机栈和本地方法溢出&quot;&gt;&lt;/a&gt;虚拟机栈和本地方法溢出&lt;/h3&gt;&lt;p&gt;在HotSpot虚拟机中并不区分虚拟机栈和本地方法栈&lt;br&gt;栈容量只能通过-Xss来设置&lt;br&gt;存放基本数据类型(byte,char,boolean,shot,int,long,float,double)和对象的引用类型&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;12&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;13&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;14&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;15&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;16&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;17&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;18&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;19&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;20&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;// VM args -Xss128k&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;public class JavaVMStackSOF &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	private int stackLength = -1;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	public void stackLeak()&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		stackLength++;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		stackLeak();&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	public static void main(String[] args)&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		JavaVMStackSOF oom = new JavaVMStackSOF();&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		try&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;			oom.stackLeak();&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		&amp;#125;catch(Throwable e)&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;			System.out.println(&amp;quot;stack length:&amp;quot; + oom.stackLength);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;			throw e;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+    
+    </summary>
+    
+      <category term="Java" scheme="http://www.51yimo.com/categories/Java/"/>
+    
+    
+      <category term="Java" scheme="http://www.51yimo.com/tags/Java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>HashMap总结</title>
+    <link href="http://www.51yimo.com/2017/11/15/java-hashmap/"/>
+    <id>http://www.51yimo.com/2017/11/15/java-hashmap/</id>
+    <published>2017-11-15T13:21:37.000Z</published>
+    <updated>2017-11-15T13:44:00.000Z</updated>
+    
+    <content type="html"><![CDATA[<ul><li>基于Map接口实现，允许null键/值，非同步(线程不安全)，不保证有序，也不保证顺序不随时间变化；存储着Entry（hash,key,value,next）对象</li><li>两个重要参数容量(Capacity)和负载因子(Load factor)</li><li>HashMap在new后并不会分配数组，而是在第一次put时进行初始化，类似ArrayList在第一次add时分配内存空间</li><li>HashMap的bucket数组大小一定是2的幂，如果是new的时候指定了容量且不是2的幂，实际容量会是最接近且大于指定容量的2的幂，如new HashMap&lt;&gt;(19)，实际容量为32</li><li>HashMap在put的元素大于Capacity <em> LoadFactor(默认16 </em> 0.75)之后会进行扩容</li><li>JDK8处于提升性能的考虑，在哈希碰撞的链表长度达到TREEIFY_THRESHOLD(默认8)后，会把该链表转变成树结构</li><li>JDK8在resize的时候，通过巧妙的设计，减少了rehash的性能消耗;resize是扩容的两倍</li></ul><blockquote><p><a href="http://yikun.github.io" target="_blank" rel="external">http://yikun.github.io</a></p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;ul&gt;
+&lt;li&gt;基于Map接口实现，允许null键/值，非同步(线程不安全)，不保证有序，也不保证顺序不随时间变化；存储着Entry（hash,key,value,next）对象&lt;/li&gt;
+&lt;li&gt;两个重要参数容量(Capacity)和负载因子(Load factor)&lt;/li
+      
+    
+    </summary>
+    
+      <category term="Java" scheme="http://www.51yimo.com/categories/Java/"/>
+    
+    
+      <category term="Java" scheme="http://www.51yimo.com/tags/Java/"/>
+    
+  </entry>
   
   <entry>
     <title>Go指南学习笔记十三</title>
@@ -546,56 +602,6 @@
       
         &lt;p&gt;1.结构体struct&lt;/p&gt;
 &lt;figure class=&quot;highlight go&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div cl
-      
-    
-    </summary>
-    
-      <category term="golang" scheme="http://www.51yimo.com/categories/golang/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Go 指南学习笔记三</title>
-    <link href="http://www.51yimo.com/2017/09/01/go-e6-8c-87-e5-8d-97-e5-ad-a6-e4-b9-a0-e7-ac-94-e8-ae-b0-e4-b8-89/"/>
-    <id>http://www.51yimo.com/2017/09/01/go-e6-8c-87-e5-8d-97-e5-ad-a6-e4-b9-a0-e7-ac-94-e8-ae-b0-e4-b8-89/</id>
-    <published>2017-09-01T12:45:41.000Z</published>
-    <updated>2017-11-07T07:10:19.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>1.指针：指针保存了变量的内存地址。</p><p>*T是指向类型T的值指针，其零值是nil</p><p><code>&amp;</code>符号会生成一个其作用对象的指针</p><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> p *<span class="keyword">int</span></div><div class="line"></div><div class="line">fmt.Println(p)</div><div class="line"></div><div class="line">i := <span class="number">42</span></div><div class="line">p = &amp;i</div><div class="line"></div><div class="line">fmt.Println(p)</div></pre></td></tr></table></figure><p>输出结果为</p><p><img src="/images/pasted-13.png" alt="upload successful"></p><p>*表示指针指向底层的值</p><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">fmt.Println(*p)</div></pre></td></tr></table></figure><p>并且可以通过修改指针修改底层的值</p><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">*p = <span class="number">21</span></div></pre></td></tr></table></figure><p>这就是常说的”间接引用”。与C语言不同，go语言的指针没有运算。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;1.指针：指针保存了变量的内存地址。&lt;/p&gt;
-&lt;p&gt;*T是指向类型T的值指针，其零值是nil&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;&amp;amp;&lt;/code&gt;符号会生成一个其作用对象的指针&lt;/p&gt;
-&lt;figure class=&quot;highlight go&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td c
-      
-    
-    </summary>
-    
-      <category term="golang" scheme="http://www.51yimo.com/categories/golang/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>利用Dockerhub+github自定义制作镜像</title>
-    <link href="http://www.51yimo.com/2017/08/31/e5-88-a9-e7-94-a8dockerhubgithub-e8-87-aa-e5-ae-9a-e4-b9-89-e5-88-b6-e4-bd-9c-e9-95-9c-e5-83-8f/"/>
-    <id>http://www.51yimo.com/2017/08/31/e5-88-a9-e7-94-a8dockerhubgithub-e8-87-aa-e5-ae-9a-e4-b9-89-e5-88-b6-e4-bd-9c-e9-95-9c-e5-83-8f/</id>
-    <published>2017-08-31T15:00:13.000Z</published>
-    <updated>2017-09-19T13:59:19.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>Dockerhub可以根据github工程中Dockerfile自动生成镜像，一般情况下，我们需要google下gcr的镜像，因为网络原因连接不上，我们可以将Dockerfile文件提交到github,然后生成我们自己的镜像，如：</p><p><img src="/images/pasted-1.png" alt="upload successful"></p><p>前提是已经注册自己的Dockerhub帐号，登录<a href="https://hub.docker.com" target="_blank" rel="external">https://hub.docker.com</a></p><p>点击右上角Create -&gt; Create Automated Build</p><p><img src="/images/pasted-2.png" alt="upload successful"></p><p>后登录自己的github帐号</p><p><img src="/images/pasted-5.png" alt="upload successful"></p><p>从自己的github工程中选择要创建镜像的工程</p><p><img src="/images/pasted-6.png" alt="upload successful"></p><p>后输入要生成的镜像名称</p><p><img src="/images/pasted-7.png" alt="upload successful"></p><p>在Build Setting的Tab页中输入Dockerfile的位置以及tag</p><p><img src="/images/pasted-8.png" alt="upload successful"></p><p>/目录为相对于github中工程的位置，如github中Dockerfile在/centos下</p><p><img src="/images/pasted-9.png" alt="upload successful"></p><p>则输入/centos，再点击save changes后，点击Trigger后就可以构建镜像了，后续如果github中代码有更改，构建动作会自动触发。点击build details可以查看每次构建日志</p><p><img src="/images/pasted-10.png" alt="upload successful"></p><p><img src="/images/pasted-11.png" alt="upload successful"></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;Dockerhub可以根据github工程中Dockerfile自动生成镜像，一般情况下，我们需要google下gcr的镜像，因为网络原因连接不上，我们可以将Dockerfile文件提交到github,然后生成我们自己的镜像，如：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/ima
       
     
     </summary>
