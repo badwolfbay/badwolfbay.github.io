@@ -81,7 +81,7 @@
 <meta property="og:site_name" content="BADWOLFBAY">
 <meta property="og:description" content="基于Map接口实现，允许null键/值，非同步(线程不安全)，不保证有序，也不保证顺序不随时间变化；存储着Entry（hash,key,value,next）对象 两个重要参数容量(Capacity)和负载因子(Load factor) HashMap在new后并不会分配数组，而是在第一次put时进行初始化，类似ArrayList在第一次add时分配内存空间 HashMap的bucket数组大小">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-11-15T13:44:00.000Z">
+<meta property="og:updated_time" content="2017-11-16T02:28:10.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HashMap总结">
 <meta name="twitter:description" content="基于Map接口实现，允许null键/值，非同步(线程不安全)，不保证有序，也不保证顺序不随时间变化；存储着Entry（hash,key,value,next）对象 两个重要参数容量(Capacity)和负载因子(Load factor) HashMap在new后并不会分配数组，而是在第一次put时进行初始化，类似ArrayList在第一次add时分配内存空间 HashMap的bucket数组大小">
@@ -380,7 +380,7 @@
 <li>两个重要参数容量(Capacity)和负载因子(Load factor)</li>
 <li>HashMap在new后并不会分配数组，而是在第一次put时进行初始化，类似ArrayList在第一次add时分配内存空间</li>
 <li>HashMap的bucket数组大小一定是2的幂，如果是new的时候指定了容量且不是2的幂，实际容量会是最接近且大于指定容量的2的幂，如new HashMap&lt;&gt;(19)，实际容量为32</li>
-<li>HashMap在put的元素大于Capacity <em> LoadFactor(默认16 </em> 0.75)之后会进行扩容</li>
+<li>HashMap在put的元素大于Capacity*LoadFactor(默认16*0.75)之后会进行扩容</li>
 <li>JDK8处于提升性能的考虑，在哈希碰撞的链表长度达到TREEIFY_THRESHOLD(默认8)后，会把该链表转变成树结构</li>
 <li>JDK8在resize的时候，通过巧妙的设计，减少了rehash的性能消耗;resize是扩容的两倍</li>
 </ul>
