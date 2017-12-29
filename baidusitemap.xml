@@ -5,10 +5,10 @@
     
   <url>
     <loc>http://www.51yimo.com/2017/12/29/django-admin/</loc>
-    <lastmod>2017-12-29T06:44:03.000Z</lastmod>
+    <lastmod>2017-12-29T06:52:22.000Z</lastmod>
     <data>
         <display>
-        <title>利用Django Admin管理界面</title>
+        <title>利用Django Admin管理</title>
         <pubTime>2017-12-29T06:38:01.000Z</pubTime>
         
         <tag>Python</tag>
@@ -634,12 +634,12 @@
 
     
   <url>
-    <loc>http://www.51yimo.com/2017/08/22/centos7-e5-ae-89-e8-a3-85nginx-trashed/</loc>
+    <loc>http://www.51yimo.com/2017/08/28/centos7-e5-ae-89-e8-a3-85nginx/</loc>
     <lastmod>2017-09-19T13:32:49.000Z</lastmod>
     <data>
         <display>
         <title>CentOS7安装nginx</title>
-        <pubTime>2017-08-22T13:52:56.000Z</pubTime>
+        <pubTime>2017-08-28T05:58:53.000Z</pubTime>
         
          
            
@@ -652,12 +652,12 @@
 
     
   <url>
-    <loc>http://www.51yimo.com/2017/08/28/centos7-e5-ae-89-e8-a3-85nginx/</loc>
+    <loc>http://www.51yimo.com/2017/08/22/centos7-e5-ae-89-e8-a3-85nginx-trashed/</loc>
     <lastmod>2017-09-19T13:32:49.000Z</lastmod>
     <data>
         <display>
         <title>CentOS7安装nginx</title>
-        <pubTime>2017-08-28T05:58:53.000Z</pubTime>
+        <pubTime>2017-08-22T13:52:56.000Z</pubTime>
         
          
            
