@@ -280,6 +280,150 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.51yimo.com/2017/10/12/go-tour-note-10/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="badwolf">
+      <meta itemprop="description" content="Run,You Clever Boy!">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BADWOLFBAY">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/12/go-tour-note-10/" itemprop="url">Go指南学习笔记十</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-12T21:15:45+08:00">
+                2017-10-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/golang/" itemprop="url" rel="index">
+                    <span itemprop="name">golang</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="Stringers"><a href="#Stringers" class="headerlink" title="Stringers"></a>Stringers</h3><p>普遍存在的接口是<em>fmt</em>包中定义的Stringer</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">type</span> Stringer inferface &#123;</div><div class="line">    String() <span class="keyword">string</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>Stringer是一个可以用字符串描述自己的类型。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">package main</div><div class="line"></div><div class="line">import (</div><div class="line">    &quot;fmt&quot;</div><div class="line">)</div><div class="line"></div><div class="line">type Person struct &#123;</div><div class="line">    Name string</div><div class="line">    Age  int</div><div class="line">&#125;</div><div class="line"></div><div class="line">func (p Person) String() string &#123;</div><div class="line">    return fmt.Sprintf(&quot;%v (%v years)&quot;, p.Name, p.Age)</div><div class="line">&#125;</div><div class="line">func main() &#123;</div><div class="line">    a := Person&#123;&quot;Dent&quot;, 42&#125;</div><div class="line">    z := Person&#123;&quot;Foo&quot;, 90&#125;</div><div class="line">    fmt.Println(a, z) // 输出Dent (42 years) Foo (90 years)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.51yimo.com/2017/09/26/calico-install-on-kubernetes/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1716,161 +1860,6 @@ v.Scale(<span class="number">5</span>)
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.51yimo.com/2017/09/05/go-e6-8c-87-e5-8d-97-e5-ad-a6-e4-b9-a0-e7-ac-94-e8-ae-b0-e5-85-ad/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="badwolf">
-      <meta itemprop="description" content="Run,You Clever Boy!">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BADWOLFBAY">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/09/05/go-e6-8c-87-e5-8d-97-e5-ad-a6-e4-b9-a0-e7-ac-94-e8-ae-b0-e5-85-ad/" itemprop="url">Go 指南学习笔记六</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-05T09:48:36+08:00">
-                2017-09-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/golang/" itemprop="url" rel="index">
-                    <span itemprop="name">golang</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>1.map</p>
-<p>map在使用之前必须使用make来创建，值为nil的map是空的，并且不能对它赋值</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> main</div><div class="line"></div><div class="line"><span class="keyword">import</span> (</div><div class="line">  <span class="string">"fmt"</span></div><div class="line">)</div><div class="line"></div><div class="line"><span class="keyword">type</span> Vertex <span class="keyword">struct</span>&#123;</div><div class="line">  Lat, Long <span class="keyword">float64</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> m <span class="keyword">map</span>[<span class="keyword">string</span>]Vertex</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</div><div class="line">  m = <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="keyword">string</span>]Vertex)</div><div class="line">  m[<span class="string">"Bell Labs"</span>] = Vertex&#123;<span class="number">40.68433</span>, <span class="number">-74.39967</span>&#125;</div><div class="line">  fmt.Println(m[<span class="string">"Bell Labs"</span>])<span class="comment">// &#123;40.68433 -74.39967&#125;</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>2.和结构体语法类似</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> n = <span class="keyword">map</span>[<span class="keyword">string</span>]Vertex &#123;</div><div class="line">  <span class="string">"Bell Labs"</span>: Vertex&#123;<span class="number">40.68433</span>, <span class="number">-74.39967</span>,&#125;,</div><div class="line">  <span class="string">"Google"</span>:Vertex&#123;<span class="number">37.42202</span>, <span class="number">-122.08408</span>,&#125;,</div><div class="line">&#125;</div><div class="line">fmt.Println(n) <span class="comment">//map[Bell Labs:&#123;40.68433 -74.39967&#125; Google:&#123;37.42202 -122.08408&#125;]</span></div></pre></td></tr></table></figure>
-<p>如果map的value值只是一个类型，可以在{}中将类型省略</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> k = <span class="keyword">map</span>[<span class="keyword">string</span>]Vertex&#123;</div><div class="line">  <span class="string">"Bell Labs"</span>: &#123;<span class="number">40.68433</span>, <span class="number">-74.39967</span>&#125;,</div><div class="line">  <span class="string">"Google"</span>: &#123;<span class="number">37.42202</span>, <span class="number">-122.08408</span>&#125;,</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>3.修改map</p>
-<ul>
-<li>插入或者修改元素: m[key] =&nbsp;<span style="white-space: pre-wrap; line-height: 1.6;">elem</span></li>
-<li>获得元素:&nbsp;<span style="white-space: pre-wrap; line-height: 1.6;">elem = m[key]</span></li>
-<li><span style="white-space: pre-wrap; line-height: 1.6;">删除元素: delete(m,key)</span></li>
-<li><span style="white-space: pre-wrap; line-height: 1.6;">检测是否存在: <span style="line-height: 1.6;">elem, ok = m[key]</span></span></li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1924,7 +1913,7 @@ v.Scale(<span class="number">5</span>)
             
               <a href="/archives/">
             
-                <span class="site-state-item-count">34</span>
+                <span class="site-state-item-count">35</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1946,7 +1935,7 @@ v.Scale(<span class="number">5</span>)
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
