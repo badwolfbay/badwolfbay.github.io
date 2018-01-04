@@ -4,6 +4,26 @@
 
     
   <url>
+    <loc>http://www.51yimo.com/2017/12/29/django-admin/</loc>
+    <lastmod>2018-01-04T03:17:24.000Z</lastmod>
+    <data>
+        <display>
+        <title>利用Django Admin管理</title>
+        <pubTime>2017-12-29T06:38:01.000Z</pubTime>
+        
+        <tag>Python</tag>
+         
+         
+           
+             
+              <breadCrumb title="python" url="http://www.51yimo.com/categories/python/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.51yimo.com/2018/01/04/aria2-yaaw/</loc>
     <lastmod>2018-01-04T03:13:22.000Z</lastmod>
     <data>
@@ -17,26 +37,6 @@
            
              
               <breadCrumb title="软件" url="http://www.51yimo.com/categories/%E8%BD%AF%E4%BB%B6/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.51yimo.com/2017/12/29/django-admin/</loc>
-    <lastmod>2017-12-29T06:56:42.000Z</lastmod>
-    <data>
-        <display>
-        <title>利用Django Admin管理</title>
-        <pubTime>2017-12-29T06:38:01.000Z</pubTime>
-        
-        <tag>Python</tag>
-         
-         
-           
-             
-              <breadCrumb title="python" url="http://www.51yimo.com/categories/python/"/>
           
         </display>
     </data>
