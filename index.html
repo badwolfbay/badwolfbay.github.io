@@ -280,6 +280,174 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.51yimo.com/2018/01/04/aria2-yaaw/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="badwolf">
+      <meta itemprop="description" content="Run,You Clever Boy!">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BADWOLFBAY">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/04/aria2-yaaw/" itemprop="url">Aria2+YAAW+Tampermonkey下载百度云文件</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-04T11:10:00+08:00">
+                2018-01-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/软件/" itemprop="url" rel="index">
+                    <span itemprop="name">软件</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><code>BaiduExporter</code>插件被Google下架，安装<code>BaiduExporter</code>插件只能离线安装，但是会提示<code>只能通过Chrome网上应用商店安装该程序</code>的错误(可以通过加压后再进行安装)，如果不想安装这个插件，可以安装<code>YAAW</code>。</p>
+<p>因为公司换了电脑，不再使用<code>Mac</code>，重新在<code>Win7</code>上安装<code>Aria2</code>。</p>
+<h1 id="下载安装aria2"><a href="#下载安装aria2" class="headerlink" title="下载安装aria2"></a>下载安装aria2</h1><p>1.进入官网下载页面<a href="https//aria2.github.io/">Aria2</a><br>2.下载win版本的压缩包<br>3.解压后放到一个目录下，如：<code>D:\Aria2</code>,然后在这个目录下建立3个文件，分别为</p>
+<ul>
+<li>Aria2.log(日志，空文件)</li>
+<li>aria2.session(日志，空文件)</li>
+<li>aria2.conf(配置文件)</li>
+</ul>
+<h1 id="配置aria2"><a href="#配置aria2" class="headerlink" title="配置aria2"></a>配置aria2</h1><p>打开<code>aria2.conf</code>文件，将一下内容复制到文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div></pre></td><td class="code"><pre><div class="line">dir=D:\Download\</div><div class="line"></div><div class="line">log=D:\Aria2\Aria2.log</div><div class="line"></div><div class="line">input-file=D:\Aria2\aria2.session</div><div class="line"></div><div class="line">save-session=D:\Aria2\aria2.session</div><div class="line"></div><div class="line">save-session-interval=60</div><div class="line"></div><div class="line">force-save=true</div><div class="line"></div><div class="line">log-level=error</div><div class="line"></div><div class="line"># see --split option</div><div class="line"></div><div class="line">max-concurrent-downloads=5</div><div class="line"></div><div class="line">continue=true</div><div class="line"></div><div class="line">max-overall-download-limit=0</div><div class="line"></div><div class="line">max-overall-upload-limit=50K</div><div class="line"></div><div class="line">max-upload-limit=20</div><div class="line"></div><div class="line"># Http/FTP options</div><div class="line"></div><div class="line">connect-timeout=120</div><div class="line"></div><div class="line">lowest-speed-limit=10K</div><div class="line"></div><div class="line">max-connection-per-server=10</div><div class="line"></div><div class="line">max-file-not-found=2</div><div class="line"></div><div class="line">min-split-size=1M</div><div class="line"></div><div class="line">split=5</div><div class="line"></div><div class="line">check-certificate=false</div><div class="line"></div><div class="line">http-no-cache=true</div><div class="line"></div><div class="line"># FTP Specific Options</div><div class="line"></div><div class="line"># BT/PT Setting</div><div class="line"></div><div class="line">bt-enable-lpd=true</div><div class="line"></div><div class="line">#bt-max-peers=55</div><div class="line"></div><div class="line">follow-torrent=true</div><div class="line"></div><div class="line">enable-dht6=false</div><div class="line"></div><div class="line">bt-seed-unverified</div><div class="line"></div><div class="line">rpc-save-upload-metadata=true</div><div class="line"></div><div class="line">bt-hash-check-seed</div><div class="line"></div><div class="line">bt-remove-unselected-file</div><div class="line"></div><div class="line">bt-request-peer-speed-limit=100K</div><div class="line"></div><div class="line">seed-ratio=0.0</div><div class="line"></div><div class="line"># Metalink Specific Options</div><div class="line"></div><div class="line"># RPC Options</div><div class="line"></div><div class="line">enable-rpc=true</div><div class="line"></div><div class="line">pause=false</div><div class="line"></div><div class="line">rpc-allow-origin-all=true</div><div class="line"></div><div class="line">rpc-listen-all=true</div><div class="line"></div><div class="line">rpc-save-upload-metadata=true</div><div class="line"></div><div class="line">rpc-secure=false</div><div class="line"></div><div class="line"># Advanced Options</div><div class="line"></div><div class="line">daemon=true</div><div class="line"></div><div class="line">disable-ipv6=true</div><div class="line"></div><div class="line">enable-mmap=true</div><div class="line"></div><div class="line">file-allocation=falloc </div><div class="line"></div><div class="line">max-download-result=120</div><div class="line"></div><div class="line">#no-file-allocation-limit=32M</div><div class="line"></div><div class="line">force-sequential=true</div><div class="line"></div><div class="line">parameterized-uri=true</div></pre></td></tr></table></figure></p>
+<p>注意修改以下几项</p>
+<p>dir=D:\Download\</p>
+<p>log=D:\Aria2\Aria2.log</p>
+<p>input-file=D:\Aria2\aria2.session</p>
+<p>save-session=D:\Aria2\aria2.session</p>
+<p>在<code>cmd</code>中启动:<code>aria2c.exe --conf-path=aria2.conf</code></p>
+<h1 id="安装YAAW插件"><a href="#安装YAAW插件" class="headerlink" title="安装YAAW插件"></a>安装YAAW插件</h1><p>在chrome的插件商店搜索<code>YAAW</code>找到<code>YAAW for Chrome</code>进行安装</p>
+<p>然后在所有的下载链接上右键选择<code>ARIA2 RPC</code>进行下载就可以了。</p>
+<h1 id="Aria2-Web"><a href="#Aria2-Web" class="headerlink" title="Aria2 Web"></a>Aria2 Web</h1><p>1.可以直接现在访问<br><a href="http://aria2c.com" target="_blank" rel="external">http://aria2c.com</a><br>2.点击chrome插件yaaw，也可以直接看到下载任务</p>
+<h1 id="百度云大文件链接"><a href="#百度云大文件链接" class="headerlink" title="百度云大文件链接"></a>百度云大文件链接</h1><ol>
+<li>安装油猴插件（插件商店搜索<code>Tampermonkey</code>并安装）</li>
+<li>安装<code>EX-百度云盘</code>油猴脚本(<a href="https://greasyfork.org/zh-CN/scripts/26638-ex-%E7%99%BE%E5%BA%A6%E4%BA%91%E7%9B%98" target="_blank" rel="external">EX-百度云盘</a>)</li>
+<li>百度云盘中的页面中会多一个<code>EX-下载</code>的选项</li>
+<li>这时在<code>EX-下载</code>的下拉菜单中的<code>普通下载</code>右键还不能将任务发送aria2进行下载，需要将文件共享。</li>
+<li>在共享页面的<code>EX-下载</code>的菜单中选择<code>普通下载</code>后，Chrome就可以下载大文件了。然后在下载的链接上右击，选择<code>ARIA2-RPC</code>就可以了。</li>
+<li>按照上边的Aria2 Web可以查看下载的文件和进度。</li>
+</ol>
+<h1 id="TODO"><a href="#TODO" class="headerlink" title="TODO"></a>TODO</h1><p><code>aria2</code>的启动时在<code>cmd</code>中启动的，需要使用脚本启动并隐藏cmd窗口。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.51yimo.com/2017/12/29/django-admin/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1658,158 +1826,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.51yimo.com/2017/10/13/not-root-run-docker/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="badwolf">
-      <meta itemprop="description" content="Run,You Clever Boy!">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BADWOLFBAY">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/10/13/not-root-run-docker/" itemprop="url">非root用户运行docker</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-13T09:31:04+08:00">
-                2017-10-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/docker/" itemprop="url" rel="index">
-                    <span itemprop="name">docker</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>转载：</p>
-<p>原文出处：</p>
-<blockquote>
-<p><a href="https://notes.wanghao.work/2017-07-11-Docker非Root用户运行.html" target="_blank" rel="external">https://notes.wanghao.work/2017-07-11-Docker非Root用户运行.html</a></p>
-</blockquote>
-<hr>
-<blockquote>
-<p>Docker Engine的Deamon进程是以root权限运行的，如果是普通用户要与之交互，需要使用<code>sudo</code>命令来提权与之交互。之前使用Docker官方的安装脚本安装完成之后，会给出一个提示将当前非root用户添加到doker组之中，以避免每次都需要输入<code>sudo</code>的麻烦。</p>
-</blockquote>
-<p>然而随着Docker版本的迭代和官网的安装方式的更改，现在官方给出的安装方式是添加仓库源地址，然后使用默认的<code>apt</code>或者<code>yum</code>包管理工具来完成后安装。并不再提示用户添加非root用户到组。</p>
-<p>默认情况下，完成Docker Engine的安装之后，Docker将会自动创建一个名为<code>docker</code>的用户组，所以<code>root</code>用户和在<code>docker</code>组中的用户都可以免去<code>sudo</code>来与Docker Engine交互。知道原理之后就简单了：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo usermod -aG docker <span class="variable">$&#123;whoami&#125;</span> <span class="comment">#添加当前用户到docker组</span></div></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1863,7 +1879,7 @@
             
               <a href="/archives/">
             
-                <span class="site-state-item-count">35</span>
+                <span class="site-state-item-count">36</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1874,7 +1890,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1885,7 +1901,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -1956,7 +1972,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

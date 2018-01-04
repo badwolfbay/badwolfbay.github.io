@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.51yimo.com/2018/01/04/aria2-yaaw/</loc>
+    
+    <lastmod>2018-01-04T03:13:22.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.51yimo.com/2017/12/29/django-admin/</loc>
     
     <lastmod>2017-12-29T06:56:42.000Z</lastmod>
@@ -254,14 +261,14 @@
   </url>
   
   <url>
-    <loc>http://www.51yimo.com/2017/08/28/centos7-e5-ae-89-e8-a3-85nginx/</loc>
+    <loc>http://www.51yimo.com/2017/08/22/centos7-e5-ae-89-e8-a3-85nginx-trashed/</loc>
     
     <lastmod>2017-09-19T13:32:49.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.51yimo.com/2017/08/22/centos7-e5-ae-89-e8-a3-85nginx-trashed/</loc>
+    <loc>http://www.51yimo.com/2017/08/28/centos7-e5-ae-89-e8-a3-85nginx/</loc>
     
     <lastmod>2017-09-19T13:32:49.000Z</lastmod>
     
