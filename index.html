@@ -280,6 +280,175 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.51yimo.com/2018/01/18/multiresouce-sharding/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="badwolf">
+      <meta itemprop="description" content="Run,You Clever Boy!">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BADWOLFBAY">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/18/multiresouce-sharding/" itemprop="url">Spring+Mybatis分库分表总结</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-18T11:38:01+08:00">
+                2018-01-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Spring/" itemprop="url" rel="index">
+                    <span itemprop="name">Spring</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Spring/Mybatis/" itemprop="url" rel="index">
+                    <span itemprop="name">Mybatis</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>收到一个用户需求要求时时展现填报信息，之前项目使用的数据库是<code>MySQL</code>，但是由于数据量较大而且计算过程复杂，所以决定将数据放到<code>Oracle</code>中利用存储过程计算，这样就需要项目同时连接<code>Oracle</code>和<code>MySQL</code>数据库。下边简单总结下分库分表</p>
+<h1 id="分表"><a href="#分表" class="headerlink" title="分表"></a>分表</h1><p>当一个表的数据量很大以后，业务上就需要根据规则对数据库进行水平切分，如注册用户表<code>user_01</code>,<code>user_02</code>等，但是当数据库表进行切分以后，程序就需要根据规格进行相应的处理。利用<code>Mybatis</code>的<code>interceptor</code>可以实现根据路由规则去操作相应的数据库，开源的有<code>Shardbatis</code>实现。但是<code>sharding</code>只能区分一个数据源中的不同表，并不能根据规则切换数据源。</p>
+<h1 id="分库"><a href="#分库" class="headerlink" title="分库"></a>分库</h1><p>如果想连接多个数据库，需要配置两个数据源，如</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"oracleDataSource"</span> <span class="attr">class</span>=<span class="string">"org.apache.commons.dbcp.BasicDataSource"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"driverClassName"</span> <span class="attr">value</span>=<span class="string">"oracle.jdbc.driver.OracleDriver"</span> /&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"url"</span> <span class="attr">value</span>=<span class="string">"$&#123;oracle.db.url&#125;"</span> /&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"username"</span> <span class="attr">value</span>=<span class="string">"$&#123;oracle.db.username&#125;"</span> /&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"password"</span> <span class="attr">value</span>=<span class="string">"$&#123;oracle.db.password&#125;"</span> /&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div></pre></td></tr></table></figure>
+<ol>
+<li>利用<code>AbstractRoutingDataSource</code>.</li>
+</ol>
+<p>在配置文件中加入<code>DynamicDataSource</code>配置，其中可以配置多个数据源链接和默认的链接</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&lt;bean id=&quot;dataSource&quot; class=&quot;com.xxx.core.dataSource.DynamicDataSource&quot; &gt;  </div><div class="line">    &lt;property name=&quot;targetDataSources&quot;&gt;  </div><div class="line">        &lt;map key-type=&quot;java.lang.String&quot;&gt;  </div><div class="line">            &lt;entry value-ref=&quot;dataSource1&quot; key=&quot;dataSource1&quot;&gt;&lt;/entry&gt;</div><div class="line">            &lt;entry value-ref=&quot;dataSource2&quot; key=&quot;dataSource2&quot;&gt;&lt;/entry&gt;  </div><div class="line">        &lt;/map&gt;  </div><div class="line">    &lt;/property&gt;  </div><div class="line">    &lt;property name=&quot;defaultTargetDataSource&quot; ref=&quot;dataSource1&quot;&gt;  </div><div class="line">    &lt;/property&gt;  </div><div class="line">&lt;/bean&gt;</div></pre></td></tr></table></figure>
+<p>然后继承<code>AbstractRoutingDataSource</code>,该方法中实现数据库的动态切换。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">public class DynamicDataSource extends AbstractRoutingDataSource&#123;</div><div class="line">    @Override</div><div class="line">    protected Object determineCurrentLookupKey() &#123;</div><div class="line">        return DataSourceContextHolder.getDataSourceType();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>定义一个可以设置当前线程的变量的工具类，用于设置对应的数据源名称。由于Spring的Bean是单例的，需要将数据源放入<code>ThreadLocal</code>中来避免线程安全的问题。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">public class DataSourceContextHolder &#123;  </div><div class="line">    private static final ThreadLocal&lt;String&gt; contextHolder = new ThreadLocal&lt;String&gt;();  </div><div class="line">    public static void setDataSourceType(String dataSourceType) &#123;  </div><div class="line">        contextHolder.set(dataSourceType);  </div><div class="line">    &#125;  </div><div class="line">    public static String getDataSourceType() &#123;  </div><div class="line">        return contextHolder.get();  </div><div class="line">    &#125;  </div><div class="line">    public static void clearDataSourceType() &#123;  </div><div class="line">        contextHolder.remove();  </div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>也可以利用<code>AOP</code>+<code>Annotation</code>来实现基于注解的数据库动态切换。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/01/18/multiresouce-sharding/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.51yimo.com/2018/01/04/aria2-yaaw/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1676,156 +1845,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.51yimo.com/2017/10/25/go-tour-note-11/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="badwolf">
-      <meta itemprop="description" content="Run,You Clever Boy!">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BADWOLFBAY">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/10/25/go-tour-note-11/" itemprop="url">Go指南学习笔记十一</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-25T09:10:40+08:00">
-                2017-10-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/golang/" itemprop="url" rel="index">
-                    <span itemprop="name">golang</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="错误"><a href="#错误" class="headerlink" title="错误"></a>错误</h3><p>Go使用<code>error</code>来标识错误状态。<br>同<code>fmt.Stringer</code>一样，<code>error类型</code>也是个内建接口。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">type error interface &#123;</div><div class="line">    Error() string</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>通常函数会返回一个<code>error</code>值，调用它的代码应判断这个错误是否等于<code>nil</code>来进行错误处理。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">i, err := strconv.Atoi(&quot;42&quot;)</div><div class="line"></div><div class="line">if err ！= nil &#123;</div><div class="line">    fmt.Printf(&quot;conldn&apos;t convert number: %v\n&quot;, err)</div><div class="line">    return</div><div class="line">&#125;</div><div class="line">fmt.Printfln(&quot;Converted integer:&quot;, i)</div></pre></td></tr></table></figure>
-<p><code>error</code>为nil时表示成功；非<code>nil</code>的error表示错误</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/10/25/go-tour-note-11/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1879,7 +1898,7 @@
             
               <a href="/archives/">
             
-                <span class="site-state-item-count">36</span>
+                <span class="site-state-item-count">37</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1890,7 +1909,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">10</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1901,7 +1920,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">10</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

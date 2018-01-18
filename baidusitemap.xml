@@ -4,6 +4,33 @@
 
     
   <url>
+    <loc>http://www.51yimo.com/2018/01/18/multiresouce-sharding/</loc>
+    <lastmod>2018-01-18T04:25:09.000Z</lastmod>
+    <data>
+        <display>
+        <title>Spring+Mybatis分库分表总结</title>
+        <pubTime>2018-01-18T03:38:01.000Z</pubTime>
+        
+        <tag>Java</tag>
+         
+        <tag>Spring</tag>
+         
+        <tag>Mybatis</tag>
+         
+         
+           
+             
+              <breadCrumb title="Spring" url="http://www.51yimo.com/categories/Spring/"/>
+          
+             
+              <breadCrumb title="Mybatis" url="http://www.51yimo.com/categories/Spring/Mybatis/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.51yimo.com/2017/12/29/django-admin/</loc>
     <lastmod>2018-01-04T03:17:24.000Z</lastmod>
     <data>

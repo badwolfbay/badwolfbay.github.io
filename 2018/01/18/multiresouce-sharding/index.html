@@ -55,7 +55,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Java,Spring,Mybatis," />
 
 
 
@@ -73,17 +73,18 @@
 
 
 
-<meta name="description" content="1.数组：类型[n]T是有n个值的类型为T的数组  var a [10] int  变量a是一个有10个整数的数组。 数组不能改变大小 12345678910package mainimport &quot;fmt&quot;func main() &amp;#123;  var a [10]string  a[0] = &quot;hello&quot;  a[1] = &quot;world&quot;  fmt.Println(a[0], a[1]) //h">
+<meta name="description" content="收到一个用户需求要求时时展现填报信息，之前项目使用的数据库是MySQL，但是由于数据量较大而且计算过程复杂，所以决定将数据放到Oracle中利用存储过程计算，这样就需要项目同时连接Oracle和MySQL数据库。下边简单总结下分库分表 分表当一个表的数据量很大以后，业务上就需要根据规则对数据库进行水平切分，如注册用户表user_01,user_02等，但是当数据库表进行切分以后，程序就需要根据规格">
+<meta name="keywords" content="Java,Spring,Mybatis">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Go 指南学习笔记五">
-<meta property="og:url" content="http://www.51yimo.com/2017/09/03/go-e6-8c-87-e5-8d-97-e5-ad-a6-e4-b9-a0-e7-ac-94-e8-ae-b0-e4-ba-94/index.html">
+<meta property="og:title" content="Spring+Mybatis分库分表总结">
+<meta property="og:url" content="http://www.51yimo.com/2018/01/18/multiresouce-sharding/index.html">
 <meta property="og:site_name" content="BADWOLFBAY">
-<meta property="og:description" content="1.数组：类型[n]T是有n个值的类型为T的数组  var a [10] int  变量a是一个有10个整数的数组。 数组不能改变大小 12345678910package mainimport &quot;fmt&quot;func main() &amp;#123;  var a [10]string  a[0] = &quot;hello&quot;  a[1] = &quot;world&quot;  fmt.Println(a[0], a[1]) //h">
+<meta property="og:description" content="收到一个用户需求要求时时展现填报信息，之前项目使用的数据库是MySQL，但是由于数据量较大而且计算过程复杂，所以决定将数据放到Oracle中利用存储过程计算，这样就需要项目同时连接Oracle和MySQL数据库。下边简单总结下分库分表 分表当一个表的数据量很大以后，业务上就需要根据规则对数据库进行水平切分，如注册用户表user_01,user_02等，但是当数据库表进行切分以后，程序就需要根据规格">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-09-19T14:25:04.000Z">
+<meta property="og:updated_time" content="2018-01-18T04:25:09.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Go 指南学习笔记五">
-<meta name="twitter:description" content="1.数组：类型[n]T是有n个值的类型为T的数组  var a [10] int  变量a是一个有10个整数的数组。 数组不能改变大小 12345678910package mainimport &quot;fmt&quot;func main() &amp;#123;  var a [10]string  a[0] = &quot;hello&quot;  a[1] = &quot;world&quot;  fmt.Println(a[0], a[1]) //h">
+<meta name="twitter:title" content="Spring+Mybatis分库分表总结">
+<meta name="twitter:description" content="收到一个用户需求要求时时展现填报信息，之前项目使用的数据库是MySQL，但是由于数据量较大而且计算过程复杂，所以决定将数据放到Oracle中利用存储过程计算，这样就需要项目同时连接Oracle和MySQL数据库。下边简单总结下分库分表 分表当一个表的数据量很大以后，业务上就需要根据规则对数据库进行水平切分，如注册用户表user_01,user_02等，但是当数据库表进行切分以后，程序就需要根据规格">
 
 
 
@@ -113,13 +114,13 @@
 
 
 
-  <link rel="canonical" href="http://www.51yimo.com/2017/09/03/go-e6-8c-87-e5-8d-97-e5-ad-a6-e4-b9-a0-e7-ac-94-e8-ae-b0-e4-ba-94/"/>
+  <link rel="canonical" href="http://www.51yimo.com/2018/01/18/multiresouce-sharding/"/>
 
 
 
 
 
-  <title>Go 指南学习笔记五 | BADWOLFBAY</title>
+  <title>Spring+Mybatis分库分表总结 | BADWOLFBAY</title>
   
 
 
@@ -280,7 +281,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.51yimo.com/2017/09/03/go-e6-8c-87-e5-8d-97-e5-ad-a6-e4-b9-a0-e7-ac-94-e8-ae-b0-e4-ba-94/">
+    <link itemprop="mainEntityOfPage" href="http://www.51yimo.com/2018/01/18/multiresouce-sharding/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="badwolf">
@@ -297,7 +298,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">Go 指南学习笔记五</h2>
+          <h2 class="post-title" itemprop="name headline">Spring+Mybatis分库分表总结</h2>
         
 
         <div class="post-meta">
@@ -309,8 +310,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-03T23:28:42+08:00">
-                2017-09-03
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-18T11:38:01+08:00">
+                2018-01-18
               </time>
             
 
@@ -332,8 +333,19 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/golang/" itemprop="url" rel="index">
-                    <span itemprop="name">golang</span>
+                  <a href="/categories/Spring/" itemprop="url" rel="index">
+                    <span itemprop="name">Spring</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Spring/Mybatis/" itemprop="url" rel="index">
+                    <span itemprop="name">Mybatis</span>
                   </a>
                 </span>
 
@@ -374,34 +386,33 @@
       
 
       
-        <p>1.数组：类型[n]T是有n个值的类型为T的数组</p>
+        <p>收到一个用户需求要求时时展现填报信息，之前项目使用的数据库是<code>MySQL</code>，但是由于数据量较大而且计算过程复杂，所以决定将数据放到<code>Oracle</code>中利用存储过程计算，这样就需要项目同时连接<code>Oracle</code>和<code>MySQL</code>数据库。下边简单总结下分库分表</p>
+<h1 id="分表"><a href="#分表" class="headerlink" title="分表"></a>分表</h1><p>当一个表的数据量很大以后，业务上就需要根据规则对数据库进行水平切分，如注册用户表<code>user_01</code>,<code>user_02</code>等，但是当数据库表进行切分以后，程序就需要根据规格进行相应的处理。利用<code>Mybatis</code>的<code>interceptor</code>可以实现根据路由规则去操作相应的数据库，开源的有<code>Shardbatis</code>实现。但是<code>sharding</code>只能区分一个数据源中的不同表，并不能根据规则切换数据源。</p>
+<h1 id="分库"><a href="#分库" class="headerlink" title="分库"></a>分库</h1><p>如果想连接多个数据库，需要配置两个数据源，如</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"oracleDataSource"</span> <span class="attr">class</span>=<span class="string">"org.apache.commons.dbcp.BasicDataSource"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"driverClassName"</span> <span class="attr">value</span>=<span class="string">"oracle.jdbc.driver.OracleDriver"</span> /&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"url"</span> <span class="attr">value</span>=<span class="string">"$&#123;oracle.db.url&#125;"</span> /&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"username"</span> <span class="attr">value</span>=<span class="string">"$&#123;oracle.db.username&#125;"</span> /&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"password"</span> <span class="attr">value</span>=<span class="string">"$&#123;oracle.db.password&#125;"</span> /&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div></pre></td></tr></table></figure>
+<ol>
+<li>利用<code>AbstractRoutingDataSource</code>.</li>
+</ol>
+<p>在配置文件中加入<code>DynamicDataSource</code>配置，其中可以配置多个数据源链接和默认的链接</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&lt;bean id=&quot;dataSource&quot; class=&quot;com.xxx.core.dataSource.DynamicDataSource&quot; &gt;  </div><div class="line">    &lt;property name=&quot;targetDataSources&quot;&gt;  </div><div class="line">        &lt;map key-type=&quot;java.lang.String&quot;&gt;  </div><div class="line">            &lt;entry value-ref=&quot;dataSource1&quot; key=&quot;dataSource1&quot;&gt;&lt;/entry&gt;</div><div class="line">            &lt;entry value-ref=&quot;dataSource2&quot; key=&quot;dataSource2&quot;&gt;&lt;/entry&gt;  </div><div class="line">        &lt;/map&gt;  </div><div class="line">    &lt;/property&gt;  </div><div class="line">    &lt;property name=&quot;defaultTargetDataSource&quot; ref=&quot;dataSource1&quot;&gt;  </div><div class="line">    &lt;/property&gt;  </div><div class="line">&lt;/bean&gt;</div></pre></td></tr></table></figure>
+<p>然后继承<code>AbstractRoutingDataSource</code>,该方法中实现数据库的动态切换。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">public class DynamicDataSource extends AbstractRoutingDataSource&#123;</div><div class="line">    @Override</div><div class="line">    protected Object determineCurrentLookupKey() &#123;</div><div class="line">        return DataSourceContextHolder.getDataSourceType();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>定义一个可以设置当前线程的变量的工具类，用于设置对应的数据源名称。由于Spring的Bean是单例的，需要将数据源放入<code>ThreadLocal</code>中来避免线程安全的问题。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">public class DataSourceContextHolder &#123;  </div><div class="line">    private static final ThreadLocal&lt;String&gt; contextHolder = new ThreadLocal&lt;String&gt;();  </div><div class="line">    public static void setDataSourceType(String dataSourceType) &#123;  </div><div class="line">        contextHolder.set(dataSourceType);  </div><div class="line">    &#125;  </div><div class="line">    public static String getDataSourceType() &#123;  </div><div class="line">        return contextHolder.get();  </div><div class="line">    &#125;  </div><div class="line">    public static void clearDataSourceType() &#123;  </div><div class="line">        contextHolder.remove();  </div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>也可以利用<code>AOP</code>+<code>Annotation</code>来实现基于注解的数据库动态切换。</p>
+<a id="more"></a>
+<ol>
+<li>直接配置两个数据源。<br>这种方式简单粗暴，配置多个数据源直接访问不同的数据库，但是数据库的事务会存在问题，不能同时保证多个数据库的事务。配置时遇到了<code>spring-mybatis</code>的一个大坑。</li>
+</ol>
+<p>天真的以为同时配置两套<code>datasource</code>,<code>sessionFactory</code>,<code>transaction</code>,<code>mapperscannerconfigurer</code>就能用了，如</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"oracleDataSource"</span> <span class="attr">class</span>=<span class="string">"org.apache.commons.dbcp.BasicDataSource"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"driverClassName"</span> <span class="attr">value</span>=<span class="string">"oracle.jdbc.driver.OracleDriver"</span> /&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"url"</span> <span class="attr">value</span>=<span class="string">"$&#123;oracle.db.url&#125;"</span> /&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"username"</span> <span class="attr">value</span>=<span class="string">"$&#123;oracle.db.username&#125;"</span> /&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"password"</span> <span class="attr">value</span>=<span class="string">"$&#123;oracle.db.password&#125;"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"oracleSqlSessionFactory"</span> <span class="attr">class</span>=<span class="string">"org.mybatis.spring.SqlSessionFactoryBean"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"dataSource"</span> <span class="attr">ref</span>=<span class="string">"oracleDataSource"</span> /&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"mapperLocations"</span> <span class="attr">value</span>=<span class="string">"classpath:com/xxx/oracle/mapper/*.xml"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"oracleTransactionManager"</span> <span class="attr">class</span>=<span class="string">"org.springframework.jdbc.datasource.DataSourceTransactionManager"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"dataSource"</span> <span class="attr">ref</span>=<span class="string">"oracleDataSource"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">tx:annotation-driven</span> <span class="attr">transaction-manager</span>=<span class="string">"oracleTransactionManager"</span></span></div><div class="line"><span class="tag">                          <span class="attr">proxy-target-class</span>=<span class="string">"true"</span> /&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"oracleMapperScannerConfigurer"</span> <span class="attr">class</span>=<span class="string">"org.mybatis.spring.mapper.MapperScannerConfigurer"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"basePackage"</span> <span class="attr">value</span>=<span class="string">"com.xxx.oracle"</span> /&gt;</span></div><div class="line"> <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>但是并没有。。。一直抱一个<code>Mapped Statements collection does not contain value for</code>的错误，直接将mybatis的xml放到另一个数据源下就会报表不存在的错误，事实证明配置的Oracle数据源在Mybatis中并没有生效。在<code>stackoverflow</code>上也并没有找到相关问题的解。无意中看到一篇文章，原文地址</p>
+<p><a href="https://www.iflym.com/index.php/code/201211010001.html[https://www.iflym.com/index.php/code/201211010001.html" target="_blank" rel="external">https://www.iflym.com/index.php/code/201211010001.html[https://www.iflym.com/index.php/code/201211010001.html</a>]</p>
+<p>才发现<code>spring-mybatis</code>的一个大坑。原文指出在<code>MapperFactoryBean</code>的父类<code>SqlSessionDaoSupport</code><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Autowired</span>(required = <span class="keyword">false</span>)</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title">setSqlSessionFactory</span><span class="params">(SqlSessionFactory sqlSessionFactory)</span> </span>&#123;</div><div class="line">  <span class="keyword">if</span> (!<span class="keyword">this</span>.externalSqlSession) &#123;</div><div class="line">    <span class="keyword">this</span>.sqlSession = <span class="keyword">new</span> SqlSessionTemplate(sqlSessionFactory);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"> </div><div class="line"><span class="meta">@Autowired</span>(required = <span class="keyword">false</span>)</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title">setSqlSessionTemplate</span><span class="params">(SqlSessionTemplate sqlSessionTemplate)</span> </span>&#123;</div><div class="line">  <span class="keyword">this</span>.sqlSession = sqlSessionTemplate;</div><div class="line">  <span class="keyword">this</span>.externalSqlSession = <span class="keyword">true</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <blockquote>
-<p>var a [10] int</p>
+<p>你绝对想不到，因为经过Autowired的处理，MapperFactoryBean即会运行setSqlSessionFactory方法，也会运行setSqlSessionTemplate方法。而更让人郁闷的是，你设置的sqlSessionFactoryBeanName根本没有用。这来自于内部，自以为是的externalSqlSession变量。当此变量为true时，setSqlSessionFactory方法会直接返回。因为，setSqlSessionTemplate会比属性注入的applyPropertyValues更先运行，这一切是不是很让人郁闷。</p>
 </blockquote>
-<p>变量a是一个有10个整数的数组。</p>
-<p><span style="color:#FF0000;">数组不能改变大小</span></p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> main</div><div class="line"></div><div class="line"><span class="keyword">import</span> <span class="string">"fmt"</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</div><div class="line">  <span class="keyword">var</span> a [<span class="number">10</span>]<span class="keyword">string</span></div><div class="line">  a[<span class="number">0</span>] = <span class="string">"hello"</span></div><div class="line">  a[<span class="number">1</span>] = <span class="string">"world"</span></div><div class="line">  fmt.Println(a[<span class="number">0</span>], a[<span class="number">1</span>]) <span class="comment">//hello world</span></div><div class="line">  fmt.Println(a) <span class="comment">// [hello world</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>2.slice(切片),[]T为一个类型为T的slice,len(s)返回切片s的长度</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">s := []<span class="keyword">int</span>&#123;<span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">11</span>, <span class="number">13</span>&#125;</div><div class="line">fmt.Println(<span class="string">"s == "</span>, s)</div><div class="line"></div><div class="line"><span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="built_in">len</span>(s); i++ &#123;</div><div class="line">  fmt.Printf(<span class="string">"s[%d] = %d\n"</span>, i, s[i])</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//输出结果</span></div><div class="line">s == [<span class="number">2</span> <span class="number">3</span> <span class="number">5</span> <span class="number">7</span> <span class="number">11</span> <span class="number">13</span>]</div><div class="line">s[<span class="number">0</span>] = <span class="number">2</span></div><div class="line">s[<span class="number">1</span>] = <span class="number">3</span></div><div class="line">s[<span class="number">2</span>] = <span class="number">5</span></div><div class="line">s[<span class="number">3</span>] = <span class="number">7</span></div><div class="line">s[<span class="number">4</span>] = <span class="number">11</span></div><div class="line">s[<span class="number">5</span>] = <span class="number">13</span></div></pre></td></tr></table></figure>
-<p>3.slice 可以包含任意的类型，包括另一个 slice。</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">game := [][] <span class="keyword">string</span>&#123;</div><div class="line">  []<span class="keyword">string</span>&#123;<span class="string">""</span>,<span class="string">""</span>,<span class="string">""</span>&#125;,</div><div class="line">  []<span class="keyword">string</span>&#123;<span class="string">""</span>,<span class="string">""</span>,<span class="string">""</span>&#125;,</div><div class="line">  []<span class="keyword">string</span>&#123;<span class="string">""</span>,<span class="string">""</span>,<span class="string">""</span>&#125;,</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>4.对slice切片</p>
-<blockquote>
-<p>s[lo:hi] // 包含lo元素，不包含hi元素</p>
-</blockquote>
-<p>5.构造slice,slice由make创建，这会分配一个全是零值的数组并返回一个slice并指向这个数组</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">a := <span class="built_in">make</span>([]<span class="keyword">int</span>, <span class="number">5</span>)</div></pre></td></tr></table></figure>
-<p>可以传递第三个参数来执行容量</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">b := <span class="built_in">make</span>([]<span class="keyword">int</span>, <span class="number">0</span> , <span class="number">5</span>) <span class="comment">// len(b) = 0, cap(b) = 5</span></div></pre></td></tr></table></figure>
-<p>如：</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">printlnSlice</span><span class="params">(s <span class="keyword">string</span>, x []<span class="keyword">int</span>)</span></span> &#123;</div><div class="line">  fmt.Printf(<span class="string">"%s len=%d, cap=%d %v\n"</span>, s, <span class="built_in">len</span>(x), <span class="built_in">cap</span>(x), x)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</div><div class="line">  a := <span class="built_in">make</span>([]<span class="keyword">int</span>, <span class="number">5</span>)</div><div class="line">  printlnSlice(<span class="string">"a"</span>, a) <span class="comment">// a len=5, cap=5 [0 0 0 0 0]</span></div><div class="line">  b := <span class="built_in">make</span>([]<span class="keyword">int</span>, <span class="number">0</span>, <span class="number">5</span>)</div><div class="line">  printlnSlice(<span class="string">"b"</span>, b) <span class="comment">// b len=0, cap=5 []</span></div><div class="line">  c := b[:<span class="number">2</span>]</div><div class="line">  printlnSlice(<span class="string">"c"</span>, c) <span class="comment">// c len=2, cap=5 [0 0]</span></div><div class="line">  d := c[<span class="number">2</span>:<span class="number">5</span>]</div><div class="line">  printlnSlice(<span class="string">"d"</span>, d) <span class="comment">//d len=3, cap=3 [0 0 0]</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>6.向slice结尾添加元素，append</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a []<span class="keyword">int</span></div><div class="line"><span class="built_in">append</span>(a, <span class="number">0</span>)</div><div class="line"><span class="built_in">append</span>(a, <span class="number">1</span>)</div><div class="line"><span class="built_in">append</span>(a, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>)</div></pre></td></tr></table></figure>
-<p>如果slice底层数组的不能分配更多的数组时，会自动分配一个更大的数组，返回的slice指向新的数组。</p>
-<p>7.切片是数组之上的抽象数据类型。</p>
-<p>初始化不同,切片不需要指定固定长度:var a [10]int//数组var a []int//切片</p>
-<p>切片的零值是nil</p>
-<p>更多的<a href="https://blog.go-zh.org/go-slices-usage-and-internals" target="_blank" rel="external">slice切片：用法与本质</a></p>
+<p>所以在xml中配置文件改成<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"oracleSqlSession"</span> <span class="attr">class</span>=<span class="string">"org.mybatis.spring.SqlSessionTemplate"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">constructor-arg</span> <span class="attr">index</span>=<span class="string">"0"</span> <span class="attr">ref</span>=<span class="string">"oracleSqlSessionFactory"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"oracleMapperScannerConfigurer"</span> <span class="attr">class</span>=<span class="string">"org.mybatis.spring.mapper.MapperScannerConfigurer"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"basePackage"</span> <span class="attr">value</span>=<span class="string">"com.xxx.oracle"</span> /&gt;</span></div><div class="line">    <span class="comment">&lt;!-- 由于spring-mybatis的问题，不能使用sqlSessionFactoryBeanName --&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"sqlSessionTemplateBeanName"</span> <span class="attr">value</span>=<span class="string">"oracleSqlSession"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>问题解决了！！！</p>
 
       
     </div>
@@ -446,7 +457,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://www.51yimo.com/2017/09/03/go-e6-8c-87-e5-8d-97-e5-ad-a6-e4-b9-a0-e7-ac-94-e8-ae-b0-e4-ba-94/" title="Go 指南学习笔记五">http://www.51yimo.com/2017/09/03/go-e6-8c-87-e5-8d-97-e5-ad-a6-e4-b9-a0-e7-ac-94-e8-ae-b0-e4-ba-94/</a>
+    <a href="http://www.51yimo.com/2018/01/18/multiresouce-sharding/" title="Spring+Mybatis分库分表总结">http://www.51yimo.com/2018/01/18/multiresouce-sharding/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -459,6 +470,16 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/Java/" rel="tag"># Java</a>
+          
+            <a href="/tags/Spring/" rel="tag"># Spring</a>
+          
+            <a href="/tags/Mybatis/" rel="tag"># Mybatis</a>
+          
+        </div>
+      
 
       
       
@@ -468,8 +489,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/09/02/go-e6-8c-87-e5-8d-97-e5-ad-a6-e4-b9-a0-e7-ac-94-e8-ae-b0-e5-9b-9b/" rel="next" title="Go 指南学习笔记四">
-                <i class="fa fa-chevron-left"></i> Go 指南学习笔记四
+              <a href="/2018/01/04/aria2-yaaw/" rel="next" title="Aria2+YAAW+Tampermonkey下载百度云文件">
+                <i class="fa fa-chevron-left"></i> Aria2+YAAW+Tampermonkey下载百度云文件
               </a>
             
           </div>
@@ -477,10 +498,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/09/05/go-e6-8c-87-e5-8d-97-e5-ad-a6-e4-b9-a0-e7-ac-94-e8-ae-b0-e5-85-ad/" rel="prev" title="Go 指南学习笔记六">
-                Go 指南学习笔记六 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -534,8 +551,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           
             <img class="site-author-image" itemprop="image"
@@ -629,6 +655,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#分表"><span class="nav-number">1.</span> <span class="nav-text">分表</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#分库"><span class="nav-number">2.</span> <span class="nav-text">分库</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
