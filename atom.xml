@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.51yimo.com/"/>
-  <updated>2018-01-18T08:21:21.000Z</updated>
+  <updated>2018-01-30T01:34:10.000Z</updated>
   <id>http://www.51yimo.com/</id>
   
   <author>
@@ -15,6 +15,37 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>记一次Dubbo调用失败的错误</title>
+    <link href="http://www.51yimo.com/2018/01/30/window-tomcat-start/"/>
+    <id>http://www.51yimo.com/2018/01/30/window-tomcat-start/</id>
+    <published>2018-01-30T01:12:00.000Z</published>
+    <updated>2018-01-30T01:34:10.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>应用程序作为<code>provider</code>注册到<code>Dubbo</code>的注册中心后，作为提供者一直被消费者访问不到，报出一个超时链接的错误。<br>    &ensp;&ensp;一开始怀疑是网络问题(提供者将自身的服务注册到注册中心后，消费者会从注册中心获取提供者的真实地址和端口，从而通过<code>RPC</code>进行远程调用，所以提供者的地址信息会在消费者的客户端缓存一份)，可是从消费者到注册者的网络环境能<code>ping</code>通，<code>telnet</code>其提供者的端口也是通的。<br>    &ensp;&ensp;从浏览器中通过<code>Http</code>的方式访问提供者的接口，浏览器就一直处于访问的挂起状态，得不到返回信息。同样后台也看不到任何报错信息，怀疑是不是<code>Dubbo</code>的问题，可是检查注册中心后发现一切正常，其他服务都能够正常访问。<br>    &ensp;&ensp;最后在部署程序时发现<code>Tomcat</code>的控制台日志一直卡住。悲催的因为程序只能部署在<code>Windows</code>上，之前一直在<code>Linux</code>下部署,只有开发在<code>Windows</code>下开发，可是从来没有遇到这种问题。<code>Tomcat</code>是通过双击<code>startup.bat</code>启动的，后来决定从<code>cmd</code>中启动试一下，程序居然可以访问了!!!<br>    &ensp;&ensp;百度后发现原来是<code>Windows</code>下<code>Console</code>设置的问题。在<code>Console</code>中右键，选择<code>属性</code>，然后再<code>选项</code>中勾掉<code>编辑选项</code>的<code>快速编辑模式</code>，默认是打勾的，去掉那个勾勾，然后再<code>确认</code>就可以了。<code>Windows</code>下的大坑啊。。。折腾了一下午！</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;应用程序作为&lt;code&gt;provider&lt;/code&gt;注册到&lt;code&gt;Dubbo&lt;/code&gt;的注册中心后，作为提供者一直被消费者访问不到，报出一个超时链接的错误。&lt;br&gt;    &amp;ensp;&amp;ensp;一开始怀疑是网络问题(提供者将自身的服务注册到注册中心后，消费者会从
+      
+    
+    </summary>
+    
+      <category term="Java" scheme="http://www.51yimo.com/categories/Java/"/>
+    
+    
+      <category term="Java" scheme="http://www.51yimo.com/tags/Java/"/>
+    
+      <category term="Dubbo" scheme="http://www.51yimo.com/tags/Dubbo/"/>
+    
+      <category term="Windows" scheme="http://www.51yimo.com/tags/Windows/"/>
+    
+      <category term="Tomcat" scheme="http://www.51yimo.com/tags/Tomcat/"/>
+    
+  </entry>
   
   <entry>
     <title>Spring+Mybatis分库分表总结</title>
@@ -595,31 +626,6 @@
 &lt;/blockquote&gt;
 &lt;p&gt;定义接口和实现接口互不依赖&lt;/p&gt;
 &lt;figure class=&quot;highli
-      
-    
-    </summary>
-    
-      <category term="golang" scheme="http://www.51yimo.com/categories/golang/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Go 指南学习笔记八</title>
-    <link href="http://www.51yimo.com/2017/09/11/go-e6-8c-87-e5-8d-97-e5-ad-a6-e4-b9-a0-e7-ac-94-e8-ae-b0-e5-85-ab/"/>
-    <id>http://www.51yimo.com/2017/09/11/go-e6-8c-87-e5-8d-97-e5-ad-a6-e4-b9-a0-e7-ac-94-e8-ae-b0-e5-85-ab/</id>
-    <published>2017-09-11T05:22:53.000Z</published>
-    <updated>2017-09-19T14:21:42.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>1.结构体方法</p><p>Go语言不像JAVA，没有类的定义，但是依然可以为结构体定义方法。</p><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> main</div><div class="line"><span class="keyword">import</span> (</div><div class="line">  <span class="string">"fmt"</span></div><div class="line">  <span class="string">"math"</span></div><div class="line">)</div><div class="line"><span class="keyword">type</span> Vertex <span class="keyword">struct</span> &#123;</div><div class="line">  X, Y <span class="keyword">float64</span></div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="params">(v *Vertex)</span> <span class="title">Abs</span><span class="params">()</span> <span class="title">float64</span></span> &#123;</div><div class="line">  <span class="keyword">return</span> math.Sqrt(v.X * v.X + v.Y * v.Y)</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">  v := &amp;Vertex&#123;<span class="number">3</span>,<span class="number">4</span>&#125;</div><div class="line">  fmt.Println(v.Abs()) <span class="comment">// 5</span></div><div class="line">&#125;</div></pre></td></tr></table></figure><p>2.还可以对包内任意类型定义任意方法，但是不能对包外的类型或者基础类型定义方法</p><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> main</div><div class="line"></div><div class="line"><span class="keyword">import</span> (</div><div class="line">  <span class="string">"fmt"</span></div><div class="line">  <span class="string">"math"</span></div><div class="line">)</div><div class="line"></div><div class="line"><span class="keyword">type</span> MyFloat <span class="keyword">float64</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="params">(f MyFloat)</span> <span class="title">Abs</span><span class="params">()</span> <span class="title">float64</span></span> &#123;</div><div class="line">  <span class="keyword">if</span> f &lt; <span class="number">0</span> &#123;</div><div class="line">  <span class="keyword">return</span> <span class="keyword">float64</span>(-f)</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> <span class="keyword">float64</span>(f)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">  f := MyFloat(-math.Sqrt2)</div><div class="line">  fmt.Println(f.Abs()) <span class="comment">// 1.4142135623730951</span></div><div class="line">&#125;</div></pre></td></tr></table></figure><p>3.方法可以与类型和类型的指针相关联</p><p>如1中的<code>Abs方法是作用的</code>*Vertex指针类型上</p><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="params">(v *Vertex)</span> <span class="title">Scale</span><span class="params">(f <span class="keyword">float64</span>)</span></span>&#123;</div><div class="line">  v.X = v.X * f</div><div class="line">  v.Y = v.Y * f</div><div class="line">&#125;</div></pre></td></tr></table></figure><p>与</p><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="params">(v Vertex)</span> <span class="title">Scale</span><span class="params">(f <span class="keyword">float64</span>)</span></span>&#123;</div><div class="line">  v.X = v.X * f</div><div class="line">  v.Y = v.Y * f</div><div class="line">&#125;</div></pre></td></tr></table></figure><p>的区别</p><pre><code class="go">v := *Vertex(<span class="number">3</span>,<span class="number">5</span>)v.Scale(<span class="number">5</span>)</code></pre><p>前边的是用*Vertex指针类型接受，是引用传递，所以会改变接受者v的原始值，而后边的是用变量（后者说是对象）接受，是值传递，会对v进行一份copy,而不会对原始值做更改。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;1.结构体方法&lt;/p&gt;
-&lt;p&gt;Go语言不像JAVA，没有类的定义，但是依然可以为结构体定义方法。&lt;/p&gt;
-&lt;figure class=&quot;highlight go&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;
       
     
     </summary>

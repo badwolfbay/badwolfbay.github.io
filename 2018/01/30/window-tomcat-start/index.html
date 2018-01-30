@@ -55,7 +55,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Java,Dubbo,Windows,Tomcat," />
 
 
 
@@ -73,17 +73,18 @@
 
 
 
-<meta name="description" content="Golang提供了官方的学习手册，tour地址：https://tour.go-zh.org同时，鉴于国内的网络环境，可以自己安装进行离线访问Go指南  1go get github.com/Go-zh/tour/gotour 然后就可以得到go tour了 12cd $GOPATH/bin./gotour 2.包 每个 Go 程序都是由包组成的。 程序运行的入口是包 main 。 一般情况下，">
+<meta name="description" content="应用程序作为provider注册到Dubbo的注册中心后，作为提供者一直被消费者访问不到，报出一个超时链接的错误。    &amp;ensp;&amp;ensp;一开始怀疑是网络问题(提供者将自身的服务注册到注册中心后，消费者会从注册中心获取提供者的真实地址和端口，从而通过RPC进行远程调用，所以提供者的地址信息会在消费者的客户端缓存一份)，可是从消费者到注册者的网络环境能ping通，telnet其提供者的端口也">
+<meta name="keywords" content="Java,Dubbo,Windows,Tomcat">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Go 指南学习笔记一">
-<meta property="og:url" content="http://www.51yimo.com/2017/08/28/golang-tour-e5-ad-a6-e4-b9-a0-e7-ac-94-e8-ae-b0-e4-b8-80/index.html">
+<meta property="og:title" content="记一次Dubbo调用失败的错误">
+<meta property="og:url" content="http://www.51yimo.com/2018/01/30/window-tomcat-start/index.html">
 <meta property="og:site_name" content="BADWOLFBAY">
-<meta property="og:description" content="Golang提供了官方的学习手册，tour地址：https://tour.go-zh.org同时，鉴于国内的网络环境，可以自己安装进行离线访问Go指南  1go get github.com/Go-zh/tour/gotour 然后就可以得到go tour了 12cd $GOPATH/bin./gotour 2.包 每个 Go 程序都是由包组成的。 程序运行的入口是包 main 。 一般情况下，">
+<meta property="og:description" content="应用程序作为provider注册到Dubbo的注册中心后，作为提供者一直被消费者访问不到，报出一个超时链接的错误。    &amp;ensp;&amp;ensp;一开始怀疑是网络问题(提供者将自身的服务注册到注册中心后，消费者会从注册中心获取提供者的真实地址和端口，从而通过RPC进行远程调用，所以提供者的地址信息会在消费者的客户端缓存一份)，可是从消费者到注册者的网络环境能ping通，telnet其提供者的端口也">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-09-19T14:28:42.000Z">
+<meta property="og:updated_time" content="2018-01-30T01:34:10.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Go 指南学习笔记一">
-<meta name="twitter:description" content="Golang提供了官方的学习手册，tour地址：https://tour.go-zh.org同时，鉴于国内的网络环境，可以自己安装进行离线访问Go指南  1go get github.com/Go-zh/tour/gotour 然后就可以得到go tour了 12cd $GOPATH/bin./gotour 2.包 每个 Go 程序都是由包组成的。 程序运行的入口是包 main 。 一般情况下，">
+<meta name="twitter:title" content="记一次Dubbo调用失败的错误">
+<meta name="twitter:description" content="应用程序作为provider注册到Dubbo的注册中心后，作为提供者一直被消费者访问不到，报出一个超时链接的错误。    &amp;ensp;&amp;ensp;一开始怀疑是网络问题(提供者将自身的服务注册到注册中心后，消费者会从注册中心获取提供者的真实地址和端口，从而通过RPC进行远程调用，所以提供者的地址信息会在消费者的客户端缓存一份)，可是从消费者到注册者的网络环境能ping通，telnet其提供者的端口也">
 
 
 
@@ -113,13 +114,13 @@
 
 
 
-  <link rel="canonical" href="http://www.51yimo.com/2017/08/28/golang-tour-e5-ad-a6-e4-b9-a0-e7-ac-94-e8-ae-b0-e4-b8-80/"/>
+  <link rel="canonical" href="http://www.51yimo.com/2018/01/30/window-tomcat-start/"/>
 
 
 
 
 
-  <title>Go 指南学习笔记一 | BADWOLFBAY</title>
+  <title>记一次Dubbo调用失败的错误 | BADWOLFBAY</title>
   
 
 
@@ -280,7 +281,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.51yimo.com/2017/08/28/golang-tour-e5-ad-a6-e4-b9-a0-e7-ac-94-e8-ae-b0-e4-b8-80/">
+    <link itemprop="mainEntityOfPage" href="http://www.51yimo.com/2018/01/30/window-tomcat-start/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="badwolf">
@@ -297,7 +298,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">Go 指南学习笔记一</h2>
+          <h2 class="post-title" itemprop="name headline">记一次Dubbo调用失败的错误</h2>
         
 
         <div class="post-meta">
@@ -309,8 +310,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-28T16:37:36+08:00">
-                2017-08-28
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-30T09:12:00+08:00">
+                2018-01-30
               </time>
             
 
@@ -332,8 +333,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/golang/" itemprop="url" rel="index">
-                    <span itemprop="name">golang</span>
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
                   </a>
                 </span>
 
@@ -374,44 +375,7 @@
       
 
       
-        <ol>
-<li>Golang提供了官方的学习手册，tour地址：<a href="https://tour.go-zh.org" target="_blank" rel="external">https://tour.go-zh.org</a><br>同时，鉴于国内的网络环境，可以自己安装进行离线访问Go指南</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">go get github.com/Go-zh/tour/gotour</div></pre></td></tr></table></figure>
-<p>然后就可以得到go tour了</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> <span class="variable">$GOPATH</span>/bin</div><div class="line">./gotour</div></pre></td></tr></table></figure>
-<p>2.包</p>
-<p>每个 Go 程序都是由包组成的。</p>
-<p>程序运行的入口是包 <code>main</code> 。</p>
-<p>一般情况下，包名与导入路径的最后一个目录一致。</p>
-<p>3.包的导入</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> <span class="string">"fmt"</span></div><div class="line"><span class="keyword">import</span> <span class="string">"math"</span></div></pre></td></tr></table></figure>
-<p>或者更多时候是下面的导入形式</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> (</div><div class="line">	<span class="string">"fmt"</span></div><div class="line">	<span class="string">"math"</span></div><div class="line">)</div></pre></td></tr></table></figure>
-<p>4.大小写</p>
-<p>首字母大写的名字是被导出的，可以被其他包引用，名称为小写的名称不会被导出</p>
-<p>如：</p>
-<p>可以引用fmt.Println()，而不能是fmt.println()</p>
-<p>5.函数定义</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">add</span><span class="params">(x <span class="keyword">int</span>, y <span class="keyword">int</span>)</span> <span class="title">int</span></span>&#123;</div><div class="line">	<span class="keyword">return</span> x + y</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>Golang和其他语言不同，变量名在类型之前,函数返回值再最后。</p>
-<p>如果参数类型相同，则可以合并，如上可以写成 x, y int 。</p>
-<p>函数返回值可以返回多个，形式为(int, int)</p>
-<p>6.变量定义</p>
-<blockquote>
-<p>var x ,y</p>
-</blockquote>
-<p>可以定义在包级别或者函数级别。</p>
-<p>函数赋值var x int = 1,可以省略类型，如var x = 1。</p>
-<p>更可以简写成x :=1,这种情况下不能在函数外使用。</p>
-<p>变量在没有初始化为默认为<strong><em>零值：</em></strong></p>
-<ul>
-<li>数值类型为 <code>0</code> ，</li>
-<li>布尔类型为 <code>false</code> ，</li>
-<li>字符串为 <code>&quot;&quot;</code> （空字符串）<br>不同类型之间的转换需要显示转换,如 int(i)</li>
-</ul>
-<p>7.常量</p>
-<p>常量定义与变量类似，不同的是不能使用:=定义</p>
+        <p>应用程序作为<code>provider</code>注册到<code>Dubbo</code>的注册中心后，作为提供者一直被消费者访问不到，报出一个超时链接的错误。<br>    &ensp;&ensp;一开始怀疑是网络问题(提供者将自身的服务注册到注册中心后，消费者会从注册中心获取提供者的真实地址和端口，从而通过<code>RPC</code>进行远程调用，所以提供者的地址信息会在消费者的客户端缓存一份)，可是从消费者到注册者的网络环境能<code>ping</code>通，<code>telnet</code>其提供者的端口也是通的。<br>    &ensp;&ensp;从浏览器中通过<code>Http</code>的方式访问提供者的接口，浏览器就一直处于访问的挂起状态，得不到返回信息。同样后台也看不到任何报错信息，怀疑是不是<code>Dubbo</code>的问题，可是检查注册中心后发现一切正常，其他服务都能够正常访问。<br>    &ensp;&ensp;最后在部署程序时发现<code>Tomcat</code>的控制台日志一直卡住。悲催的因为程序只能部署在<code>Windows</code>上，之前一直在<code>Linux</code>下部署,只有开发在<code>Windows</code>下开发，可是从来没有遇到这种问题。<code>Tomcat</code>是通过双击<code>startup.bat</code>启动的，后来决定从<code>cmd</code>中启动试一下，程序居然可以访问了!!!<br>    &ensp;&ensp;百度后发现原来是<code>Windows</code>下<code>Console</code>设置的问题。在<code>Console</code>中右键，选择<code>属性</code>，然后再<code>选项</code>中勾掉<code>编辑选项</code>的<code>快速编辑模式</code>，默认是打勾的，去掉那个勾勾，然后再<code>确认</code>就可以了。<code>Windows</code>下的大坑啊。。。折腾了一下午！</p>
 
       
     </div>
@@ -456,7 +420,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://www.51yimo.com/2017/08/28/golang-tour-e5-ad-a6-e4-b9-a0-e7-ac-94-e8-ae-b0-e4-b8-80/" title="Go 指南学习笔记一">http://www.51yimo.com/2017/08/28/golang-tour-e5-ad-a6-e4-b9-a0-e7-ac-94-e8-ae-b0-e4-b8-80/</a>
+    <a href="http://www.51yimo.com/2018/01/30/window-tomcat-start/" title="记一次Dubbo调用失败的错误">http://www.51yimo.com/2018/01/30/window-tomcat-start/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -469,6 +433,18 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/Java/" rel="tag"># Java</a>
+          
+            <a href="/tags/Dubbo/" rel="tag"># Dubbo</a>
+          
+            <a href="/tags/Windows/" rel="tag"># Windows</a>
+          
+            <a href="/tags/Tomcat/" rel="tag"># Tomcat</a>
+          
+        </div>
+      
 
       
       
@@ -478,8 +454,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/08/28/ubuntu-e4-b8-8b-e5-ae-89-e8-a3-85-e9-85-8d-e7-bd-aeopenvpn-e5-ae-a2-e6-88-b7-e7-ab-af/" rel="next" title="Ubuntu及mac下安装配置openvpn客户端">
-                <i class="fa fa-chevron-left"></i> Ubuntu及mac下安装配置openvpn客户端
+              <a href="/2018/01/18/multiresouce-sharding/" rel="next" title="Spring+Mybatis分库分表总结">
+                <i class="fa fa-chevron-left"></i> Spring+Mybatis分库分表总结
               </a>
             
           </div>
@@ -487,10 +463,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/08/29/python-args-kwargs-e7-90-86-e8-a7-a3/" rel="prev" title="python *args **kwargs理解">
-                python *args **kwargs理解 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>

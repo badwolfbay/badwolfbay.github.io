@@ -280,6 +280,148 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.51yimo.com/2018/01/30/window-tomcat-start/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="badwolf">
+      <meta itemprop="description" content="Run,You Clever Boy!">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BADWOLFBAY">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/30/window-tomcat-start/" itemprop="url">记一次Dubbo调用失败的错误</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-30T09:12:00+08:00">
+                2018-01-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>应用程序作为<code>provider</code>注册到<code>Dubbo</code>的注册中心后，作为提供者一直被消费者访问不到，报出一个超时链接的错误。<br>    &ensp;&ensp;一开始怀疑是网络问题(提供者将自身的服务注册到注册中心后，消费者会从注册中心获取提供者的真实地址和端口，从而通过<code>RPC</code>进行远程调用，所以提供者的地址信息会在消费者的客户端缓存一份)，可是从消费者到注册者的网络环境能<code>ping</code>通，<code>telnet</code>其提供者的端口也是通的。<br>    &ensp;&ensp;从浏览器中通过<code>Http</code>的方式访问提供者的接口，浏览器就一直处于访问的挂起状态，得不到返回信息。同样后台也看不到任何报错信息，怀疑是不是<code>Dubbo</code>的问题，可是检查注册中心后发现一切正常，其他服务都能够正常访问。<br>    &ensp;&ensp;最后在部署程序时发现<code>Tomcat</code>的控制台日志一直卡住。悲催的因为程序只能部署在<code>Windows</code>上，之前一直在<code>Linux</code>下部署,只有开发在<code>Windows</code>下开发，可是从来没有遇到这种问题。<code>Tomcat</code>是通过双击<code>startup.bat</code>启动的，后来决定从<code>cmd</code>中启动试一下，程序居然可以访问了!!!<br>    &ensp;&ensp;百度后发现原来是<code>Windows</code>下<code>Console</code>设置的问题。在<code>Console</code>中右键，选择<code>属性</code>，然后再<code>选项</code>中勾掉<code>编辑选项</code>的<code>快速编辑模式</code>，默认是打勾的，去掉那个勾勾，然后再<code>确认</code>就可以了。<code>Windows</code>下的大坑啊。。。折腾了一下午！</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.51yimo.com/2018/01/18/multiresouce-sharding/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1669,171 +1811,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.51yimo.com/2017/10/26/java-interview/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="badwolf">
-      <meta itemprop="description" content="Run,You Clever Boy!">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BADWOLFBAY">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/10/26/java-interview/" itemprop="url">百度Java面试题汇总</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-26T19:57:27+08:00">
-                2017-10-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index">
-                    <span itemprop="name">Java</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>简单记录下百度Java面试题</p>
-<ul>
-<li>Java源码使用了哪些设计模式？列举你知道的类/包以及使用模式</li>
-<li>写一个单例模式</li>
-<li>Threadlocal有哪些特点，描述使用场景</li>
-<li>快速排序</li>
-<li>Mysql事务隔离级别(Spring事务隔离级别)</li>
-<li>字符串常量池</li>
-<li>类加载器</li>
-<li>SpringMVC和Struts2有什么区别？(需要跟进新技术，为什么SpringMVC替代Struts2)</li>
-<li>Java，Python和Go三个相比各自有什么优点和缺点(需要自己总结思考)</li>
-<li>网络传输,应用层有哪些协议?(并问了Http头的详细信息)</li>
-<li>设计一个互联网架构</li>
-<li>接上：当访问量多比如秒杀可能的瓶颈在哪里,怎么解决这些瓶颈问题</li>
-<li>数据库怎么读写分离，怎么分库分表</li>
-<li>Java中HashMap的containsKey和containsValue的时间复杂度</li>
-<li>线程池的最大线程数和核心线程数</li>
-<li>Spring事务的处理及回滚机制（事务的一致性）</li>
-<li>JAVA的装饰者模式和IO流</li>
-<li>Mybatis插入的返回值</li>
-<li>Synchrosized的静态方法和普通方法上的区别</li>
-<li>时间复杂度/空间复杂度</li>
-</ul>
-<p>需要自己接下来深入学习JVM，网络层。<br>由底层原理–&gt;架构–&gt;项目/应用/数据/性能</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1887,7 +1864,7 @@
             
               <a href="/archives/">
             
-                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-count">38</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1909,7 +1886,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">13</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
