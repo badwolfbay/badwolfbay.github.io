@@ -280,6 +280,152 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.51yimo.com/2017/09/15/go-e6-8c-87-e5-8d-97-e5-ad-a6-e4-b9-a0-e7-ac-94-e8-ae-b0-e4-b9-9d/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="badwolf">
+      <meta itemprop="description" content="Run,You Clever Boy!">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BADWOLFBAY">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/09/15/go-e6-8c-87-e5-8d-97-e5-ad-a6-e4-b9-a0-e7-ac-94-e8-ae-b0-e4-b9-9d/" itemprop="url">Go 指南学习笔记九</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-15T21:17:04+08:00">
+                2017-09-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/golang/" itemprop="url" rel="index">
+                    <span itemprop="name">golang</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>1.接口，接口为一组方法定义的集合</p>
+<blockquote>
+<p>和其它语言不同，类型实现接口不需要显示声明，不需要implements关键字</p>
+</blockquote>
+<p>定义接口和实现接口互不依赖</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">type</span> Abser <span class="keyword">interface</span> &#123;</div><div class="line">  Abs() <span class="keyword">float64</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">type</span> MyFloat <span class="keyword">float64</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="params">(f MyFloat)</span> <span class="title">Abs</span><span class="params">()</span> <span class="title">float64</span></span> &#123;</div><div class="line">  <span class="keyword">if</span> f &lt; <span class="number">0</span> &#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">float64</span>(-f)</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> <span class="keyword">float64</span>(f)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">type</span> Vertex <span class="keyword">struct</span> &#123;</div><div class="line">  X, Y <span class="keyword">float64</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="params">(v *Vertex)</span> <span class="title">Abs</span><span class="params">()</span> <span class="title">float64</span></span> &#123;</div><div class="line">  <span class="keyword">return</span> math.Sqrt(v.X*v.X + v.Y*v.Y)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</div><div class="line">  <span class="keyword">var</span> a Abser</div><div class="line">  f := MyFloat(-math.Sqrt2)</div><div class="line">  v := Vertex&#123;<span class="number">3</span>, <span class="number">4</span>&#125;</div><div class="line"></div><div class="line">  a = f  <span class="comment">// a MyFloat 实现了 Abser</span></div><div class="line">  a = &amp;v <span class="comment">// a *Vertex 实现了 Abser</span></div><div class="line"></div><div class="line">  <span class="comment">// 下面一行，v 是一个 Vertex（而不是 *Vertex）</span></div><div class="line">  <span class="comment">// 所以没有实现 Abser。</span></div><div class="line">  a = v</div><div class="line"></div><div class="line">  fmt.Println(a.Abs())</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.51yimo.com/2017/09/11/go-e6-8c-87-e5-8d-97-e5-ad-a6-e4-b9-a0-e7-ac-94-e8-ae-b0-e5-85-ab/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1728,162 +1874,6 @@ v.Scale(<span class="number">5</span>)
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.51yimo.com/2017/08/30/ssh-e5-85-8d-e5-af-86-e7-a0-81-e7-99-bb-e9-99-86/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="badwolf">
-      <meta itemprop="description" content="Run,You Clever Boy!">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BADWOLFBAY">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/30/ssh-e5-85-8d-e5-af-86-e7-a0-81-e7-99-bb-e9-99-86/" itemprop="url">ssh免密码登陆</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-30T09:56:25+08:00">
-                2017-08-30
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index">
-                    <span itemprop="name">linux</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>有三台机器172.21.3.124/125/126，需要在这三台机器配置免密码登陆能够互相访问</p>
-<p>1.在一台机器上执行命令，如172.21.3.124，期间会输入三次回车</p>
-<blockquote>
-<p>ssh-keygen -t rsa</p>
-</blockquote>
-<p><img src="/images/pasted-14.png" alt="upload successful"></p>
-<p>2.命令会在当前用户的家目录的.ssh的目录下生成id_rsa和id_rsa.pub文件，将id_rsa.pub文件copy到其他主机(172.21.3.125)的.ssh/authorized_keys目录下</p>
-<p><img src="/images/pasted-15.png" alt="upload successful"></p>
-<p>因为我的是root用户，所以copy到/root/.ssh目录下。</p>
-<p>3.这样再登陆172.21.3.125就可以不用输入密码了。需要注意的是</p>
-<p><strong>authorized_keys的权限需要是600</strong>。(chmod 600 .ssh/authorized_keys)</p>
-<p>将id_rsa.pub文件Copy到172.21.3.126上就可以免密码登陆到172.21.3.126了。</p>
-<p>将以上的命令和步骤重复在172.21.3.125/126分别执行，</p>
-<p>注意已经存在authorized_keys文件不能覆盖，需要在文件内容后追加其他主机的id_rsa.pub的内容。</p>
-<p>这样就可以三台机器 间互相免密码访问了。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1937,7 +1927,7 @@ v.Scale(<span class="number">5</span>)
             
               <a href="/archives/">
             
-                <span class="site-state-item-count">38</span>
+                <span class="site-state-item-count">39</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

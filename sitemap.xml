@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.51yimo.com/2018/05/09/java-string/</loc>
+    
+    <lastmod>2018-05-09T03:14:40.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.51yimo.com/2018/01/30/window-tomcat-start/</loc>
     
     <lastmod>2018-01-30T01:34:10.000Z</lastmod>
@@ -296,14 +303,14 @@
   </url>
   
   <url>
-    <loc>http://www.51yimo.com/e9-a6-96-e9-a1-b5-trashed/index.html</loc>
+    <loc>http://www.51yimo.com/sample-page-trashed/index.html</loc>
     
     <lastmod>2017-09-18T14:08:12.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.51yimo.com/sample-page-trashed/index.html</loc>
+    <loc>http://www.51yimo.com/e9-a6-96-e9-a1-b5-trashed/index.html</loc>
     
     <lastmod>2017-09-18T14:08:12.000Z</lastmod>
     

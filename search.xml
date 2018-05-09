@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Java String详解]]></title>
+    <url>%2F2018%2F05%2F09%2Fjava-string%2F</url>
+    <content type="text"><![CDATA[Java中的String是经常使用的类，但是String中有很多需要学习的东西 1.不可变性 从最开始学习String时，就一直说String的类型是不可变的，但是从来没有深究。如果看String源码会发现 String类是final修饰的，使用者并不能通过继承来修改String类中的内容 String内部维护了一个final修饰的char类型的数组 char类型的数组虽然是引用类型，但是new String时使用Arrays.copyOf来避免使用者通过修改数组内容来修改String 使用replace,substring是，都是重新new String 2.equals 在Java中使用equals来比较两个对象是否相等 123public boolean equals(Object obj) &#123; return (this == obj);&#125; Object中的源码中显示如果没有重写equals，比较的就是两个对象的内存地址是否相等。String重写了equals方法123456789101112131415161718192021public boolean equals(Object anObject) &#123; if (this == anObject) &#123; return true; &#125; if (anObject instanceof String) &#123; String anotherString = (String)anObject; int n = value.length; if (n == anotherString.value.length) &#123; char v1[] = value; char v2[] = anotherString.value; int i = 0; while (n-- != 0) &#123; if (v1[i] != v2[i]) return false; i++; &#125; return true; &#125; &#125; return false;&#125; 从源码中可以发现 如果两个String对象地址相同，则肯定相等。 两个对象地址不同，如果数组的长度相等，并且数组中每个值都相等，则两个字符串相等。 3.StringBuilder +在做变量拼接时其实是用的StringBuilder.append()方法，所以当使用+和StringBuilder.append()时，其实效率没有太大的差别，但是如果把+放在循环中时做字符串循环拼接时,+的效率就会低很多，如 1234String result = &quot;&quot;;for (int i = 0; i&lt;1000 ; i++)&#123; result += i;&#125; 因为每次循环都会产生一个StringBuilder对象,通过StringBuilder的append方法完成字符串+的操作，在循环过程中，result的长度越来越长，占用的空间越来越大，就比较容易出现OOM。 4.字符串常量池 JVM为了提高性能和减少内存开销，在实例化字符串常量的时候进行了一些优化 通过字面量声明的字符串直接保存到常量池中，如String s = “test”; 当创建字符串时，首先检查字符串常量池中是否存在该字符串 Q1: 下面分别创建了几个对象 12String s1 = "test1";String s2 = new String("test2"); A： s1创建了一个字符串对象；s2可能创建一个对象，也可能创建两个对象，当字符串常量池中不存在”test2”时，在字符串常量池中创建，同时在堆中创建对象,对象指向字符串常量池的”test2”。 可以用String.intern()方法将字符串保存到常量池中，常量池底层使用StringTable保存字符串的引用在使用intern方法时： 如果常量池中已经存在当前字符串，将直接返回当前字符串 如果常量池中不存在当前字符串，将该字符串添加到字符串常量池中，然后返回该字符串的引用 12345String a = new StringBuilder(&quot;test&quot;).append(&quot;string&quot;).toString();System.out.println(a.intern() == a);String b = new StringBuilder(&quot;ja&quot;).append(&quot;va&quot;).toString();System.out.println(b.intern() == b); 上面代码在JDK1.6和JDK1.7上运行会分别得到不同的结果JDK1.6下：false, falseJDK1.7下：true, false 是由于JDK1.6中字符串常量池在永久代中，从JDK1.7开始字符串常量池移到了堆中。 JDK1.6中的intern1.变量a分配在heap上，a.intern()指向的是永久代中的引用，和a指向的不是同一个引用，所以返回false2.对于b同理，指向的并不是同一个引用 JDK1.7以后的intern1.在做intern操作时，如果StringTable已经存在相等的字符串，返回StringTable中的字符串引用，如果不存在，复制字符串的引用到常量池中，然后返回。所以对于变量a，一开始StringTable中不存在teststring的引用，所以JVM会复制变量a的引用到StringTable中，所以a.intern()和a其实是同一个字符串的引用，返回true。2.对于变量b,一开始就存在java字符串，b.intern()返回的是StringTable中的引用，和b指向的并不是同一个，所以返回false。]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[记一次Dubbo调用失败的错误]]></title>
     <url>%2F2018%2F01%2F30%2Fwindow-tomcat-start%2F</url>
     <content type="text"><![CDATA[应用程序作为provider注册到Dubbo的注册中心后，作为提供者一直被消费者访问不到，报出一个超时链接的错误。 &ensp;&ensp;一开始怀疑是网络问题(提供者将自身的服务注册到注册中心后，消费者会从注册中心获取提供者的真实地址和端口，从而通过RPC进行远程调用，所以提供者的地址信息会在消费者的客户端缓存一份)，可是从消费者到注册者的网络环境能ping通，telnet其提供者的端口也是通的。 &ensp;&ensp;从浏览器中通过Http的方式访问提供者的接口，浏览器就一直处于访问的挂起状态，得不到返回信息。同样后台也看不到任何报错信息，怀疑是不是Dubbo的问题，可是检查注册中心后发现一切正常，其他服务都能够正常访问。 &ensp;&ensp;最后在部署程序时发现Tomcat的控制台日志一直卡住。悲催的因为程序只能部署在Windows上，之前一直在Linux下部署,只有开发在Windows下开发，可是从来没有遇到这种问题。Tomcat是通过双击startup.bat启动的，后来决定从cmd中启动试一下，程序居然可以访问了!!! &ensp;&ensp;百度后发现原来是Windows下Console设置的问题。在Console中右键，选择属性，然后再选项中勾掉编辑选项的快速编辑模式，默认是打勾的，去掉那个勾勾，然后再确认就可以了。Windows下的大坑啊。。。折腾了一下午！]]></content>

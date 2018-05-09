@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.51yimo.com/"/>
-  <updated>2018-01-30T01:34:10.000Z</updated>
+  <updated>2018-05-09T03:14:40.000Z</updated>
   <id>http://www.51yimo.com/</id>
   
   <author>
@@ -15,6 +15,45 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Java String详解</title>
+    <link href="http://www.51yimo.com/2018/05/09/java-string/"/>
+    <id>http://www.51yimo.com/2018/05/09/java-string/</id>
+    <published>2018-05-09T03:12:53.000Z</published>
+    <updated>2018-05-09T03:14:40.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>Java中的String是经常使用的类，但是String中有很多需要学习的东西</p><p>1.不可变性</p><p>从最开始学习String时，就一直说String的类型是不可变的，但是从来没有深究。<br>如果看String源码会发现</p><ul><li>String类是final修饰的，使用者并不能通过继承来修改String类中的内容</li><li>String内部维护了一个final修饰的char类型的数组</li><li>char类型的数组虽然是引用类型，但是new String时使用<code>Arrays.copyOf</code>来避免使用者通过修改数组内容来修改String</li><li>使用<code>replace</code>,<code>substring</code>是，都是重新new String</li></ul><p>2.equals</p><p>在Java中使用<code>equals</code>来比较两个对象是否相等</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">public boolean equals(Object obj) &#123;</div><div class="line">return (this == obj);</div><div class="line">&#125;</div></pre></td></tr></table></figure><p>Object中的源码中显示如果没有重写<code>equals</code>，比较的就是两个对象的内存地址是否相等。String重写了<code>equals</code>方法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">public boolean equals(Object anObject) &#123;</div><div class="line">    if (this == anObject) &#123;</div><div class="line">        return true;</div><div class="line">    &#125;</div><div class="line">    if (anObject instanceof String) &#123;</div><div class="line">    String anotherString = (String)anObject;</div><div class="line">    int n = value.length;</div><div class="line">    if (n == anotherString.value.length) &#123;</div><div class="line">    char v1[] = value;</div><div class="line">        char v2[] = anotherString.value;</div><div class="line">        int i = 0;</div><div class="line">        while (n-- != 0) &#123;</div><div class="line">             if (v1[i] != v2[i])</div><div class="line">                return false;</div><div class="line">                i++;</div><div class="line">             &#125;</div><div class="line">             return true;</div><div class="line">         &#125;</div><div class="line">     &#125;</div><div class="line">     return false;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p><p>从源码中可以发现</p><ul><li>如果两个String对象地址相同，则肯定相等。</li><li>两个对象地址不同，如果数组的长度相等，并且数组中每个值都相等，则两个字符串相等。</li></ul><a id="more"></a><p>3.StringBuilder</p><p><code>+</code>在做变量拼接时其实是用的StringBuilder.append()方法，所以当使用<code>+</code>和<code>StringBuilder.append()</code>时，其实效率没有太大的差别，但是如果把<code>+</code>放在循环中时做字符串循环拼接时,<code>+</code>的效率就会低很多，如</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">String result = &quot;&quot;;</div><div class="line">for (int i = 0; i&lt;1000 ; i++)&#123;</div><div class="line">    result += i;</div><div class="line">&#125;</div></pre></td></tr></table></figure><p>因为每次循环都会产生一个StringBuilder对象,通过StringBuilder的append方法完成字符串<code>+</code>的操作，在循环过程中，<br>result的长度越来越长，占用的空间越来越大，就比较容易出现OOM。</p><p>4.字符串常量池</p><p>JVM为了提高性能和减少内存开销，在实例化字符串常量的时候进行了一些优化</p><ul><li>通过字面量声明的字符串直接保存到常量池中，如String s = “test”;</li><li>当创建字符串时，首先检查字符串常量池中是否存在该字符串</li></ul><p>Q1: 下面分别创建了几个对象</p><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">String s1 = <span class="string">"test1"</span>;</div><div class="line">String s2 = <span class="keyword">new</span> String(<span class="string">"test2"</span>);</div></pre></td></tr></table></figure><p>A： s1创建了一个字符串对象；s2可能创建一个对象，也可能创建两个对象，当字符串常量池中不存在”test2”时，在字符串常量池中创建，同时在堆中创建对象,对象指向字符串常量池的”test2”。</p><p>可以用<code>String.intern()</code>方法将字符串保存到常量池中，常量池底层使用<code>StringTable</code>保存字符串的引用<br>在使用<code>intern</code>方法时：</p><ul><li>如果常量池中已经存在当前字符串，将直接返回当前字符串</li><li>如果常量池中不存在当前字符串，将该字符串添加到字符串常量池中，然后返回该字符串的引用</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">String a = new StringBuilder(&quot;test&quot;).append(&quot;string&quot;).toString();</div><div class="line">System.out.println(a.intern() == a);</div><div class="line"></div><div class="line">String b = new StringBuilder(&quot;ja&quot;).append(&quot;va&quot;).toString();</div><div class="line">System.out.println(b.intern() == b);</div></pre></td></tr></table></figure><p>上面代码在JDK1.6和JDK1.7上运行会分别得到不同的结果<br>JDK1.6下：false, false<br>JDK1.7下：true, false</p><p>是由于JDK1.6中字符串常量池在永久代中，从JDK1.7开始字符串常量池移到了堆中。</p><p><strong>JDK1.6中的intern</strong><br>1.变量<code>a</code>分配在heap上，<code>a.intern()</code>指向的是永久代中的引用，和<code>a</code>指向的不是同一个引用，所以返回<code>false</code><br>2.对于<code>b</code>同理，指向的并不是同一个引用</p><p><strong>JDK1.7以后的intern</strong><br>1.在做<code>intern</code>操作时，如果<code>StringTable</code>已经存在相等的字符串，返回<code>StringTable</code>中的字符串引用，如果不存在，复制字符串的引用到常量池中，然后返回。所以对于变量<code>a</code>，一开始<code>StringTable</code>中不存在<code>teststring</code>的引用，所以JVM会复制变量<code>a</code>的引用到<code>StringTable</code>中，所以<code>a.intern()</code>和<code>a</code>其实是同一个字符串的引用，返回<code>true</code>。<br>2.对于变量<code>b</code>,一开始就存在<code>java</code>字符串，<code>b.intern()</code>返回的是<code>StringTable</code>中的引用，和<code>b</code>指向的并不是同一个，所以返回<code>false</code>。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Java中的String是经常使用的类，但是String中有很多需要学习的东西&lt;/p&gt;
+&lt;p&gt;1.不可变性&lt;/p&gt;
+&lt;p&gt;从最开始学习String时，就一直说String的类型是不可变的，但是从来没有深究。&lt;br&gt;如果看String源码会发现&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;String类是final修饰的，使用者并不能通过继承来修改String类中的内容&lt;/li&gt;
+&lt;li&gt;String内部维护了一个final修饰的char类型的数组&lt;/li&gt;
+&lt;li&gt;char类型的数组虽然是引用类型，但是new String时使用&lt;code&gt;Arrays.copyOf&lt;/code&gt;来避免使用者通过修改数组内容来修改String&lt;/li&gt;
+&lt;li&gt;使用&lt;code&gt;replace&lt;/code&gt;,&lt;code&gt;substring&lt;/code&gt;是，都是重新new String&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;2.equals&lt;/p&gt;
+&lt;p&gt;在Java中使用&lt;code&gt;equals&lt;/code&gt;来比较两个对象是否相等&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;public boolean equals(Object obj) &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	return (this == obj);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;Object中的源码中显示如果没有重写&lt;code&gt;equals&lt;/code&gt;，比较的就是两个对象的内存地址是否相等。String重写了&lt;code&gt;equals&lt;/code&gt;方法&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;12&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;13&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;14&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;15&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;16&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;17&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;18&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;19&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;20&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;21&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;public boolean equals(Object anObject) &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    if (this == anObject) &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        return true;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    if (anObject instanceof String) &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    String anotherString = (String)anObject;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    int n = value.length;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    if (n == anotherString.value.length) &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    	char v1[] = value;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        char v2[] = anotherString.value;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        int i = 0;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        while (n-- != 0) &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;             if (v1[i] != v2[i])&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;                return false;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;                i++;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;             &amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;             return true;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;         &amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;     &amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;     return false;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;从源码中可以发现&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;如果两个String对象地址相同，则肯定相等。&lt;/li&gt;
+&lt;li&gt;两个对象地址不同，如果数组的长度相等，并且数组中每个值都相等，则两个字符串相等。&lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+      <category term="Java" scheme="http://www.51yimo.com/categories/Java/"/>
+    
+    
+      <category term="Java" scheme="http://www.51yimo.com/tags/Java/"/>
+    
+  </entry>
   
   <entry>
     <title>记一次Dubbo调用失败的错误</title>
@@ -604,34 +643,6 @@
     
     
       <category term="docker" scheme="http://www.51yimo.com/tags/docker/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Go 指南学习笔记九</title>
-    <link href="http://www.51yimo.com/2017/09/15/go-e6-8c-87-e5-8d-97-e5-ad-a6-e4-b9-a0-e7-ac-94-e8-ae-b0-e4-b9-9d/"/>
-    <id>http://www.51yimo.com/2017/09/15/go-e6-8c-87-e5-8d-97-e5-ad-a6-e4-b9-a0-e7-ac-94-e8-ae-b0-e4-b9-9d/</id>
-    <published>2017-09-15T13:17:04.000Z</published>
-    <updated>2017-09-19T14:20:32.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>1.接口，接口为一组方法定义的集合</p><blockquote><p>和其它语言不同，类型实现接口不需要显示声明，不需要implements关键字</p></blockquote><p>定义接口和实现接口互不依赖</p><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">type</span> Abser <span class="keyword">interface</span> &#123;</div><div class="line">  Abs() <span class="keyword">float64</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">type</span> MyFloat <span class="keyword">float64</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="params">(f MyFloat)</span> <span class="title">Abs</span><span class="params">()</span> <span class="title">float64</span></span> &#123;</div><div class="line">  <span class="keyword">if</span> f &lt; <span class="number">0</span> &#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">float64</span>(-f)</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> <span class="keyword">float64</span>(f)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">type</span> Vertex <span class="keyword">struct</span> &#123;</div><div class="line">  X, Y <span class="keyword">float64</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="params">(v *Vertex)</span> <span class="title">Abs</span><span class="params">()</span> <span class="title">float64</span></span> &#123;</div><div class="line">  <span class="keyword">return</span> math.Sqrt(v.X*v.X + v.Y*v.Y)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</div><div class="line">  <span class="keyword">var</span> a Abser</div><div class="line">  f := MyFloat(-math.Sqrt2)</div><div class="line">  v := Vertex&#123;<span class="number">3</span>, <span class="number">4</span>&#125;</div><div class="line"></div><div class="line">  a = f  <span class="comment">// a MyFloat 实现了 Abser</span></div><div class="line">  a = &amp;v <span class="comment">// a *Vertex 实现了 Abser</span></div><div class="line"></div><div class="line">  <span class="comment">// 下面一行，v 是一个 Vertex（而不是 *Vertex）</span></div><div class="line">  <span class="comment">// 所以没有实现 Abser。</span></div><div class="line">  a = v</div><div class="line"></div><div class="line">  fmt.Println(a.Abs())</div><div class="line">&#125;</div></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;1.接口，接口为一组方法定义的集合&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;和其它语言不同，类型实现接口不需要显示声明，不需要implements关键字&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;定义接口和实现接口互不依赖&lt;/p&gt;
-&lt;figure class=&quot;highli
-      
-    
-    </summary>
-    
-      <category term="golang" scheme="http://www.51yimo.com/categories/golang/"/>
-    
     
   </entry>
   

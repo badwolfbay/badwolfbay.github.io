@@ -280,6 +280,162 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.51yimo.com/2017/08/30/ssh-e5-85-8d-e5-af-86-e7-a0-81-e7-99-bb-e9-99-86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="badwolf">
+      <meta itemprop="description" content="Run,You Clever Boy!">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BADWOLFBAY">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/30/ssh-e5-85-8d-e5-af-86-e7-a0-81-e7-99-bb-e9-99-86/" itemprop="url">ssh免密码登陆</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-30T09:56:25+08:00">
+                2017-08-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>有三台机器172.21.3.124/125/126，需要在这三台机器配置免密码登陆能够互相访问</p>
+<p>1.在一台机器上执行命令，如172.21.3.124，期间会输入三次回车</p>
+<blockquote>
+<p>ssh-keygen -t rsa</p>
+</blockquote>
+<p><img src="/images/pasted-14.png" alt="upload successful"></p>
+<p>2.命令会在当前用户的家目录的.ssh的目录下生成id_rsa和id_rsa.pub文件，将id_rsa.pub文件copy到其他主机(172.21.3.125)的.ssh/authorized_keys目录下</p>
+<p><img src="/images/pasted-15.png" alt="upload successful"></p>
+<p>因为我的是root用户，所以copy到/root/.ssh目录下。</p>
+<p>3.这样再登陆172.21.3.125就可以不用输入密码了。需要注意的是</p>
+<p><strong>authorized_keys的权限需要是600</strong>。(chmod 600 .ssh/authorized_keys)</p>
+<p>将id_rsa.pub文件Copy到172.21.3.126上就可以免密码登陆到172.21.3.126了。</p>
+<p>将以上的命令和步骤重复在172.21.3.125/126分别执行，</p>
+<p>注意已经存在authorized_keys文件不能覆盖，需要在文件内容后追加其他主机的id_rsa.pub的内容。</p>
+<p>这样就可以三台机器 间互相免密码访问了。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.51yimo.com/2017/08/29/python-args-kwargs-e7-90-86-e8-a7-a3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1610,7 +1766,7 @@
             
               <a href="/archives/">
             
-                <span class="site-state-item-count">38</span>
+                <span class="site-state-item-count">39</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
