@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.badwolfbay.cn/"/>
-  <updated>2020-03-13T15:23:02.576Z</updated>
+  <updated>2020-03-13T15:42:02.430Z</updated>
   <id>http://www.badwolfbay.cn/</id>
   
   <author>
@@ -21,17 +21,17 @@
     <link href="http://www.badwolfbay.cn/2020/03/13/manjaro-desktop/"/>
     <id>http://www.badwolfbay.cn/2020/03/13/manjaro-desktop/</id>
     <published>2020-03-13T15:00:49.000Z</published>
-    <updated>2020-03-13T15:23:02.576Z</updated>
+    <updated>2020-03-13T15:42:02.430Z</updated>
     
-    <content type="html"><![CDATA[<p>先晒一下<code>manjaro</code>截图</p><p><img src="(/images/Screenshot_20200313_225231.png" alt="desktop">)</p><p>因为经常使用python,在<code>win</code>下开发很难受,所以将笔记本系统换成了<code>manjaro</code>,在执行镜像,安装系统,安装软件,美化和字体渲染方面也遇到了很多问题.晒一下截图.并记录一下遇到的大的问题,等有时间统一整理记录.</p><ul><li><code>openvpn</code>配置文件是openssl1.0版本编译,并修改<code>qopenvpn</code>图形界面</li><li><code>Electron</code>版本的<code>docker</code>客户端图形工具开发</li><li>字体渲染,在设置中设置字体后软件字体不生效问题</li></ul>]]></content>
+    <content type="html"><![CDATA[<p>先晒一下<code>manjaro</code>截图</p><p><img src="/images/Screenshot_20200313_225231.png" alt="desktop"></p><p>因为经常使用python,在<code>win</code>下开发很难受,所以将笔记本系统换成了<code>manjaro</code>,在执行镜像,安装系统,安装软件,美化和字体渲染方面也遇到了很多问题.晒一下截图.并记录一下遇到的大的问题,等有时间统一整理记录.</p><ul><li><code>openvpn</code>配置文件是openssl1.0版本编译,并修改<code>qopenvpn</code>图形界面</li><li><code>Electron</code>版本的<code>docker</code>客户端图形工具开发</li><li>字体渲染,在设置中设置字体后软件字体不生效问题</li></ul>]]></content>
     
     <summary type="html">
     
       
       
         &lt;p&gt;先晒一下&lt;code&gt;manjaro&lt;/code&gt;截图&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;(/images/Screenshot_20200313_225231.png&quot; alt=&quot;desktop&quot;&gt;)&lt;/p&gt;
-&lt;p&gt;因为经常使用python,在&lt;code&gt;win&lt;/code
+&lt;p&gt;&lt;img src=&quot;/images/Screenshot_20200313_225231.png&quot; alt=&quot;desktop&quot;&gt;&lt;/p&gt;
+&lt;p&gt;因为经常使用python,在&lt;code&gt;win&lt;/code&gt;下
       
     
     </summary>

@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[manjaro-desktop]]></title>
     <url>%2F2020%2F03%2F13%2Fmanjaro-desktop%2F</url>
-    <content type="text"><![CDATA[先晒一下manjaro截图 ) 因为经常使用python,在win下开发很难受,所以将笔记本系统换成了manjaro,在执行镜像,安装系统,安装软件,美化和字体渲染方面也遇到了很多问题.晒一下截图.并记录一下遇到的大的问题,等有时间统一整理记录. openvpn配置文件是openssl1.0版本编译,并修改qopenvpn图形界面 Electron版本的docker客户端图形工具开发 字体渲染,在设置中设置字体后软件字体不生效问题]]></content>
+    <content type="text"><![CDATA[先晒一下manjaro截图 因为经常使用python,在win下开发很难受,所以将笔记本系统换成了manjaro,在执行镜像,安装系统,安装软件,美化和字体渲染方面也遇到了很多问题.晒一下截图.并记录一下遇到的大的问题,等有时间统一整理记录. openvpn配置文件是openssl1.0版本编译,并修改qopenvpn图形界面 Electron版本的docker客户端图形工具开发 字体渲染,在设置中设置字体后软件字体不生效问题]]></content>
       <categories>
         <category>manjaro</category>
       </categories>
