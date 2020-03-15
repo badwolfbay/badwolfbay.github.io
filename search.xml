@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[eletron-vuex-not-working]]></title>
+    <url>%2F2020%2F03%2F15%2Feletron-vuex-not-working%2F</url>
+    <content type="text"><![CDATA[在基于electron开发时使用vuex的dispatch方法传值无效 1vue.$store.dispatch(VUEX_ACTION_UPDATE_INFO, info) 并且不报任何错误.经查找是vuex-electron的问题. 解决方法1:在store/index.js中去掉createSharedMutations 12345678export default new Vuex.Store(&#123; modules, plugins: [ createPersistedState(), createSharedMutations() // 注释掉这一行 ], strict: process.env.NODE_ENV !== &apos;production&apos;&#125;) 这是因为 vuex-electron 引入了一个用于多进程间共享 Vuex Store 的状态的插件.如果没有多进程交互的需求，完全可以不引入这个插件. 解决方法2https://github.com/vue-electron/vuex-electron#installation 看第 3 条： In case if you enabled createSharedMutations() plugin you need to create an instance of store in the main process. To do it just add this line into your main process (for example src/main.js): 12&gt; import './path/to/your/store'&gt; 这种时候就不能用第一种方法来解决问题了。 找到 /src/main/index.js，在前面加上一句： 1import '../renderer/store']]></content>
+      <categories>
+        <category>electron</category>
+      </categories>
+      <tags>
+        <tag>electron</tag>
+        <tag>vue</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[manjaro-desktop]]></title>
     <url>%2F2020%2F03%2F13%2Fmanjaro-desktop%2F</url>
     <content type="text"><![CDATA[先晒一下manjaro截图 因为经常使用python,在win下开发很难受,所以将笔记本系统换成了manjaro,在执行镜像,安装系统,安装软件,美化和字体渲染方面也遇到了很多问题.晒一下截图.并记录一下遇到的大的问题,等有时间统一整理记录. openvpn配置文件是openssl1.0版本编译,并修改qopenvpn图形界面 Electron版本的docker客户端图形工具开发 字体渲染,在设置中设置字体后软件字体不生效问题]]></content>

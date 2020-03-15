@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.badwolfbay.cn/2020/03/15/eletron-vuex-not-working/</loc>
+    
+    <lastmod>2020-03-15T15:50:11.584Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.badwolfbay.cn/2020/03/13/manjaro-desktop/</loc>
     
     <lastmod>2020-03-13T15:42:02.430Z</lastmod>
@@ -289,13 +296,6 @@
   </url>
   
   <url>
-    <loc>http://www.badwolfbay.cn/2017/08/22/centos7-e5-ae-89-e8-a3-85nginx-trashed/</loc>
-    
-    <lastmod>2017-09-19T13:32:49.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.badwolfbay.cn/2017/08/28/centos7-e5-ae-89-e8-a3-85nginx/</loc>
     
     <lastmod>2017-09-19T13:32:49.000Z</lastmod>
@@ -303,9 +303,9 @@
   </url>
   
   <url>
-    <loc>http://www.badwolfbay.cn/blog/index.html</loc>
+    <loc>http://www.badwolfbay.cn/2017/08/22/centos7-e5-ae-89-e8-a3-85nginx-trashed/</loc>
     
-    <lastmod>2017-09-18T14:08:12.000Z</lastmod>
+    <lastmod>2017-09-19T13:32:49.000Z</lastmod>
     
   </url>
   
@@ -318,6 +318,13 @@
   
   <url>
     <loc>http://www.badwolfbay.cn/sample-page-trashed/index.html</loc>
+    
+    <lastmod>2017-09-18T14:08:12.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.badwolfbay.cn/blog/index.html</loc>
     
     <lastmod>2017-09-18T14:08:12.000Z</lastmod>
     

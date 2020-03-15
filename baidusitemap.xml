@@ -4,6 +4,28 @@
 
     
   <url>
+    <loc>http://www.badwolfbay.cn/2020/03/15/eletron-vuex-not-working/</loc>
+    <lastmod>2020-03-15T15:50:11.584Z</lastmod>
+    <data>
+        <display>
+        <title>eletron-vuex-not-working</title>
+        <pubTime>2020-03-15T15:31:49.000Z</pubTime>
+        
+        <tag>electron</tag>
+         
+        <tag>vue</tag>
+         
+         
+           
+             
+              <breadCrumb title="electron" url="http://www.badwolfbay.cn/categories/electron/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.badwolfbay.cn/2020/03/13/manjaro-desktop/</loc>
     <lastmod>2020-03-13T15:42:02.430Z</lastmod>
     <data>
@@ -744,12 +766,12 @@
 
     
   <url>
-    <loc>http://www.badwolfbay.cn/2017/08/22/centos7-e5-ae-89-e8-a3-85nginx-trashed/</loc>
+    <loc>http://www.badwolfbay.cn/2017/08/28/centos7-e5-ae-89-e8-a3-85nginx/</loc>
     <lastmod>2017-09-19T13:32:49.000Z</lastmod>
     <data>
         <display>
         <title>CentOS7安装nginx</title>
-        <pubTime>2017-08-22T13:52:56.000Z</pubTime>
+        <pubTime>2017-08-28T05:58:53.000Z</pubTime>
         
          
            
@@ -762,12 +784,12 @@
 
     
   <url>
-    <loc>http://www.badwolfbay.cn/2017/08/28/centos7-e5-ae-89-e8-a3-85nginx/</loc>
+    <loc>http://www.badwolfbay.cn/2017/08/22/centos7-e5-ae-89-e8-a3-85nginx-trashed/</loc>
     <lastmod>2017-09-19T13:32:49.000Z</lastmod>
     <data>
         <display>
         <title>CentOS7安装nginx</title>
-        <pubTime>2017-08-28T05:58:53.000Z</pubTime>
+        <pubTime>2017-08-22T13:52:56.000Z</pubTime>
         
          
            

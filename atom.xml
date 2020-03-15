@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.badwolfbay.cn/"/>
-  <updated>2020-03-13T15:42:02.430Z</updated>
+  <updated>2020-03-15T15:50:11.584Z</updated>
   <id>http://www.badwolfbay.cn/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>eletron-vuex-not-working</title>
+    <link href="http://www.badwolfbay.cn/2020/03/15/eletron-vuex-not-working/"/>
+    <id>http://www.badwolfbay.cn/2020/03/15/eletron-vuex-not-working/</id>
+    <published>2020-03-15T15:31:49.000Z</published>
+    <updated>2020-03-15T15:50:11.584Z</updated>
+    
+    <content type="html"><![CDATA[<p>在基于<code>electron</code>开发时使用<code>vuex</code>的<code>dispatch</code>方法传值无效</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vue.$store.dispatch(VUEX_ACTION_UPDATE_INFO, info)</div></pre></td></tr></table></figure><p>并且不报任何错误.经查找是<code>vuex-electron</code>的问题.</p><h3 id="解决方法1"><a href="#解决方法1" class="headerlink" title="解决方法1:"></a>解决方法1:</h3><p>在<code>store/index.js</code>中去掉<code>createSharedMutations</code></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">export default new Vuex.Store(&#123;</div><div class="line">  modules,</div><div class="line">  plugins: [</div><div class="line">    createPersistedState(),</div><div class="line">    createSharedMutations() // 注释掉这一行</div><div class="line">  ],</div><div class="line">  strict: process.env.NODE_ENV !== &apos;production&apos;</div><div class="line">&#125;)</div></pre></td></tr></table></figure><p>这是因为 <code>vuex-electron</code> 引入了一个用于多进程间共享 Vuex Store 的状态的插件.如果没有多进程交互的需求，完全可以不引入这个插件.</p><h3 id="解决方法2"><a href="#解决方法2" class="headerlink" title="解决方法2"></a>解决方法2</h3><p><a href="https://github.com/vue-electron/vuex-electron#installation" target="_blank" rel="external">https://github.com/vue-electron/vuex-electron#installation</a></p><p>看第 3 条：</p><blockquote><p>In case if you enabled <code>createSharedMutations()</code> plugin you need to create an instance of store in the main process. To do it just add this line into your main process (for example <code>src/main.js</code>):</p><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt; <span class="keyword">import</span> <span class="string">'./path/to/your/store'</span></div><div class="line">&gt;</div></pre></td></tr></table></figure></blockquote><p>这种时候就不能用第一种方法来解决问题了。</p><p>找到 <code>/src/main/index.js</code>，在前面加上一句：</p><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> <span class="string">'../renderer/store'</span></div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;在基于&lt;code&gt;electron&lt;/code&gt;开发时使用&lt;code&gt;vuex&lt;/code&gt;的&lt;code&gt;dispatch&lt;/code&gt;方法传值无效&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutt
+      
+    
+    </summary>
+    
+      <category term="electron" scheme="http://www.badwolfbay.cn/categories/electron/"/>
+    
+    
+      <category term="electron" scheme="http://www.badwolfbay.cn/tags/electron/"/>
+    
+      <category term="vue" scheme="http://www.badwolfbay.cn/tags/vue/"/>
+    
+  </entry>
   
   <entry>
     <title>manjaro-desktop</title>
@@ -600,33 +628,6 @@
       <category term="docker" scheme="http://www.badwolfbay.cn/tags/docker/"/>
     
       <category term="image" scheme="http://www.badwolfbay.cn/tags/image/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>调用Harbor RestAPI增加认证</title>
-    <link href="http://www.badwolfbay.cn/2017/09/25/harbor-api-token/"/>
-    <id>http://www.badwolfbay.cn/2017/09/25/harbor-api-token/</id>
-    <published>2017-09-25T02:57:19.000Z</published>
-    <updated>2017-09-25T03:09:25.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>1.通过Rest API访问Harbor需要Token认证信息</p><blockquote><p>curl -u username:password <a href="http://172.21.1.19/api/users" target="_blank" rel="external">http://172.21.1.19/api/users</a></p></blockquote><p>但是通过restclient访问时像curl一样添加-u参数，需要在Header中<br>增加参数</p><blockquote><p>Authorization: Basic base64encoded(user:pass)</p></blockquote><p>如：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Builder builder = restClient.target(url + <span class="string">"/api/users"</span>).request();</div><div class="line">String auth = Base64.getEncoder().encodeToString(<span class="string">"user:password"</span>.getBytes())；</div><div class="line">builder.header(<span class="string">"Authorization"</span>,<span class="string">"Basic "</span> + auth);</div></pre></td></tr></table></figure><p>在JAVA8中，可以直接使用Base64工具类。</p><p>参考链接:</p><blockquote><p><a href="https://stackoverflow.com/questions/29116595/how-to-send-u-data-of-curl-in-rest-client" target="_blank" rel="external">https://stackoverflow.com/questions/29116595/how-to-send-u-data-of-curl-in-rest-client</a></p></blockquote>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;1.通过Rest API访问Harbor需要Token认证信息&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;curl -u username:password &lt;a href=&quot;http://172.21.1.19/api/users&quot; target=&quot;_blank&quot; rel=
-      
-    
-    </summary>
-    
-      <category term="harbor" scheme="http://www.badwolfbay.cn/categories/harbor/"/>
-    
-    
-      <category term="harbor" scheme="http://www.badwolfbay.cn/tags/harbor/"/>
     
   </entry>
   
