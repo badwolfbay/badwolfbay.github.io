@@ -1,0 +1,1224 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+  <meta name="baidu-site-verification" content="<meta name=‘baidu-site-verification’ content=‘cQ64nPpd67’/>" />
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="manjaro," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="BADWOLFBAY" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="1 U盘启动盘制作manjaro的U盘启动盘如果使用UltroISO或者其他工具制作以后并不能启动,推荐使用Rufus,并且需要低版本. 在制作镜像过程中,要选择以DD镜像模式写入. 2 安装完成之后的设置2.1 设置中国源123sudo pacman-mirrors -i -c China -m rank # 之后会弹出框,进行选择即可#更新系统软件sudo pacman -Syu 之后还需要添">
+<meta name="keywords" content="manjaro">
+<meta property="og:type" content="article">
+<meta property="og:title" content="manjaro-setting">
+<meta property="og:url" content="http://www.badwolfbay.cn/2020/03/17/manjaro-setting/index.html">
+<meta property="og:site_name" content="BADWOLFBAY">
+<meta property="og:description" content="1 U盘启动盘制作manjaro的U盘启动盘如果使用UltroISO或者其他工具制作以后并不能启动,推荐使用Rufus,并且需要低版本. 在制作镜像过程中,要选择以DD镜像模式写入. 2 安装完成之后的设置2.1 设置中国源123sudo pacman-mirrors -i -c China -m rank # 之后会弹出框,进行选择即可#更新系统软件sudo pacman -Syu 之后还需要添">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-03-17T15:55:54.750Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="manjaro-setting">
+<meta name="twitter:description" content="1 U盘启动盘制作manjaro的U盘启动盘如果使用UltroISO或者其他工具制作以后并不能启动,推荐使用Rufus,并且需要低版本. 在制作镜像过程中,要选择以DD镜像模式写入. 2 安装完成之后的设置2.1 设置中国源123sudo pacman-mirrors -i -c China -m rank # 之后会弹出框,进行选择即可#更新系统软件sudo pacman -Syu 之后还需要添">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.badwolfbay.cn/2020/03/17/manjaro-setting/"/>
+
+
+
+
+
+  <title>manjaro-setting | BADWOLFBAY</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">BADWOLFBAY</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">Run,You Clever Boy!</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.badwolfbay.cn/2020/03/17/manjaro-setting/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="badwolf">
+      <meta itemprop="description" content="Run,You Clever Boy!">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BADWOLFBAY">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">manjaro-setting</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-17T23:09:32+08:00">
+                2020-03-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/manjaro/" itemprop="url" rel="index">
+                    <span itemprop="name">manjaro</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-eye"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="1-U盘启动盘制作"><a href="#1-U盘启动盘制作" class="headerlink" title="1 U盘启动盘制作"></a>1 U盘启动盘制作</h2><p><code>manjaro</code>的U盘启动盘如果使用UltroISO或者其他工具制作以后并不能启动,推荐使用<code>Rufus</code>,并且需要低版本.</p>
+<p>在制作镜像过程中,要选择<code>以DD镜像模式写入</code>.</p>
+<h2 id="2-安装完成之后的设置"><a href="#2-安装完成之后的设置" class="headerlink" title="2 安装完成之后的设置"></a>2 安装完成之后的设置</h2><h3 id="2-1-设置中国源"><a href="#2-1-设置中国源" class="headerlink" title="2.1 设置中国源"></a>2.1 设置中国源</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">sudo pacman-mirrors -i -c China -m rank # 之后会弹出框,进行选择即可</div><div class="line">#更新系统软件</div><div class="line">sudo pacman -Syu</div></pre></td></tr></table></figure>
+<p>之后还需要添加<code>archlinuxcn</code>源,不然很多软件找不到,编辑<code>/etc/pacman.conf</code>文件,添加</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[archlinuxcn]</div><div class="line">SigLevel = TrustAll</div><div class="line">Server = https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/$arch</div></pre></td></tr></table></figure>
+<p>然后执行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo pacman -S archlinuxcn-keyring</div></pre></td></tr></table></figure>
+<p>然后就可以通过<code>pacman</code>命令安装各种软件了.</p>
+<h3 id="2-2-安装软件"><a href="#2-2-安装软件" class="headerlink" title="2.2 安装软件"></a>2.2 安装软件</h3><p>如安装<code>archlinuxcn</code>库中的搜狗输入法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo pacman -S fcitx-sogoupinyin</div></pre></td></tr></table></figure>
+<blockquote>
+<p>安装搜狗输入法以后需要配置<code>~/.xprofile</code>文件,加入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&gt; export GTK_IM_MODULE=fcitx</div><div class="line">&gt; export QT_IM_MODULE=fcitx</div><div class="line">&gt; export XMODIFIERS=&quot;@im=fcitx&quot;</div><div class="line">&gt;</div></pre></td></tr></table></figure>
+</blockquote>
+<p>&gt;</p>
+<blockquote>
+<p>不然无法识别</p>
+</blockquote>
+<p> AUR是Arch User Repository(Arch用户软件源),大多数情况下,pacman是不会对AUR的软件包进行更新的，因此需要安装专门的工具进行管理。</p>
+<p>安装<code>yay</code>工具</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo pacman -S yay</div></pre></td></tr></table></figure>
+<p>然后就可以通过<code>yay</code>命令安装<code>AUR</code>仓库中的软件了.</p>
+<h3 id="3-美化"><a href="#3-美化" class="headerlink" title="3 美化"></a>3 美化</h3><h3 id="3-1-主题"><a href="#3-1-主题" class="headerlink" title="3.1 主题"></a>3.1 主题</h3><p>安装<code>numix cicle</code>图标</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yay -S numix-circle-icon-theme-git</div></pre></td></tr></table></figure>
+<p>安装<code>Latte</code> dock软件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo pacman -S latte-dock</div></pre></td></tr></table></figure>
+<p>在<code>latte dock</code>软件启动后,右键<code>布局</code>-&gt;<code>配置</code>中选择<code>下载</code>,可以联网下载<code>macOS</code>主题,然后选择应用即可.</p>
+<p>同理,在系统设置中,可以从互联网上下载自己喜欢的主题,图标,开机登录界面,锁屏等.</p>
+<h3 id="3-2-字体"><a href="#3-2-字体" class="headerlink" title="3.2 字体"></a>3.2 字体</h3><p>在不修改字体渲染的情况下,各种软件的中文字体会大小不一,包括在使用<code>chrome</code>浏览网站时.所以需要更改默认的字体渲染,在尝试微软雅黑等字体后,个人觉得思源黑体比较适合</p>
+<ul>
+<li>安装思源黑体</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"># 文泉驿黑</div><div class="line">sudo pacman -S wqy-bitmapfont wqy-microhei wqy-microhei-lite wqy-zenhei</div><div class="line"># 思源字体</div><div class="line">sudo pacman -S noto-fonts-cjk adobe-source-han-sans-cn-fonts adobe-source-han-serif-cn-fonts</div></pre></td></tr></table></figure>
+<ul>
+<li><p>复制<code>Windows</code>下的字体至<code>/usr/share/fonts</code>文件夹下</p>
+</li>
+<li><p>修改渲染文件</p>
+<ol>
+<li>在<code>/etc/fonts</code>下新建<code>local.conf</code>文件</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div></pre></td><td class="code"><pre><div class="line">&lt;fontconfig&gt;</div><div class="line">    &lt;match target=&quot;font&quot;&gt;</div><div class="line">        &lt;edit name=&quot;autohint&quot;&gt; </div><div class="line">            &lt;bool&gt;false&lt;/bool&gt;            </div><div class="line">        &lt;/edit&gt; </div><div class="line">        &lt;edit name=&quot;hinting&quot;&gt;</div><div class="line">            &lt;bool&gt;false&lt;/bool&gt;</div><div class="line">        &lt;/edit&gt;</div><div class="line">        &lt;edit name=&quot;hintstyle&quot;&gt;</div><div class="line">            &lt;const&gt;hintnone&lt;/const&gt;</div><div class="line">        &lt;/edit&gt;</div><div class="line">    &lt;/match&gt;</div><div class="line">    </div><div class="line">    &lt;match target=&quot;pattern&quot;&gt;</div><div class="line">        &lt;test qual=&quot;any&quot; name=&quot;family&quot;&gt;</div><div class="line">            &lt;string&gt;sans&lt;/string&gt;</div><div class="line">        &lt;/test&gt;</div><div class="line">        &lt;edit name=&quot;family&quot; mode=&quot;assign&quot; binding=&quot;same&quot;&gt;</div><div class="line">            &lt;string&gt;Yahei Mono&lt;/string&gt;</div><div class="line">        &lt;/edit&gt;</div><div class="line">    &lt;/match&gt;</div><div class="line">    </div><div class="line">    &lt;match target=&quot;pattern&quot;&gt;</div><div class="line">        &lt;test qual=&quot;any&quot; name=&quot;family&quot;&gt;</div><div class="line">            &lt;string&gt;serif&lt;/string&gt;</div><div class="line">        &lt;/test&gt;</div><div class="line">        &lt;edit name=&quot;family&quot; mode=&quot;assign&quot; binding=&quot;same&quot;&gt;</div><div class="line">            &lt;string&gt;Source Han Sans CN&lt;/string&gt;</div><div class="line">        &lt;/edit&gt;</div><div class="line">    &lt;/match&gt;</div><div class="line">    </div><div class="line">    &lt;match target=&quot;pattern&quot;&gt;</div><div class="line">        &lt;test qual=&quot;any&quot; name=&quot;family&quot;&gt;</div><div class="line">            &lt;string&gt;sans serif&lt;/string&gt;</div><div class="line">        &lt;/test&gt;</div><div class="line">        &lt;edit name=&quot;family&quot; mode=&quot;assign&quot; binding=&quot;same&quot;&gt;</div><div class="line">            &lt;string&gt;Source Han Sans CN&lt;/string&gt;</div><div class="line">        &lt;/edit&gt;</div><div class="line">    &lt;/match&gt;</div><div class="line">    </div><div class="line">    &lt;match target=&quot;pattern&quot;&gt;</div><div class="line">        &lt;test qual=&quot;any&quot; name=&quot;family&quot;&gt;</div><div class="line">            &lt;string&gt;sans-serif&lt;/string&gt;</div><div class="line">        &lt;/test&gt;</div><div class="line">        &lt;edit name=&quot;family&quot; mode=&quot;assign&quot; binding=&quot;same&quot;&gt;</div><div class="line">            &lt;string&gt;Source Han Sans CN&lt;/string&gt;</div><div class="line">        &lt;/edit&gt;</div><div class="line">    &lt;/match&gt;</div><div class="line">    </div><div class="line">    &lt;match target=&quot;pattern&quot;&gt;</div><div class="line">        &lt;test qual=&quot;any&quot; name=&quot;family&quot;&gt;</div><div class="line">            &lt;string&gt;monospace&lt;/string&gt;</div><div class="line">        &lt;/test&gt;</div><div class="line">        &lt;edit name=&quot;family&quot; mode=&quot;assign&quot; binding=&quot;same&quot;&gt;</div><div class="line">            &lt;string&gt;Source Han Sans CN&lt;/string&gt;</div><div class="line">        &lt;/edit&gt;</div><div class="line">    &lt;/match&gt;</div><div class="line">&lt;/fontconfig&gt;</div></pre></td></tr></table></figure>
+<ol>
+<li><p>修改<code>/etc/fonts/conf.d/69-language-selector-zh-cn.conf</code>文件,添加<code>思源黑体</code>在第一位</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;string&gt;Source Han Sans CN&lt;/string&gt;</div></pre></td></tr></table></figure>
+<p>最终文件内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version=&quot;1.0&quot;?&gt;</div><div class="line">&lt;!DOCTYPE fontconfig SYSTEM &quot;fonts.dtd&quot;&gt;</div><div class="line">&lt;fontconfig&gt;</div><div class="line"></div><div class="line">        &lt;match target=&quot;pattern&quot;&gt;</div><div class="line">        &lt;test name=&quot;lang&quot;&gt;</div><div class="line">            &lt;string&gt;zh-cn&lt;/string&gt;</div><div class="line">        &lt;/test&gt;</div><div class="line">                &lt;test qual=&quot;any&quot; name=&quot;family&quot;&gt;</div><div class="line">                        &lt;string&gt;serif&lt;/string&gt;</div><div class="line">                &lt;/test&gt;</div><div class="line">                &lt;edit name=&quot;family&quot; mode=&quot;prepend&quot; binding=&quot;strong&quot;&gt;</div><div class="line">                        &lt;string&gt;Source Han Sans CN&lt;/string&gt;</div><div class="line">                        &lt;string&gt;Microsoft YaHei&lt;/string&gt;</div><div class="line">                        &lt;string&gt;Simsun&lt;/string&gt;</div><div class="line">                        &lt;string&gt;Droid Sans&lt;/string&gt;</div><div class="line">                        &lt;string&gt;HYSong&lt;/string&gt;</div><div class="line">                        &lt;string&gt;AR PL UMing CN&lt;/string&gt;</div><div class="line">                        &lt;string&gt;AR PL UMing HK&lt;/string&gt;</div><div class="line">                        &lt;string&gt;AR PL New Sung&lt;/string&gt;</div><div class="line">                        &lt;string&gt;WenQuanYi Bitmap Song&lt;/string&gt;</div><div class="line">                        &lt;string&gt;AR PL UKai CN&lt;/string&gt;</div><div class="line">                        &lt;string&gt;AR PL ZenKai Uni&lt;/string&gt;</div><div class="line">                &lt;/edit&gt;</div><div class="line">        &lt;/match&gt; </div><div class="line">        &lt;match target=&quot;pattern&quot;&gt;</div><div class="line">                &lt;test qual=&quot;any&quot; name=&quot;family&quot;&gt;</div><div class="line">                        &lt;string&gt;sans-serif&lt;/string&gt;</div><div class="line">                &lt;/test&gt;</div><div class="line">                &lt;edit name=&quot;family&quot; mode=&quot;prepend&quot; binding=&quot;strong&quot;&gt;</div><div class="line">                        &lt;string&gt;Source Han Sans CN&lt;/string&gt;</div><div class="line">                        &lt;string&gt;Microsoft YaHei&lt;/string&gt;</div><div class="line">                        &lt;string&gt;Simsun&lt;/string&gt;</div><div class="line">                        &lt;string&gt;Droid Sans&lt;/string&gt;</div><div class="line">                        &lt;string&gt;WenQuanYi Zen Hei&lt;/string&gt;</div><div class="line">                        &lt;string&gt;HYSong&lt;/string&gt;</div><div class="line">                        &lt;string&gt;AR PL UMing CN&lt;/string&gt;</div><div class="line">                        &lt;string&gt;AR PL UMing HK&lt;/string&gt;</div><div class="line">                        &lt;string&gt;AR PL New Sung&lt;/string&gt;</div><div class="line">                        &lt;string&gt;AR PL UKai CN&lt;/string&gt;</div><div class="line">                        &lt;string&gt;AR PL ZenKai Uni&lt;/string&gt;</div><div class="line">                &lt;/edit&gt;</div><div class="line">        &lt;/match&gt; </div><div class="line">        &lt;match target=&quot;pattern&quot;&gt;</div><div class="line">                &lt;test qual=&quot;any&quot; name=&quot;family&quot;&gt;</div><div class="line">                        &lt;string&gt;monospace&lt;/string&gt;</div><div class="line">                &lt;/test&gt;</div><div class="line">                &lt;edit name=&quot;family&quot; mode=&quot;prepend&quot; binding=&quot;strong&quot;&gt;</div><div class="line">                        &lt;string&gt;Monospace&lt;/string&gt;</div><div class="line">                        &lt;string&gt;Ubuntu Mono&lt;/string&gt;</div><div class="line">                        &lt;string&gt;DejaVu Sans Mono&lt;/string&gt;</div><div class="line">                        &lt;string&gt;Oxygen Mono&lt;/string&gt;</div><div class="line">                        &lt;string&gt;Microsoft YaHei&lt;/string&gt;</div><div class="line">                        &lt;string&gt;Simsun&lt;/string&gt;</div><div class="line">                        &lt;string&gt;Droid Sans&lt;/string&gt;</div><div class="line">                        &lt;string&gt;WenQuanYi Zen Hei Mono&lt;/string&gt;</div><div class="line">                        &lt;string&gt;HYSong&lt;/string&gt;</div><div class="line">                        &lt;string&gt;AR PL UMing CN&lt;/string&gt;</div><div class="line">                        &lt;string&gt;AR PL UMing HK&lt;/string&gt;</div><div class="line">                        &lt;string&gt;AR PL New Sung&lt;/string&gt;</div><div class="line">                        &lt;string&gt;AR PL UKai CN&lt;/string&gt;</div><div class="line">                        &lt;string&gt;AR PL ZenKai Uni&lt;/string&gt;</div><div class="line">                &lt;/edit&gt;</div><div class="line">        &lt;/match&gt; </div><div class="line"></div><div class="line">&lt;/fontconfig&gt;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+</ul>
+<ol>
+<li><p>下边文件可以不配置,做个备份</p>
+<p><code>~/.config/fontconfig/fonts.conf</code>文件内容:</p>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version=&apos;1.0&apos;?&gt;</div><div class="line">&lt;!DOCTYPE fontconfig SYSTEM &apos;fonts.dtd&apos;&gt;</div><div class="line">&lt;fontconfig&gt;</div><div class="line"> &lt;its:rules version=&quot;1.0&quot; xmlns:its=&quot;http://www.w3.org/2005/11/its&quot;&gt;</div><div class="line">  &lt;its:translateRule selector=&quot;/fontconfig/*[not(self::description)]&quot; translate=&quot;no&quot;/&gt;</div><div class="line"> &lt;/its:rules&gt;</div><div class="line"> &lt;!-- </div><div class="line"> Artificial oblique for fonts without an italic or oblique version</div><div class="line"> --&gt;</div><div class="line"> &lt;match target=&quot;font&quot;&gt;</div><div class="line">  &lt;!-- check to see if the font is roman --&gt;</div><div class="line">  &lt;test name=&quot;slant&quot;&gt;</div><div class="line">   &lt;const&gt;roman&lt;/const&gt;</div><div class="line">  &lt;/test&gt;</div><div class="line">  &lt;!-- check to see if the pattern requested non-roman --&gt;</div><div class="line">  &lt;test name=&quot;slant&quot; compare=&quot;not_eq&quot; target=&quot;pattern&quot;&gt;</div><div class="line">   &lt;const&gt;roman&lt;/const&gt;</div><div class="line">  &lt;/test&gt;</div><div class="line">  &lt;!-- multiply the matrix to slant the font --&gt;</div><div class="line">  &lt;edit name=&quot;matrix&quot; mode=&quot;assign&quot;&gt;</div><div class="line">   &lt;times&gt;</div><div class="line">    &lt;name&gt;matrix&lt;/name&gt;</div><div class="line">    &lt;matrix&gt;</div><div class="line">     &lt;double&gt;1&lt;/double&gt;</div><div class="line">     &lt;double&gt;0.2&lt;/double&gt;</div><div class="line">     &lt;double&gt;0&lt;/double&gt;</div><div class="line">     &lt;double&gt;1&lt;/double&gt;</div><div class="line">    &lt;/matrix&gt;</div><div class="line">   &lt;/times&gt;</div><div class="line">  &lt;/edit&gt;</div><div class="line">  &lt;!-- pretend the font is oblique now --&gt;</div><div class="line">  &lt;edit name=&quot;slant&quot; mode=&quot;assign&quot;&gt;</div><div class="line">   &lt;const&gt;oblique&lt;/const&gt;</div><div class="line">  &lt;/edit&gt;</div><div class="line">  &lt;!-- and disable embedded bitmaps for artificial oblique --&gt;</div><div class="line">  &lt;edit name=&quot;embeddedbitmap&quot; mode=&quot;assign&quot;&gt;</div><div class="line">   &lt;bool&gt;false&lt;/bool&gt;</div><div class="line">  &lt;/edit&gt;</div><div class="line"> &lt;/match&gt;</div><div class="line"> &lt;!--</div><div class="line"> Synthetic emboldening for fonts that do not have bold face available</div><div class="line"> --&gt;</div><div class="line"> &lt;match target=&quot;font&quot;&gt;</div><div class="line">  &lt;!-- check to see if the weight in the font is less than medium which possibly need emboldening --&gt;</div><div class="line">  &lt;test name=&quot;weight&quot; compare=&quot;less_eq&quot;&gt;</div><div class="line">   &lt;const&gt;medium&lt;/const&gt;</div><div class="line">  &lt;/test&gt;</div><div class="line">  &lt;!-- check to see if the pattern requests bold --&gt;</div><div class="line">  &lt;test name=&quot;weight&quot; compare=&quot;more_eq&quot; target=&quot;pattern&quot;&gt;</div><div class="line">   &lt;const&gt;bold&lt;/const&gt;</div><div class="line">  &lt;/test&gt;</div><div class="line">  &lt;!--</div><div class="line">                  set the embolden flag</div><div class="line">                  needed for applications using cairo, e.g. gucharmap, gedit, ...</div><div class="line">                --&gt;</div><div class="line">  &lt;edit name=&quot;embolden&quot; mode=&quot;assign&quot;&gt;</div><div class="line">   &lt;bool&gt;true&lt;/bool&gt;</div><div class="line">  &lt;/edit&gt;</div><div class="line">  &lt;!--</div><div class="line">                 set weight to bold</div><div class="line">                 needed for applications using Xft directly, e.g. Firefox, ...</div><div class="line">                --&gt;</div><div class="line">  &lt;edit name=&quot;weight&quot; mode=&quot;assign&quot;&gt;</div><div class="line">   &lt;const&gt;bold&lt;/const&gt;</div><div class="line">  &lt;/edit&gt;</div><div class="line"> &lt;/match&gt;</div><div class="line"> &lt;match target=&quot;font&quot;&gt;</div><div class="line">  &lt;edit name=&quot;hinting&quot; mode=&quot;assign&quot;&gt;</div><div class="line">   &lt;bool&gt;true&lt;/bool&gt;</div><div class="line">  &lt;/edit&gt;</div><div class="line"> &lt;/match&gt;</div><div class="line"> &lt;match target=&quot;font&quot;&gt;</div><div class="line">  &lt;edit name=&quot;hintstyle&quot; mode=&quot;assign&quot;&gt;</div><div class="line">   &lt;const&gt;hintfull&lt;/const&gt;</div><div class="line">  &lt;/edit&gt;</div><div class="line"> &lt;/match&gt;</div><div class="line"> &lt;dir&gt;~/.fonts&lt;/dir&gt;</div><div class="line"> &lt;match target=&quot;font&quot;&gt;</div><div class="line">  &lt;edit name=&quot;rgba&quot; mode=&quot;assign&quot;&gt;</div><div class="line">   &lt;const&gt;vbgr&lt;/const&gt;</div><div class="line">  &lt;/edit&gt;</div><div class="line"> &lt;/match&gt;</div><div class="line"> &lt;match target=&quot;font&quot;&gt;</div><div class="line">  &lt;edit name=&quot;antialias&quot; mode=&quot;assign&quot;&gt;</div><div class="line">   &lt;bool&gt;true&lt;/bool&gt;</div><div class="line">  &lt;/edit&gt;</div><div class="line"> &lt;/match&gt;</div><div class="line">&lt;/fontconfig&gt;</div></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>如果您觉得对您有帮助，谢谢您的赞赏！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="badwolf 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    badwolf
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://www.badwolfbay.cn/2020/03/17/manjaro-setting/" title="manjaro-setting">http://www.badwolfbay.cn/2020/03/17/manjaro-setting/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/manjaro/" rel="tag"># manjaro</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/03/15/eletron-vuex-not-working/" rel="next" title="eletron-vuex-not-working">
+                <i class="fa fa-chevron-left"></i> eletron-vuex-not-working
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="uyan_frame"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          
+            <img class="site-author-image" itemprop="image"
+              src="/images/avatar.png"
+              alt="badwolf" />
+          
+            <p class="site-author-name" itemprop="name">badwolf</p>
+            <p class="site-description motion-element" itemprop="description">Run,You Clever Boy!</p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives/">
+            
+                <span class="site-state-item-count">42</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.badwolfbay.cn" title="badwolfbay" target="_blank">badwolfbay</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://zh.gluon.ai/index.html" title="Gluon-deepmind" target="_blank">Gluon-deepmind</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.ezlippi.com" title="浮生志" target="_blank">浮生志</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-U盘启动盘制作"><span class="nav-number">1.</span> <span class="nav-text">1 U盘启动盘制作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-安装完成之后的设置"><span class="nav-number">2.</span> <span class="nav-text">2 安装完成之后的设置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-设置中国源"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 设置中国源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-安装软件"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 安装软件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-美化"><span class="nav-number">2.3.</span> <span class="nav-text">3 美化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-主题"><span class="nav-number">2.4.</span> <span class="nav-text">3.1 主题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-字体"><span class="nav-number">2.5.</span> <span class="nav-text">3.2 字体</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">badwolf</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.2</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+
+    
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2147367"></script>
+      <!-- UY END -->
+    
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
