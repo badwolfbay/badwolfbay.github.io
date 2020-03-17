@@ -4,31 +4,11 @@
 
     
   <url>
-    <loc>http://www.badwolfbay.cn/2020/03/17/manjaro-setting/</loc>
-    <lastmod>2020-03-17T16:16:16.441Z</lastmod>
-    <data>
-        <display>
-        <title>manjaro-setting</title>
-        <pubTime>2020-03-17T15:09:32.000Z</pubTime>
-        
-        <tag>manjaro</tag>
-         
-         
-           
-             
-              <breadCrumb title="manjaro" url="http://www.badwolfbay.cn/categories/manjaro/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://www.badwolfbay.cn/2020/03/15/eletron-vuex-not-working/</loc>
-    <lastmod>2020-03-15T16:06:55.860Z</lastmod>
+    <lastmod>2020-03-17T16:23:42.562Z</lastmod>
     <data>
         <display>
-        <title>eletron-vuex-not-working</title>
+        <title>eletron中使用vuex不生效问题</title>
         <pubTime>2020-03-15T15:31:49.000Z</pubTime>
         
         <tag>electron</tag>
@@ -39,6 +19,26 @@
            
              
               <breadCrumb title="electron" url="http://www.badwolfbay.cn/categories/electron/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.badwolfbay.cn/2020/03/17/manjaro-setting/</loc>
+    <lastmod>2020-03-17T16:23:34.989Z</lastmod>
+    <data>
+        <display>
+        <title>manjaro系统安装以及美化</title>
+        <pubTime>2020-03-17T15:09:32.000Z</pubTime>
+        
+        <tag>manjaro</tag>
+         
+         
+           
+             
+              <breadCrumb title="manjaro" url="http://www.badwolfbay.cn/categories/manjaro/"/>
           
         </display>
     </data>
