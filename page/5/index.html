@@ -373,44 +373,37 @@
       
         
           
-          Ubuntu下安装1.安装openvpn客户端
-
-sudo apt-get install openvpn
-
-2.配置文件
-复制认证所需要的文件(ca.crt xxxxx_client_vpn.ovpn xxxxx.crt xxxxx.key ta.key)到/etc/openvpn目录下
-3.启动openvpn客户端
-
-sudo openvpn /etc/openvpn/xxxxx_client_vpn.ovpn
-
-注意：命令需要在/etc/openvpn目录下执行，否则可能出现No such file or directory错误
-
-MAC下安装MAC有tunnelblick软件进行图形化安装，下边主要是通过命令行安装
-1.安装brew2.通过brew进行安装
-
-brew install openvpn
-
-To have launchd start openvpn now and restart at startup（如果想要启动openvpn或者在启动时重启可以执行命令）:
-
-sudo brew services start openvpn
-
-3.安装目录
-
- /usr/local/Cellar/openvpn/2.4.3/
-
-4.在xxxxx_client_vpn.ovpn所在目录执行命令
-
-sudo /usr/local/Cellar/openvpn/2.4.3/sbin/openvpn ./xxxxx_client_vpn.ovpn
-
+            <h3 id="Ubuntu下安装"><a href="#Ubuntu下安装" class="headerlink" title="Ubuntu下安装"></a>Ubuntu下安装</h3><p>1.安装openvpn客户端</p>
+<blockquote>
+<p>sudo apt-get install openvpn</p>
+</blockquote>
+<p>2.配置文件</p>
+<p>复制认证所需要的文件(ca.crt xxxxx_client_vpn.ovpn xxxxx.crt xxxxx.key ta.key)到/etc/openvpn目录下</p>
+<p>3.启动openvpn客户端</p>
+<blockquote>
+<p>sudo openvpn /etc/openvpn/xxxxx_client_vpn.ovpn</p>
+</blockquote>
+<p>注意：命令需要在/etc/openvpn目录下执行，否则可能出现No such file or directory错误</p>
+<p><img src="/images/pasted-12.png" alt="upload successful"></p>
+<h3 id="MAC下安装"><a href="#MAC下安装" class="headerlink" title="MAC下安装"></a>MAC下安装</h3><p>MAC有tunnelblick软件进行图形化安装，下边主要是通过命令行安装</p>
+<p>1.安装brew<br>2.通过brew进行安装</p>
+<blockquote>
+<p>brew install openvpn</p>
+</blockquote>
+<p>To have launchd start openvpn now and restart at startup（如果想要启动openvpn或者在启动时重启可以执行命令）:</p>
+<blockquote>
+<p>sudo brew services start openvpn</p>
+</blockquote>
+<p>3.安装目录</p>
+<blockquote>
+<p> /usr/local/Cellar/openvpn/2.4.3/</p>
+</blockquote>
+<p>4.在xxxxx_client_vpn.ovpn所在目录执行命令</p>
+<blockquote>
+<p>sudo /usr/local/Cellar/openvpn/2.4.3/sbin/openvpn ./xxxxx_client_vpn.ovpn</p>
+</blockquote>
 
           
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/08/22/ubuntu-e4-b8-8b-e5-ae-89-e8-a3-85-e9-85-8d-e7-bd-aeopenvpn-e5-ae-a2-e6-88-b7-e7-ab-af-trashed/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
         
       
     </div>
@@ -550,31 +543,24 @@ sudo /usr/local/Cellar/openvpn/2.4.3/sbin/openvpn ./xxxxx_client_vpn.ovpn
       
         
           
-          CentOS7上通过yum的方式安装nginx:
-1.增加CentOS 7 EPEL repository
-
-sudo yum install -y epel-release
-
-2.安装nginx
-
-sudo yum install -y nginx
-
-3.启动nginx服务
-
-sudo systemctl start nginx
-
-4.如果在docker中安装nginx，Dockerfile如下：
-1234567FROM cenos:7CMD yum install -y epel-releaseCMD yum install -y nginxENTRYPOINT ["nginx", "-g", "daemon off;"]
-在docker中不能使用systemctl start nginx命令启动nginx
+            <p>CentOS7上通过yum的方式安装nginx:</p>
+<p>1.增加CentOS 7 EPEL repository</p>
+<blockquote>
+<p>sudo yum install -y epel-release</p>
+</blockquote>
+<p>2.安装nginx</p>
+<blockquote>
+<p>sudo yum install -y nginx</p>
+</blockquote>
+<p>3.启动nginx服务</p>
+<blockquote>
+<p>sudo systemctl start nginx</p>
+</blockquote>
+<p>4.如果在docker中安装nginx，Dockerfile如下：</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">FROM</span> cenos:<span class="number">7</span></div><div class="line"></div><div class="line"><span class="keyword">CMD</span><span class="bash"> yum install -y epel-release</span></div><div class="line"><span class="bash"></span></div><div class="line"><span class="bash">CMD yum install -y nginx</span></div><div class="line"><span class="bash"></span></div><div class="line"><span class="bash">ENTRYPOINT [<span class="string">"nginx"</span>, <span class="string">"-g"</span>, <span class="string">"daemon off;"</span>]</span></div></pre></td></tr></table></figure>
+<p>在docker中不能使用systemctl start nginx命令启动nginx</p>
 
           
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/08/22/centos7-e5-ae-89-e8-a3-85nginx-trashed/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
         
       
     </div>

@@ -372,34 +372,14 @@
 
       
         
-          
-          U盘启动盘制作manjaro的U盘启动盘如果使用UltroISO或者其他工具制作以后并不能启动,推荐使用Rufus,并且需要低版本.
-在制作镜像过程中,要选择以DD镜像模式写入.
-安装完成之后的设置设置中国源123sudo pacman-mirrors -i -c China -m rank # 之后会弹出框,进行选择即可#更新系统软件sudo pacman -Syu
-之后还需要添加archlinuxcn源,不然很多软件找不到,编辑/etc/pacman.conf文件,添加
-123[archlinuxcn]SigLevel = TrustAllServer = https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/$arch
-然后执行
-1sudo pacman -S archlinuxcn-keyring
-然后就可以通过pacman命令安装各种软件了.
-安装软件如安装archlinuxcn库中的搜狗输入法
-1sudo pacman -S fcitx-sogoupinyin
-
-安装搜狗输入法以后需要配置~/.xprofile文件,加入
-1234&gt; export GTK_IM_MODULE=fcitx&gt; export QT_IM_MODULE=fcitx&gt; export XMODIFIERS=&quot;@im=fcitx&quot;&gt;
-不然无法识别
-
- AUR是Arch User Repository(Arch用户软件源),大多数情况下,pacman是不会对AUR的软件包进行更新的，因此需要安装专门的工具进行管理。
-安装yay工具
-1sudo pacman -S yay
-然后就可以通过yay命令安装AUR仓库中的软件了.
-美化主题安装numix cicle图标
-1yay -S numix-circle-icon-theme-git
-安装Latte dock软件
-1sudo pacman -S latte-dock
-在latte dock软件启动后,右键布局-&gt;配置中选择下载,可以联网下载macOS主题,然后选择应用即可.
-同理,在系统设置中,可以从互联网上下载自己喜欢的主题,图标,开机登录界面,锁屏等.
-字体在不修改字体渲染的情况下,各种软件的中文字体会大小不一,包括在使用chrome浏览网站时
-          ...
+          <h2 id="U盘启动盘制作"><a href="#U盘启动盘制作" class="headerlink" title="U盘启动盘制作"></a>U盘启动盘制作</h2><p><code>manjaro</code>的U盘启动盘如果使用UltroISO或者其他工具制作以后并不能启动,推荐使用<code>Rufus</code>,并且需要低版本.</p>
+<p>在制作镜像过程中,要选择<code>以DD镜像模式写入</code>.</p>
+<h2 id="安装完成之后的设置"><a href="#安装完成之后的设置" class="headerlink" title="安装完成之后的设置"></a>安装完成之后的设置</h2><h3 id="设置中国源"><a href="#设置中国源" class="headerlink" title="设置中国源"></a>设置中国源</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">sudo pacman-mirrors -i -c China -m rank # 之后会弹出框,进行选择即可</div><div class="line">#更新系统软件</div><div class="line">sudo pacman -Syu</div></pre></td></tr></table></figure>
+<p>之后还需要添加<code>archlinuxcn</code>源,不然很多软件找不到,编辑<code>/etc/pacman.conf</code>文件,添加</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[archlinuxcn]</div><div class="line">SigLevel = TrustAll</div><div class="line">Server = https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/$arch</div></pre></td></tr></table></figure>
+<p>然后执行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo pacman -S archlinuxcn-keyring</div></pre></td></tr></table></figure>
+<p>然后就可以通过<code>pacman</code>命令安装各种软件了.</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2020/03/17/manjaro-setting/#more" rel="contents">
@@ -546,29 +526,22 @@
       
         
           
-          在基于electron开发时使用vuex的dispatch方法传值无效
-1vue.$store.dispatch(VUEX_ACTION_UPDATE_INFO, info)
-并且不报任何错误.经查找是vuex-electron的问题.
-解决方法1:在store/index.js中去掉createSharedMutations
-12345678export default new Vuex.Store(&#123;  modules,  plugins: [    createPersistedState(),    createSharedMutations() // 注释掉这一行  ],  strict: process.env.NODE_ENV !== &apos;production&apos;&#125;)
-这是因为 vuex-electron 引入了一个用于多进程间共享 Vuex Store 的状态的插件.如果没有多进程交互的需求，完全可以不引入这个插件.
-解决方法2https://github.com/vue-electron/vuex-electron#installation
-看第 3 条：
-
-In case if you enabled createSharedMutations() plugin you need to create an instance of store in the main process. To do it just add this line into your main process (for example src/main.js):
-12&gt; import './path/to/your/store'&gt;
-
-这种时候就不能用第一种方法来解决问题了。
-找到 /src/main/index.js，在前面加上一句：
-1import '../renderer/store'
+            <p>在基于<code>electron</code>开发时使用<code>vuex</code>的<code>dispatch</code>方法传值无效</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vue.$store.dispatch(VUEX_ACTION_UPDATE_INFO, info)</div></pre></td></tr></table></figure>
+<p>并且不报任何错误.经查找是<code>vuex-electron</code>的问题.</p>
+<h3 id="解决方法1"><a href="#解决方法1" class="headerlink" title="解决方法1:"></a>解决方法1:</h3><p>在<code>store/index.js</code>中去掉<code>createSharedMutations</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">export default new Vuex.Store(&#123;</div><div class="line">  modules,</div><div class="line">  plugins: [</div><div class="line">    createPersistedState(),</div><div class="line">    createSharedMutations() // 注释掉这一行</div><div class="line">  ],</div><div class="line">  strict: process.env.NODE_ENV !== &apos;production&apos;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>这是因为 <code>vuex-electron</code> 引入了一个用于多进程间共享 Vuex Store 的状态的插件.如果没有多进程交互的需求，完全可以不引入这个插件.</p>
+<h3 id="解决方法2"><a href="#解决方法2" class="headerlink" title="解决方法2"></a>解决方法2</h3><p><a href="https://github.com/vue-electron/vuex-electron#installation" target="_blank" rel="external">https://github.com/vue-electron/vuex-electron#installation</a></p>
+<p>看第 3 条：</p>
+<blockquote>
+<p>In case if you enabled <code>createSharedMutations()</code> plugin you need to create an instance of store in the main process. To do it just add this line into your main process (for example <code>src/main.js</code>):</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt; <span class="keyword">import</span> <span class="string">'./path/to/your/store'</span></div><div class="line">&gt;</div></pre></td></tr></table></figure>
+</blockquote>
+<p>这种时候就不能用第一种方法来解决问题了。</p>
+<p>找到 <code>/src/main/index.js</code>，在前面加上一句：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> <span class="string">'../renderer/store'</span></div></pre></td></tr></table></figure>
           
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/03/15/eletron-vuex-not-working/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
         
       
     </div>
@@ -708,23 +681,16 @@ In case if you enabled createSharedMutations() plugin you need to create an inst
       
         
           
-          先晒一下manjaro截图
-
-因为经常使用python,在win下开发很难受,所以将笔记本系统换成了manjaro,在执行镜像,安装系统,安装软件,美化和字体渲染方面也遇到了很多问题.晒一下截图.并记录一下遇到的大的问题,等有时间统一整理记录.
-
-openvpn配置文件是openssl1.0版本编译,并修改qopenvpn图形界面
-Electron版本的docker客户端图形工具开发
-字体渲染,在设置中设置字体后软件字体不生效问题
-
+            <p>先晒一下<code>manjaro</code>截图</p>
+<p><img src="/images/Screenshot_20200313_225231.png" alt="desktop"></p>
+<p>因为经常使用python,在<code>win</code>下开发很难受,所以将笔记本系统换成了<code>manjaro</code>,在执行镜像,安装系统,安装软件,美化和字体渲染方面也遇到了很多问题.晒一下截图.并记录一下遇到的大的问题,等有时间统一整理记录.</p>
+<ul>
+<li><code>openvpn</code>配置文件是openssl1.0版本编译,并修改<code>qopenvpn</code>图形界面</li>
+<li><code>Electron</code>版本的<code>docker</code>客户端图形工具开发</li>
+<li>字体渲染,在设置中设置字体后软件字体不生效问题</li>
+</ul>
 
           
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/03/13/manjaro-desktop/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
         
       
     </div>
@@ -1027,16 +993,9 @@ Electron版本的docker客户端图形工具开发
       
         
           
-          应用程序作为provider注册到Dubbo的注册中心后，作为提供者一直被消费者访问不到，报出一个超时链接的错误。    &ensp;&ensp;一开始怀疑是网络问题(提供者将自身的服务注册到注册中心后，消费者会从注册中心获取提供者的真实地址和端口，从而通过RPC进行远程调用，所以提供者的地址信息会在消费者的客户端缓存一份)，可是从消费者到注册者的网络环境能ping通，telnet其提供者的端口也是通的。    &ensp;&ensp;从浏览器中通过Http的方式访问提供者的接口，浏览器就一直处于访问的挂起状态，得不到返回信息。同样后台也看不到任何报错信息，怀疑是不是Dubbo的问题，可是检查注册中心后发现一切正常，其他服务都能够正常访问。    &ensp;&ensp;最后在部署程序时发现Tomcat的控制台日志一直卡住。悲催的因为程序只能部署在Windows上，之前一直在Linux下部署,只有开发在Windows下开发，可是从来没有遇到这种问题。Tomcat是通过双击startup.bat启动的，后来决定从cmd中启动试一下，程序居然可以访问了!!!    &ensp;&ensp;百度后发现原来是Windows下Console设置的问题。在Console中右键，选择属性，然后再选项中勾掉编辑选项的快速编辑模式，默认是打勾的，去掉那个勾勾，然后再确认就可以了。Windows下的大坑啊。。。折腾了一下午！
+            <p>应用程序作为<code>provider</code>注册到<code>Dubbo</code>的注册中心后，作为提供者一直被消费者访问不到，报出一个超时链接的错误。<br>    &ensp;&ensp;一开始怀疑是网络问题(提供者将自身的服务注册到注册中心后，消费者会从注册中心获取提供者的真实地址和端口，从而通过<code>RPC</code>进行远程调用，所以提供者的地址信息会在消费者的客户端缓存一份)，可是从消费者到注册者的网络环境能<code>ping</code>通，<code>telnet</code>其提供者的端口也是通的。<br>    &ensp;&ensp;从浏览器中通过<code>Http</code>的方式访问提供者的接口，浏览器就一直处于访问的挂起状态，得不到返回信息。同样后台也看不到任何报错信息，怀疑是不是<code>Dubbo</code>的问题，可是检查注册中心后发现一切正常，其他服务都能够正常访问。<br>    &ensp;&ensp;最后在部署程序时发现<code>Tomcat</code>的控制台日志一直卡住。悲催的因为程序只能部署在<code>Windows</code>上，之前一直在<code>Linux</code>下部署,只有开发在<code>Windows</code>下开发，可是从来没有遇到这种问题。<code>Tomcat</code>是通过双击<code>startup.bat</code>启动的，后来决定从<code>cmd</code>中启动试一下，程序居然可以访问了!!!<br>    &ensp;&ensp;百度后发现原来是<code>Windows</code>下<code>Console</code>设置的问题。在<code>Console</code>中右键，选择<code>属性</code>，然后再<code>选项</code>中勾掉<code>编辑选项</code>的<code>快速编辑模式</code>，默认是打勾的，去掉那个勾勾，然后再<code>确认</code>就可以了。<code>Windows</code>下的大坑啊。。。折腾了一下午！</p>
 
           
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/01/30/window-tomcat-start/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
         
       
     </div>
@@ -1334,23 +1293,35 @@ Electron版本的docker客户端图形工具开发
       
         
           
-          BaiduExporter插件被Google下架，安装BaiduExporter插件只能离线安装，但是会提示只能通过Chrome网上应用商店安装该程序的错误(可以通过加压后再进行安装)，如果不想安装这个插件，可以安装YAAW。
-因为公司换了电脑，不再使用Mac，重新在Win7上安装Aria2。
-下载安装aria21.进入官网下载页面Aria22.下载win版本的压缩包3.解压后放到一个目录下，如：D:\Aria2,然后在这个目录下建立3个文件，分别为
+            <p><code>BaiduExporter</code>插件被Google下架，安装<code>BaiduExporter</code>插件只能离线安装，但是会提示<code>只能通过Chrome网上应用商店安装该程序</code>的错误(可以通过加压后再进行安装)，如果不想安装这个插件，可以安装<code>YAAW</code>。</p>
+<p>因为公司换了电脑，不再使用<code>Mac</code>，重新在<code>Win7</code>上安装<code>Aria2</code>。</p>
+<h1 id="下载安装aria2"><a href="#下载安装aria2" class="headerlink" title="下载安装aria2"></a>下载安装aria2</h1><p>1.进入官网下载页面<a href="https//aria2.github.io/">Aria2</a><br>2.下载win版本的压缩包<br>3.解压后放到一个目录下，如：<code>D:\Aria2</code>,然后在这个目录下建立3个文件，分别为</p>
+<ul>
+<li>Aria2.log(日志，空文件)</li>
+<li>aria2.session(日志，空文件)</li>
+<li>aria2.conf(配置文件)</li>
+</ul>
+<h1 id="配置aria2"><a href="#配置aria2" class="headerlink" title="配置aria2"></a>配置aria2</h1><p>打开<code>aria2.conf</code>文件，将一下内容复制到文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div></pre></td><td class="code"><pre><div class="line">dir=D:\Download\</div><div class="line"></div><div class="line">log=D:\Aria2\Aria2.log</div><div class="line"></div><div class="line">input-file=D:\Aria2\aria2.session</div><div class="line"></div><div class="line">save-session=D:\Aria2\aria2.session</div><div class="line"></div><div class="line">save-session-interval=60</div><div class="line"></div><div class="line">force-save=true</div><div class="line"></div><div class="line">log-level=error</div><div class="line"></div><div class="line"># see --split option</div><div class="line"></div><div class="line">max-concurrent-downloads=5</div><div class="line"></div><div class="line">continue=true</div><div class="line"></div><div class="line">max-overall-download-limit=0</div><div class="line"></div><div class="line">max-overall-upload-limit=50K</div><div class="line"></div><div class="line">max-upload-limit=20</div><div class="line"></div><div class="line"># Http/FTP options</div><div class="line"></div><div class="line">connect-timeout=120</div><div class="line"></div><div class="line">lowest-speed-limit=10K</div><div class="line"></div><div class="line">max-connection-per-server=10</div><div class="line"></div><div class="line">max-file-not-found=2</div><div class="line"></div><div class="line">min-split-size=1M</div><div class="line"></div><div class="line">split=5</div><div class="line"></div><div class="line">check-certificate=false</div><div class="line"></div><div class="line">http-no-cache=true</div><div class="line"></div><div class="line"># FTP Specific Options</div><div class="line"></div><div class="line"># BT/PT Setting</div><div class="line"></div><div class="line">bt-enable-lpd=true</div><div class="line"></div><div class="line">#bt-max-peers=55</div><div class="line"></div><div class="line">follow-torrent=true</div><div class="line"></div><div class="line">enable-dht6=false</div><div class="line"></div><div class="line">bt-seed-unverified</div><div class="line"></div><div class="line">rpc-save-upload-metadata=true</div><div class="line"></div><div class="line">bt-hash-check-seed</div><div class="line"></div><div class="line">bt-remove-unselected-file</div><div class="line"></div><div class="line">bt-request-peer-speed-limit=100K</div><div class="line"></div><div class="line">seed-ratio=0.0</div><div class="line"></div><div class="line"># Metalink Specific Options</div><div class="line"></div><div class="line"># RPC Options</div><div class="line"></div><div class="line">enable-rpc=true</div><div class="line"></div><div class="line">pause=false</div><div class="line"></div><div class="line">rpc-allow-origin-all=true</div><div class="line"></div><div class="line">rpc-listen-all=true</div><div class="line"></div><div class="line">rpc-save-upload-metadata=true</div><div class="line"></div><div class="line">rpc-secure=false</div><div class="line"></div><div class="line"># Advanced Options</div><div class="line"></div><div class="line">daemon=true</div><div class="line"></div><div class="line">disable-ipv6=true</div><div class="line"></div><div class="line">enable-mmap=true</div><div class="line"></div><div class="line">file-allocation=falloc </div><div class="line"></div><div class="line">max-download-result=120</div><div class="line"></div><div class="line">#no-file-allocation-limit=32M</div><div class="line"></div><div class="line">force-sequential=true</div><div class="line"></div><div class="line">parameterized-uri=true</div></pre></td></tr></table></figure></p>
+<p>注意修改以下几项</p>
+<p>dir=D:\Download\</p>
+<p>log=D:\Aria2\Aria2.log</p>
+<p>input-file=D:\Aria2\aria2.session</p>
+<p>save-session=D:\Aria2\aria2.session</p>
+<p>在<code>cmd</code>中启动:<code>aria2c.exe --conf-path=aria2.conf</code></p>
+<h1 id="安装YAAW插件"><a href="#安装YAAW插件" class="headerlink" title="安装YAAW插件"></a>安装YAAW插件</h1><p>在chrome的插件商店搜索<code>YAAW</code>找到<code>YAAW for Chrome</code>进行安装</p>
+<p>然后在所有的下载链接上右键选择<code>ARIA2 RPC</code>进行下载就可以了。</p>
+<h1 id="Aria2-Web"><a href="#Aria2-Web" class="headerlink" title="Aria2 Web"></a>Aria2 Web</h1><p>1.可以直接现在访问<br><a href="http://aria2c.com" target="_blank" rel="external">http://aria2c.com</a><br>2.点击chrome插件yaaw，也可以直接看到下载任务</p>
+<h1 id="百度云大文件链接"><a href="#百度云大文件链接" class="headerlink" title="百度云大文件链接"></a>百度云大文件链接</h1><ol>
+<li>安装油猴插件（插件商店搜索<code>Tampermonkey</code>并安装）</li>
+<li>安装<code>EX-百度云盘</code>油猴脚本(<a href="https://greasyfork.org/zh-CN/scripts/26638-ex-%E7%99%BE%E5%BA%A6%E4%BA%91%E7%9B%98" target="_blank" rel="external">EX-百度云盘</a>)</li>
+<li>百度云盘中的页面中会多一个<code>EX-下载</code>的选项</li>
+<li>这时在<code>EX-下载</code>的下拉菜单中的<code>普通下载</code>右键还不能将任务发送aria2进行下载，需要将文件共享。</li>
+<li>在共享页面的<code>EX-下载</code>的菜单中选择<code>普通下载</code>后，Chrome就可以下载大文件了。然后在下载的链接上右击，选择<code>ARIA2-RPC</code>就可以了。</li>
+<li>按照上边的Aria2 Web可以查看下载的文件和进度。</li>
+</ol>
+<h1 id="TODO"><a href="#TODO" class="headerlink" title="TODO"></a>TODO</h1><p><code>aria2</code>的启动时在<code>cmd</code>中启动的，需要使用脚本启动并隐藏cmd窗口。</p>
 
-Aria2.log(日志，空文件)
-aria2.session(日志，空文件)
-aria2.conf(配置文件)
-
-配置aria2打开aria2.conf文件，将一下内容复制到文件123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101dir=D:\Download\log=D:\Aria2\Aria2.loginput-file=D:\Aria2\aria2.sessionsave-session=D:\Aria2\aria2.sessionsave-session-interval=60force-save=truelog-level=error# see --split optionmax-concurrent-downloads=5continue=truemax-overall-download-limit=0max-overall-upload-limit=50Kmax-upload-limit=20# Http/FTP optionsconnect-timeout=120lowest-speed-limit=10Kmax-connection-per-server=10max-file-not-found=2min-split-size=1Msplit=5check-certificate=falsehttp-no-cache=true# FTP Specific Optio
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/01/04/aria2-yaaw/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          
         
       
     </div>
@@ -1490,37 +1461,45 @@ aria2.conf(配置文件)
       
         
           
-          Python的Web框架Django有一个很厉害的功能就是可以根据数据的表结构生成models,然后利用自带的admin管理界面进行管理。
-安装(Windows)1.安装Python
-下载地址:
+            <p>Python的Web框架Django有一个很厉害的功能就是可以根据数据的表结构生成<code>models</code>,然后利用自带的<code>admin</code>管理界面进行管理。</p>
+<h1 id="安装-Windows"><a href="#安装-Windows" class="headerlink" title="安装(Windows)"></a>安装(Windows)</h1><p>1.安装Python</p>
+<p>下载地址:</p>
+<blockquote>
+<p><a href="https://www.python.org/getit" target="_blank" rel="external">https://www.python.org/getit</a><br>注:安装时选择安装pip</p>
+</blockquote>
+<p>2.配置环境</p>
+<p>在Windows的环境变量中<code>path</code>中添加<br><code>C:\Python\Python36-32;C:\Python\Python36-32\Scripts</code></p>
+<p>3.安装Django</p>
+<p>在<code>cmd</code>中执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip install Django==2.0</div></pre></td></tr></table></figure></p>
+<h1 id="配置Django"><a href="#配置Django" class="headerlink" title="配置Django"></a>配置Django</h1><p>根据数据库反向生成model</p>
+<p>1.新建项目</p>
+<p>在想要存储的目录下执行命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">django-admin startproject cwtb</div></pre></td></tr></table></figure>
+<p>2.修改数据库<br>修改新建项目的<code>settings.py</code>文件数据库连接</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">DATABASES = &#123;</div><div class="line">    &apos;default&apos;: &#123;</div><div class="line">        &apos;ENGINE&apos;: &apos;django.db.backends.mysql&apos;,</div><div class="line">        &apos;NAME&apos;: &apos;fms_cwtb&apos;,</div><div class="line">        &apos;USER&apos;: &apos;jxq&apos;,</div><div class="line">        &apos;PASSWORD&apos;: &apos;jxq&apos;,</div><div class="line">        &apos;HOST&apos;: &apos;192.168.157.61&apos;,</div><div class="line">        &apos;PORT&apos;: &apos;3306&apos;,</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>3.执行命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">#安装MySQL客户端</div><div class="line">pip install mysqlclient</div><div class="line">#生成models</div><div class="line">python manage.py inspectdb</div></pre></td></tr></table></figure>
+<p>4.创建app，导入models</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">python manage.py startapp app</div><div class="line">python manage.py inspectdb &gt; app/models.py</div></pre></td></tr></table></figure>
+<p>5.生成<code>admin</code>需要的表到数据库</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">python manage.py migrate auth</div><div class="line">python manage.py migrate</div></pre></td></tr></table></figure>
+<p>6.创建登录用户名密码</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">python manage.py createsuperuser</div></pre></td></tr></table></figure>
+<p>期间会要求输入用户名/密码:admin/admin1234</p>
+<p>7.<code>admin</code>中注册app</p>
+<p>修改<code>admin.py</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">from django.contrib import admin</div><div class="line"></div><div class="line">from app.models import FmsTbBiTs</div><div class="line"></div><div class="line"># Register your models here.</div><div class="line"></div><div class="line">@admin.register(FmsTbBiTs)</div><div class="line">class  FmsTbCpkDjcAdmin(admin.ModelAdmin):</div><div class="line">    list_display = (&apos;id&apos;, &apos;year&apos;, &apos;quarter&apos;, &apos;month&apos;, &apos;dept_code&apos;, &apos;dept_name&apos;, &apos;project_code&apos;, &apos;project_name&apos;,&apos;km_code&apos;, &apos;km_name&apos;, &apos;tsz&apos;, &apos;data_type&apos;, &apos;tb_type&apos;, &apos;bz1&apos;, &apos;bz2&apos;, &apos;bz3&apos;, &apos;bz4&apos;, &apos;create_time&apos;, &apos;update_time&apos;)</div></pre></td></tr></table></figure>
+<p>8.修改<code>setting.py</code>,将新建的<code>app</code>应用添加到<code>INSTALLED_APPS</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">INSTALLED_APPS = [</div><div class="line"></div><div class="line">    &apos;django.contrib.admin&apos;,</div><div class="line">    &apos;django.contrib.auth&apos;,</div><div class="line">    &apos;django.contrib.contenttypes&apos;,</div><div class="line">    &apos;django.contrib.sessions&apos;,</div><div class="line">    &apos;django.contrib.messages&apos;,</div><div class="line">    &apos;django.contrib.staticfiles&apos;,</div><div class="line">    &apos;app&apos;</div><div class="line">]</div></pre></td></tr></table></figure>
+<p>9.修改中英文配置</p>
+<p>修改<code>settings.py</code>文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">LANGUAGE_CODE =  &apos;zh-hans&apos;</div><div class="line"></div><div class="line">TIME_ZONE =  &apos;Asia/Shanghai&apos;</div></pre></td></tr></table></figure>
+<p>10.启动<code>Admin</code>管理后台</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">python manage.py runserver 0.0.0.0:8000</div></pre></td></tr></table></figure>
+<p>访问</p>
+<p><code>http://localhost:8000/admin</code>会看到登陆界面</p>
 
-https://www.python.org/getit注:安装时选择安装pip
-
-2.配置环境
-在Windows的环境变量中path中添加C:\Python\Python36-32;C:\Python\Python36-32\Scripts
-3.安装Django
-在cmd中执行1pip install Django==2.0
-配置Django根据数据库反向生成model
-1.新建项目
-在想要存储的目录下执行命令
-1django-admin startproject cwtb
-2.修改数据库修改新建项目的settings.py文件数据库连接
-12345678910DATABASES = &#123;    &apos;default&apos;: &#123;        &apos;ENGINE&apos;: &apos;django.db.backends.mysql&apos;,        &apos;NAME&apos;: &apos;fms_cwtb&apos;,        &apos;USER&apos;: &apos;jxq&apos;,        &apos;PASSWORD&apos;: &apos;jxq&apos;,        &apos;HOST&apos;: &apos;192.168.157.61&apos;,        &apos;PORT&apos;: &apos;3306&apos;,	&#125;&#125;
-3.执行命令
-1234#安装MySQL客户端pip install mysqlclient#生成modelspython manage.py inspectdb
-4.创建app，导入models
-123python manage.py startapp apppython manage.py inspectdb &gt; app/models.py
-5.生成admin需要的表到数据库
-12python manage.py migrate authpython manage.py migrate
-6.创建登录用
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/12/29/django-admin/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          
         
       
     </div>
@@ -1794,21 +1773,18 @@ https://www.python.org/getit注:安装时选择安装pip
       
         
           
-          synchronized依靠锁机制实现多线程的同步，锁分两种
+            <p><code>synchronized</code>依靠锁机制实现多线程的同步，锁分两种</p>
+<ul>
+<li>对象锁</li>
+<li>类锁</li>
+</ul>
+<p>1.<code>synchronized</code>作用于普通方法时依靠对象锁工作，多线程访问synchronized方法，一旦某个线程抢到锁后，其他进程排队等待<br>等效于<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">void method&#123;</div><div class="line">    synchronized(this)&#123;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">public class TestSynchronized &#123;</div><div class="line"></div><div class="line">    public synchronized void method1() throws InterruptedException &#123;</div><div class="line">        System.out.println(&quot;Method1 start at :&quot; + System.currentTimeMillis());</div><div class="line">        Thread.sleep(6000);</div><div class="line">        System.out.println(&quot;Method1 end at :&quot; + System.currentTimeMillis());</div><div class="line">    &#125;</div><div class="line">    public synchronized void method2() throws InterruptedException &#123;</div><div class="line">        while (true) &#123;</div><div class="line">            System.out.println(&quot;method2 running&quot;);</div><div class="line">            Thread.sleep(200);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    static TestSynchronized instance = new TestSynchronized();</div><div class="line"></div><div class="line">    public static void main(String[] args) &#123;</div><div class="line">        Thread thread1 = new Thread(new Runnable() &#123;</div><div class="line"></div><div class="line">            @Override</div><div class="line">            public void run() &#123;</div><div class="line">                try &#123;</div><div class="line">                    instance.method1();</div><div class="line">                &#125; catch (InterruptedException e) &#123;</div><div class="line">                    // TODO Auto-generated catch block</div><div class="line">                    e.printStackTrace();</div><div class="line">                &#125;</div><div class="line">                for (int i = 1; i &lt; 4; i++) &#123;</div><div class="line">                    try &#123;</div><div class="line">                        Thread.sleep(200);</div><div class="line">                    &#125; catch (InterruptedException e) &#123;</div><div class="line">                        e.printStackTrace();</div><div class="line">                    &#125;</div><div class="line">                    System.out.println(&quot;Thread1 still alive&quot;);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line"></div><div class="line">        &#125;);</div><div class="line"></div><div class="line">        Thread thread2 = new Thread(new Runnable() &#123;</div><div class="line">            </div><div class="line">            @Override</div><div class="line">            public void run() &#123;</div><div class="line">                 try &#123;</div><div class="line">                    instance.method2();</div><div class="line">                &#125; catch (InterruptedException e) &#123;</div><div class="line">                    // TODO Auto-generated catch block</div><div class="line">                    e.printStackTrace();</div><div class="line">                &#125;</div><div class="line">                </div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">        thread1.start();</div><div class="line">        thread2.start();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>方法<code>method2</code>会一直等待<code>method1</code>执行完成后再执行。<br>synchronized void method(){}整个函数加上synchronized块，效率并不好。</p>
+<p>2.<code>synchronized</code>作用于静态方法相当于</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">void method()&#123;</div><div class="line">    synchronized(Object.class)&#123;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
-对象锁
-类锁
-
-1.synchronized作用于普通方法时依靠对象锁工作，多线程访问synchronized方法，一旦某个线程抢到锁后，其他进程排队等待等效于1234void method&#123;    synchronized(this)&#123;    &#125;&#125;
-示例：123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657public class TestSynchronized &#123;    public synchronized void method1() throws InterruptedException &#123;        System.out.println(&quot;Method1 start at :&quot; + System.currentTimeMillis());        Thread.sleep(6000);        System.out.println(&quot;Method1 end at :&quot; + System.currentTimeMillis());    &#125;    public synchronized void method2() throws InterruptedException &#123;        while (true) &#123;            System.out.println(&quot;method2 running&quot;);            Thread.sleep(200);        &#125;    &#125;    static TestSynchronized instance = new TestSynchronized();    public static void main(String[] args) &#123;        Thread thread1 = new Thread(new Runnable() &#123;            
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/12/06/java-synchronized/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          
         
       
     </div>

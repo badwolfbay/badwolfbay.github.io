@@ -527,30 +527,23 @@
       
         
           
-          1.通过Rest API访问Harbor需要Token认证信息
-
-curl -u username:password http://172.21.1.19/api/users
-
-但是通过restclient访问时像curl一样添加-u参数，需要在Header中增加参数
-
-Authorization: Basic base64encoded(user:pass)
-
-如：
-123Builder builder = restClient.target(url + "/api/users").request();String auth = Base64.getEncoder().encodeToString("user:password".getBytes())；builder.header("Authorization","Basic " + auth);
-在JAVA8中，可以直接使用Base64工具类。
-参考链接:
-
-https://stackoverflow.com/questions/29116595/how-to-send-u-data-of-curl-in-rest-client
-
+            <p>1.通过Rest API访问Harbor需要Token认证信息</p>
+<blockquote>
+<p>curl -u username:password <a href="http://172.21.1.19/api/users" target="_blank" rel="external">http://172.21.1.19/api/users</a></p>
+</blockquote>
+<p>但是通过restclient访问时像curl一样添加-u参数，需要在Header中<br>增加参数</p>
+<blockquote>
+<p>Authorization: Basic base64encoded(user:pass)</p>
+</blockquote>
+<p>如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Builder builder = restClient.target(url + <span class="string">"/api/users"</span>).request();</div><div class="line">String auth = Base64.getEncoder().encodeToString(<span class="string">"user:password"</span>.getBytes())；</div><div class="line">builder.header(<span class="string">"Authorization"</span>,<span class="string">"Basic "</span> + auth);</div></pre></td></tr></table></figure>
+<p>在JAVA8中，可以直接使用Base64工具类。</p>
+<p>参考链接:</p>
+<blockquote>
+<p><a href="https://stackoverflow.com/questions/29116595/how-to-send-u-data-of-curl-in-rest-client" target="_blank" rel="external">https://stackoverflow.com/questions/29116595/how-to-send-u-data-of-curl-in-rest-client</a></p>
+</blockquote>
 
           
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/09/25/harbor-api-token/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
         
       
     </div>
@@ -857,20 +850,13 @@ https://stackoverflow.com/questions/29116595/how-to-send-u-data-of-curl-in-rest-
       
         
           
-          1.接口，接口为一组方法定义的集合
-
-和其它语言不同，类型实现接口不需要显示声明，不需要implements关键字
-
-定义接口和实现接口互不依赖
-1234567891011121314151617181920212223242526272829303132333435type Abser interface &#123;  Abs() float64&#125;type MyFloat float64func (f MyFloat) Abs() float64 &#123;  if f &lt; 0 &#123;    return float64(-f)  &#125;  return float64(f)&#125;type Vertex struct &#123;  X, Y float64&#125;func (v *Vertex) Abs() float64 &#123;  return math.Sqrt(v.X*v.X + v.Y*v.Y)&#125;func main() &#123;  var a Abser  f := MyFloat(-math.Sqrt2)  v := Vertex&#123;3, 4&#125;  a = f  // a MyFloat 实现了 Abser  a = &amp;v // a *Vertex 实现了 Abser  // 下面一行，v 是一个 Vertex（而不是 *Vertex）  // 所以没有实现 Abser。  a = v  fmt.Println(a.Abs())&#125;
+            <p>1.接口，接口为一组方法定义的集合</p>
+<blockquote>
+<p>和其它语言不同，类型实现接口不需要显示声明，不需要implements关键字</p>
+</blockquote>
+<p>定义接口和实现接口互不依赖</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">type</span> Abser <span class="keyword">interface</span> &#123;</div><div class="line">  Abs() <span class="keyword">float64</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">type</span> MyFloat <span class="keyword">float64</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="params">(f MyFloat)</span> <span class="title">Abs</span><span class="params">()</span> <span class="title">float64</span></span> &#123;</div><div class="line">  <span class="keyword">if</span> f &lt; <span class="number">0</span> &#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">float64</span>(-f)</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> <span class="keyword">float64</span>(f)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">type</span> Vertex <span class="keyword">struct</span> &#123;</div><div class="line">  X, Y <span class="keyword">float64</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="params">(v *Vertex)</span> <span class="title">Abs</span><span class="params">()</span> <span class="title">float64</span></span> &#123;</div><div class="line">  <span class="keyword">return</span> math.Sqrt(v.X*v.X + v.Y*v.Y)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</div><div class="line">  <span class="keyword">var</span> a Abser</div><div class="line">  f := MyFloat(-math.Sqrt2)</div><div class="line">  v := Vertex&#123;<span class="number">3</span>, <span class="number">4</span>&#125;</div><div class="line"></div><div class="line">  a = f  <span class="comment">// a MyFloat 实现了 Abser</span></div><div class="line">  a = &amp;v <span class="comment">// a *Vertex 实现了 Abser</span></div><div class="line"></div><div class="line">  <span class="comment">// 下面一行，v 是一个 Vertex（而不是 *Vertex）</span></div><div class="line">  <span class="comment">// 所以没有实现 Abser。</span></div><div class="line">  a = v</div><div class="line"></div><div class="line">  fmt.Println(a.Abs())</div><div class="line">&#125;</div></pre></td></tr></table></figure>
           
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/09/15/go-e6-8c-87-e5-8d-97-e5-ad-a6-e4-b9-a0-e7-ac-94-e8-ae-b0-e4-b9-9d/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
         
       
     </div>
@@ -1010,30 +996,23 @@ https://stackoverflow.com/questions/29116595/how-to-send-u-data-of-curl-in-rest-
       
         
           
-          1.结构体方法
-Go语言不像JAVA，没有类的定义，但是依然可以为结构体定义方法。
-123456789101112131415package mainimport (  "fmt"  "math")type Vertex struct &#123;  X, Y float64&#125;func (v *Vertex) Abs() float64 &#123;  return math.Sqrt(v.X * v.X + v.Y * v.Y)&#125;func main()&#123;  v := &amp;Vertex&#123;3,4&#125;  fmt.Println(v.Abs()) // 5&#125;
-2.还可以对包内任意类型定义任意方法，但是不能对包外的类型或者基础类型定义方法
-1234567891011121314151617181920package mainimport (  "fmt"  "math")type MyFloat float64func (f MyFloat) Abs() float64 &#123;  if f &lt; 0 &#123;  return float64(-f)  &#125;  return float64(f)&#125;func main()&#123;  f := MyFloat(-math.Sqrt2)  fmt.Println(f.Abs()) // 1.4142135623730951&#125;
-3.方法可以与类型和类型的指针相关联
-如1中的Abs方法是作用的*Vertex指针类型上
-1234func (v *Vertex) Scale(f float64)&#123;  v.X = v.X * f  v.Y = v.Y * f&#125;
-与
-1234func (v Vertex) Scale(f float64)&#123;  v.X = v.X * f  v.Y = v.Y * f&#125;
-的区别
-v := *Vertex(3,5)
-v.Scale(5)
-
-前边的是用*Vertex指针类型接受，是引用传递，所以会改变接受者v的原始值，而后边的是用变量（后者说是对象）接受，是值传递，会对v进行一份copy,而不会对原始值做更改。
+            <p>1.结构体方法</p>
+<p>Go语言不像JAVA，没有类的定义，但是依然可以为结构体定义方法。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> main</div><div class="line"><span class="keyword">import</span> (</div><div class="line">  <span class="string">"fmt"</span></div><div class="line">  <span class="string">"math"</span></div><div class="line">)</div><div class="line"><span class="keyword">type</span> Vertex <span class="keyword">struct</span> &#123;</div><div class="line">  X, Y <span class="keyword">float64</span></div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="params">(v *Vertex)</span> <span class="title">Abs</span><span class="params">()</span> <span class="title">float64</span></span> &#123;</div><div class="line">  <span class="keyword">return</span> math.Sqrt(v.X * v.X + v.Y * v.Y)</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">  v := &amp;Vertex&#123;<span class="number">3</span>,<span class="number">4</span>&#125;</div><div class="line">  fmt.Println(v.Abs()) <span class="comment">// 5</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>2.还可以对包内任意类型定义任意方法，但是不能对包外的类型或者基础类型定义方法</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> main</div><div class="line"></div><div class="line"><span class="keyword">import</span> (</div><div class="line">  <span class="string">"fmt"</span></div><div class="line">  <span class="string">"math"</span></div><div class="line">)</div><div class="line"></div><div class="line"><span class="keyword">type</span> MyFloat <span class="keyword">float64</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="params">(f MyFloat)</span> <span class="title">Abs</span><span class="params">()</span> <span class="title">float64</span></span> &#123;</div><div class="line">  <span class="keyword">if</span> f &lt; <span class="number">0</span> &#123;</div><div class="line">  <span class="keyword">return</span> <span class="keyword">float64</span>(-f)</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> <span class="keyword">float64</span>(f)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">  f := MyFloat(-math.Sqrt2)</div><div class="line">  fmt.Println(f.Abs()) <span class="comment">// 1.4142135623730951</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>3.方法可以与类型和类型的指针相关联</p>
+<p>如1中的<code>Abs方法是作用的</code>*Vertex指针类型上</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="params">(v *Vertex)</span> <span class="title">Scale</span><span class="params">(f <span class="keyword">float64</span>)</span></span>&#123;</div><div class="line">  v.X = v.X * f</div><div class="line">  v.Y = v.Y * f</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>与</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="params">(v Vertex)</span> <span class="title">Scale</span><span class="params">(f <span class="keyword">float64</span>)</span></span>&#123;</div><div class="line">  v.X = v.X * f</div><div class="line">  v.Y = v.Y * f</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>的区别</p>
+<pre><code class="go">v := *Vertex(<span class="number">3</span>,<span class="number">5</span>)
+v.Scale(<span class="number">5</span>)
+</code></pre>
+<p>前边的是用*Vertex指针类型接受，是引用传递，所以会改变接受者v的原始值，而后边的是用变量（后者说是对象）接受，是值传递，会对v进行一份copy,而不会对原始值做更改。</p>
 
           
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/09/11/go-e6-8c-87-e5-8d-97-e5-ad-a6-e4-b9-a0-e7-ac-94-e8-ae-b0-e5-85-ab/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
         
       
     </div>
@@ -1173,23 +1152,16 @@ v.Scale(5)
       
         
           
-          闭包
-
-函数也是一个值，也可以像其它值一样传递。函数值也可以作为参数或者返回值
-闭包是一个函数值，他引用了函数体之外的变量
-这个函数值可以对引用的变量进行修改或者赋值
-
-1234567891011121314151617181920package mainimport (  "fmt")func adder() func(int) int &#123;  sum := 0  return func(x int) int &#123;    sum += x	return sum  &#125;&#125;func main() &#123;  pos, neg := adder(), adder()  for i := 0; i &lt; 10; i++ &#123;    fmt.Println(pos(i), neg(-2*i))  &#125;&#125;
-输出结果：
-12345678910111213[Running] go run "/Users/badwolf/Documents/go/hello/tempCodeRunnerFile.go"0 01 -23 -66 -1210 -2015 -3021 -4228 -5636 -7245 -90[Done] exited with code=0 in 0.605 seconds
+            <p>闭包</p>
+<ul>
+<li>函数也是一个值，也可以像其它值一样传递。函数值也可以作为参数或者返回值</li>
+<li>闭包是一个函数值，他引用了函数体之外的变量</li>
+<li>这个函数值可以对引用的变量进行修改或者赋值</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> main</div><div class="line"></div><div class="line"><span class="keyword">import</span> (</div><div class="line">  <span class="string">"fmt"</span></div><div class="line">)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">adder</span><span class="params">()</span> <span class="title">func</span><span class="params">(<span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</div><div class="line">  sum := <span class="number">0</span></div><div class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">func</span><span class="params">(x <span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</div><div class="line">    sum += x</div><div class="line">	<span class="keyword">return</span> sum</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</div><div class="line">  pos, neg := adder(), adder()</div><div class="line">  <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">10</span>; i++ &#123;</div><div class="line">    fmt.Println(pos(i), neg(<span class="number">-2</span>*i))</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>输出结果：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">[Running] <span class="keyword">go</span> run <span class="string">"/Users/badwolf/Documents/go/hello/tempCodeRunnerFile.go"</span></div><div class="line"><span class="number">0</span> <span class="number">0</span></div><div class="line"><span class="number">1</span> <span class="number">-2</span></div><div class="line"><span class="number">3</span> <span class="number">-6</span></div><div class="line"><span class="number">6</span> <span class="number">-12</span></div><div class="line"><span class="number">10</span> <span class="number">-20</span></div><div class="line"><span class="number">15</span> <span class="number">-30</span></div><div class="line"><span class="number">21</span> <span class="number">-42</span></div><div class="line"><span class="number">28</span> <span class="number">-56</span></div><div class="line"><span class="number">36</span> <span class="number">-72</span></div><div class="line"><span class="number">45</span> <span class="number">-90</span></div><div class="line"></div><div class="line">[Done] exited with code=<span class="number">0</span> in <span class="number">0.605</span> seconds</div></pre></td></tr></table></figure>
           
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/09/07/go-e6-8c-87-e5-8d-97-e5-ad-a6-e4-b9-a0-e7-ac-94-e8-ae-b0-e4-b8-83/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
         
       
     </div>
@@ -1329,66 +1301,59 @@ v.Scale(5)
       
         
           
-          1.下载安装文件，下载地址：http://mirrors.hust.edu.cn/apache/zookeeper/
-这里的下载的版本为zookeeper-3.4.10.tar.gz
-2.解压下载的安装文件
-
-tar -zxvf&nbsp;zookeeper-3.4.10.tar.gz
-
-3.修改配置文件
-
-zookeeper-3.4.10/confmv zoo_sample.cfg zoo.cfg
-
-zoo.cfg可以根据需要修改配置信息,如clientPort=2181
-4.启动zookeeper
-
-cd ../bin./zkServer.sh start
-
-启动成功信息：
-ZooKeeper JMX enabled by default
-Using config: /root/zookeeper-3.4.10/bin/../conf/zoo.cfg
-Starting zookeeper … STARTED
-查看端口占用信息：
-
-netstat -an|grep 2181
-
-5.客户端连接测试
-
-./zkCli.sh -server 127.0.0.1
-
-连接成功后执行help命令可以查看帮助命令
-[zk: 127.0.0.1(CONNECTED) 0] help
-ZooKeeper -server host:port cmd args
- stat path [watch]
- set path data [version]
- ls path [watch]
- delquota [-n|-b] path
- ls2 path [watch]
- setAcl path acl
- setquota -n|-b val path
- history&nbsp;
- redo cmdno
- printwatches on|off
- delete path [version]
- sync path
- listquota path
- rmr path
- get path [watch]
- create [-s] [-e] path data acl
- addauth scheme auth
- quit&nbsp;
- getAcl path
- close&nbsp;
- connect host:port
+            <p>1.下载安装文件，下载地址：<a href="http://mirrors.hust.edu.cn/apache/zookeeper/" target="_blank" rel="external">http://mirrors.hust.edu.cn/apache/zookeeper/</a></p>
+<p>这里的下载的版本为zookeeper-3.4.10.tar.gz</p>
+<p>2.解压下载的安装文件</p>
+<blockquote>
+<p>tar -zxvf&nbsp;zookeeper-3.4.10.tar.gz</p>
+</blockquote>
+<p>3.修改配置文件</p>
+<blockquote>
+<p>zookeeper-3.4.10/conf<br>mv zoo_sample.cfg zoo.cfg</p>
+</blockquote>
+<p>zoo.cfg可以根据需要修改配置信息,如clientPort=2181</p>
+<p>4.启动zookeeper</p>
+<blockquote>
+<p>cd ../bin<br>./zkServer.sh start</p>
+</blockquote>
+<p>启动成功信息：</p>
+<p><span style="background-color:#D3D3D3;">ZooKeeper JMX enabled by default</span></p>
+<p><span style="background-color:#D3D3D3;">Using config: /root/zookeeper-3.4.10/bin/../conf/zoo.cfg</span></p>
+<p><span style="background-color:#D3D3D3;">Starting zookeeper … STARTED</span></p>
+<p>查看端口占用信息：</p>
+<blockquote>
+<p>netstat -an|grep 2181</p>
+</blockquote>
+<p>5.客户端连接测试</p>
+<blockquote>
+<p>./zkCli.sh -server 127.0.0.1</p>
+</blockquote>
+<p>连接成功后执行help命令可以查看帮助命令</p>
+<p><span style="background-color:#D3D3D3;">[zk: 127.0.0.1(CONNECTED) 0] help</span></p>
+<p><span style="background-color:#D3D3D3;">ZooKeeper -server host:port cmd args</span></p>
+<p><span style="background-color:#D3D3D3;"> stat path [watch]</span></p>
+<p><span style="background-color:#D3D3D3;"> set path data [version]</span></p>
+<p><span style="background-color:#D3D3D3;"> ls path [watch]</span></p>
+<p><span style="background-color:#D3D3D3;"> delquota [-n|-b] path</span></p>
+<p><span style="background-color:#D3D3D3;"> ls2 path [watch]</span></p>
+<p><span style="background-color:#D3D3D3;"> setAcl path acl</span></p>
+<p><span style="background-color:#D3D3D3;"> setquota -n|-b val path</span></p>
+<p><span style="background-color:#D3D3D3;"> history&nbsp;</span></p>
+<p><span style="background-color:#D3D3D3;"> redo cmdno</span></p>
+<p><span style="background-color:#D3D3D3;"> printwatches on|off</span></p>
+<p><span style="background-color:#D3D3D3;"> delete path [version]</span></p>
+<p><span style="background-color:#D3D3D3;"> sync path</span></p>
+<p><span style="background-color:#D3D3D3;"> listquota path</span></p>
+<p><span style="background-color:#D3D3D3;"> rmr path</span></p>
+<p><span style="background-color:#D3D3D3;"> get path [watch]</span></p>
+<p><span style="background-color:#D3D3D3;"> create [-s] [-e] path data acl</span></p>
+<p><span style="background-color:#D3D3D3;"> addauth scheme auth</span></p>
+<p><span style="background-color:#D3D3D3;"> quit&nbsp;</span></p>
+<p><span style="background-color:#D3D3D3;"> getAcl path</span></p>
+<p><span style="background-color:#D3D3D3;"> close&nbsp;</span></p>
+<p><span style="background-color:#D3D3D3;"> connect host:port</span></p>
 
           
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/09/06/zookeeper-e5-ae-89-e8-a3-85/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
         
       
     </div>
@@ -1528,29 +1493,22 @@ ZooKeeper -server host:port cmd args
       
         
           
-          1.map
-map在使用之前必须使用make来创建，值为nil的map是空的，并且不能对它赋值
-1234567891011121314151617package mainimport (  "fmt")type Vertex struct&#123;  Lat, Long float64&#125;var m map[string]Vertexfunc main() &#123;  m = make(map[string]Vertex)  m["Bell Labs"] = Vertex&#123;40.68433, -74.39967&#125;  fmt.Println(m["Bell Labs"])// &#123;40.68433 -74.39967&#125;&#125;
-2.和结构体语法类似
-12345var n = map[string]Vertex &#123;  "Bell Labs": Vertex&#123;40.68433, -74.39967,&#125;,  "Google":Vertex&#123;37.42202, -122.08408,&#125;,&#125;fmt.Println(n) //map[Bell Labs:&#123;40.68433 -74.39967&#125; Google:&#123;37.42202 -122.08408&#125;]
-如果map的value值只是一个类型，可以在{}中将类型省略
-1234var k = map[string]Vertex&#123;  "Bell Labs": &#123;40.68433, -74.39967&#125;,  "Google": &#123;37.42202, -122.08408&#125;,&#125;
-3.修改map
-
-插入或者修改元素: m[key] =&nbsp;elem
-获得元素:&nbsp;elem = m[key]
-删除元素: delete(m,key)
-检测是否存在: elem, ok = m[key]
-
+            <p>1.map</p>
+<p>map在使用之前必须使用make来创建，值为nil的map是空的，并且不能对它赋值</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> main</div><div class="line"></div><div class="line"><span class="keyword">import</span> (</div><div class="line">  <span class="string">"fmt"</span></div><div class="line">)</div><div class="line"></div><div class="line"><span class="keyword">type</span> Vertex <span class="keyword">struct</span>&#123;</div><div class="line">  Lat, Long <span class="keyword">float64</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> m <span class="keyword">map</span>[<span class="keyword">string</span>]Vertex</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</div><div class="line">  m = <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="keyword">string</span>]Vertex)</div><div class="line">  m[<span class="string">"Bell Labs"</span>] = Vertex&#123;<span class="number">40.68433</span>, <span class="number">-74.39967</span>&#125;</div><div class="line">  fmt.Println(m[<span class="string">"Bell Labs"</span>])<span class="comment">// &#123;40.68433 -74.39967&#125;</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>2.和结构体语法类似</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> n = <span class="keyword">map</span>[<span class="keyword">string</span>]Vertex &#123;</div><div class="line">  <span class="string">"Bell Labs"</span>: Vertex&#123;<span class="number">40.68433</span>, <span class="number">-74.39967</span>,&#125;,</div><div class="line">  <span class="string">"Google"</span>:Vertex&#123;<span class="number">37.42202</span>, <span class="number">-122.08408</span>,&#125;,</div><div class="line">&#125;</div><div class="line">fmt.Println(n) <span class="comment">//map[Bell Labs:&#123;40.68433 -74.39967&#125; Google:&#123;37.42202 -122.08408&#125;]</span></div></pre></td></tr></table></figure>
+<p>如果map的value值只是一个类型，可以在{}中将类型省略</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> k = <span class="keyword">map</span>[<span class="keyword">string</span>]Vertex&#123;</div><div class="line">  <span class="string">"Bell Labs"</span>: &#123;<span class="number">40.68433</span>, <span class="number">-74.39967</span>&#125;,</div><div class="line">  <span class="string">"Google"</span>: &#123;<span class="number">37.42202</span>, <span class="number">-122.08408</span>&#125;,</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>3.修改map</p>
+<ul>
+<li>插入或者修改元素: m[key] =&nbsp;<span style="white-space: pre-wrap; line-height: 1.6;">elem</span></li>
+<li>获得元素:&nbsp;<span style="white-space: pre-wrap; line-height: 1.6;">elem = m[key]</span></li>
+<li><span style="white-space: pre-wrap; line-height: 1.6;">删除元素: delete(m,key)</span></li>
+<li><span style="white-space: pre-wrap; line-height: 1.6;">检测是否存在: <span style="line-height: 1.6;">elem, ok = m[key]</span></span></li>
+</ul>
 
           
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/09/05/go-e6-8c-87-e5-8d-97-e5-ad-a6-e4-b9-a0-e7-ac-94-e8-ae-b0-e5-85-ad/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
         
       
     </div>
@@ -1690,35 +1648,36 @@ map在使用之前必须使用make来创建，值为nil的map是空的，并且�
       
         
           
-          1.数组：类型[n]T是有n个值的类型为T的数组
+            <p>1.数组：类型[n]T是有n个值的类型为T的数组</p>
+<blockquote>
+<p>var a [10] int</p>
+</blockquote>
+<p>变量a是一个有10个整数的数组。</p>
+<p><span style="color:#FF0000;">数组不能改变大小</span></p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> main</div><div class="line"></div><div class="line"><span class="keyword">import</span> <span class="string">"fmt"</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</div><div class="line">  <span class="keyword">var</span> a [<span class="number">10</span>]<span class="keyword">string</span></div><div class="line">  a[<span class="number">0</span>] = <span class="string">"hello"</span></div><div class="line">  a[<span class="number">1</span>] = <span class="string">"world"</span></div><div class="line">  fmt.Println(a[<span class="number">0</span>], a[<span class="number">1</span>]) <span class="comment">//hello world</span></div><div class="line">  fmt.Println(a) <span class="comment">// [hello world</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>2.slice(切片),[]T为一个类型为T的slice,len(s)返回切片s的长度</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">s := []<span class="keyword">int</span>&#123;<span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">11</span>, <span class="number">13</span>&#125;</div><div class="line">fmt.Println(<span class="string">"s == "</span>, s)</div><div class="line"></div><div class="line"><span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="built_in">len</span>(s); i++ &#123;</div><div class="line">  fmt.Printf(<span class="string">"s[%d] = %d\n"</span>, i, s[i])</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//输出结果</span></div><div class="line">s == [<span class="number">2</span> <span class="number">3</span> <span class="number">5</span> <span class="number">7</span> <span class="number">11</span> <span class="number">13</span>]</div><div class="line">s[<span class="number">0</span>] = <span class="number">2</span></div><div class="line">s[<span class="number">1</span>] = <span class="number">3</span></div><div class="line">s[<span class="number">2</span>] = <span class="number">5</span></div><div class="line">s[<span class="number">3</span>] = <span class="number">7</span></div><div class="line">s[<span class="number">4</span>] = <span class="number">11</span></div><div class="line">s[<span class="number">5</span>] = <span class="number">13</span></div></pre></td></tr></table></figure>
+<p>3.slice 可以包含任意的类型，包括另一个 slice。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">game := [][] <span class="keyword">string</span>&#123;</div><div class="line">  []<span class="keyword">string</span>&#123;<span class="string">""</span>,<span class="string">""</span>,<span class="string">""</span>&#125;,</div><div class="line">  []<span class="keyword">string</span>&#123;<span class="string">""</span>,<span class="string">""</span>,<span class="string">""</span>&#125;,</div><div class="line">  []<span class="keyword">string</span>&#123;<span class="string">""</span>,<span class="string">""</span>,<span class="string">""</span>&#125;,</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>4.对slice切片</p>
+<blockquote>
+<p>s[lo:hi] // 包含lo元素，不包含hi元素</p>
+</blockquote>
+<p>5.构造slice,slice由make创建，这会分配一个全是零值的数组并返回一个slice并指向这个数组</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">a := <span class="built_in">make</span>([]<span class="keyword">int</span>, <span class="number">5</span>)</div></pre></td></tr></table></figure>
+<p>可以传递第三个参数来执行容量</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">b := <span class="built_in">make</span>([]<span class="keyword">int</span>, <span class="number">0</span> , <span class="number">5</span>) <span class="comment">// len(b) = 0, cap(b) = 5</span></div></pre></td></tr></table></figure>
+<p>如：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">printlnSlice</span><span class="params">(s <span class="keyword">string</span>, x []<span class="keyword">int</span>)</span></span> &#123;</div><div class="line">  fmt.Printf(<span class="string">"%s len=%d, cap=%d %v\n"</span>, s, <span class="built_in">len</span>(x), <span class="built_in">cap</span>(x), x)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</div><div class="line">  a := <span class="built_in">make</span>([]<span class="keyword">int</span>, <span class="number">5</span>)</div><div class="line">  printlnSlice(<span class="string">"a"</span>, a) <span class="comment">// a len=5, cap=5 [0 0 0 0 0]</span></div><div class="line">  b := <span class="built_in">make</span>([]<span class="keyword">int</span>, <span class="number">0</span>, <span class="number">5</span>)</div><div class="line">  printlnSlice(<span class="string">"b"</span>, b) <span class="comment">// b len=0, cap=5 []</span></div><div class="line">  c := b[:<span class="number">2</span>]</div><div class="line">  printlnSlice(<span class="string">"c"</span>, c) <span class="comment">// c len=2, cap=5 [0 0]</span></div><div class="line">  d := c[<span class="number">2</span>:<span class="number">5</span>]</div><div class="line">  printlnSlice(<span class="string">"d"</span>, d) <span class="comment">//d len=3, cap=3 [0 0 0]</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>6.向slice结尾添加元素，append</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a []<span class="keyword">int</span></div><div class="line"><span class="built_in">append</span>(a, <span class="number">0</span>)</div><div class="line"><span class="built_in">append</span>(a, <span class="number">1</span>)</div><div class="line"><span class="built_in">append</span>(a, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>)</div></pre></td></tr></table></figure>
+<p>如果slice底层数组的不能分配更多的数组时，会自动分配一个更大的数组，返回的slice指向新的数组。</p>
+<p>7.切片是数组之上的抽象数据类型。</p>
+<p>初始化不同,切片不需要指定固定长度:var a [10]int//数组var a []int//切片</p>
+<p>切片的零值是nil</p>
+<p>更多的<a href="https://blog.go-zh.org/go-slices-usage-and-internals" target="_blank" rel="external">slice切片：用法与本质</a></p>
 
-var a [10] int
-
-变量a是一个有10个整数的数组。
-数组不能改变大小
-12345678910package mainimport "fmt"func main() &#123;  var a [10]string  a[0] = "hello"  a[1] = "world"  fmt.Println(a[0], a[1]) //hello world  fmt.Println(a) // [hello world&#125;
-2.slice(切片),[]T为一个类型为T的slice,len(s)返回切片s的长度
-123456789101112131415s := []int&#123;2, 3, 5, 7, 11, 13&#125;fmt.Println("s == ", s)for i := 0; i &lt; len(s); i++ &#123;  fmt.Printf("s[%d] = %d\n", i, s[i])&#125;//输出结果s == [2 3 5 7 11 13]s[0] = 2s[1] = 3s[2] = 5s[3] = 7s[4] = 11s[5] = 13
-3.slice 可以包含任意的类型，包括另一个 slice。
-123456game := [][] string&#123;  []string&#123;"","",""&#125;,  []string&#123;"","",""&#125;,  []string&#123;"","",""&#125;,&#125;
-4.对slice切片
-
-s[lo:hi] // 包含lo元素，不包含hi元素
-
-5.构造slice,slice由make创建，这会分配一个全是零值的数组并返回一个slice并指向这个数组
-1a := make([]int, 5)
-可以传递第三个参数来执行容量
-1b := make([]int, 0 , 5) // len(b) = 0, cap(b) = 5
-如：
-1234567891011121314func printlnSlice(s string, x []int) &#123;  fmt.Printf("%s len=%d, cap=%d %v\n", s, len(x), cap(x), 
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/09/03/go-e6-8c-87-e5-8d-97-e5-ad-a6-e4-b9-a0-e7-ac-94-e8-ae-b0-e4-ba-94/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          
         
       
     </div>
@@ -1858,20 +1817,13 @@ s[lo:hi] // 包含lo元素，不包含hi元素
       
         
           
-          1.结构体struct
-12345678910type Vertex struct &#123;  X int  Y int&#125;func main()&#123;  v := Vertex&#123;1,2&#125;  v.X = 4  fmt.Println(v.X) // 4&#125;
-2.结构体指针
-1234v := Vertex&#123;1,2&#125;p := &amp;amp;vp.X = 1e9fmt.Println(p.X) //1000000000
-3.结构体语法，可以仅列出部分字段；&amp;可以指向结构体的指针
-1234567var (  v1 = Vertex&#123;1, 2&#125;  v2 = Vertex&#123;X: 1&#125;  v3 = Vertex&#123;&#125;  p = *Vertex&#123;1, 2&#125;)fmt.Println(v1, v2, v3, p)//&#123;1 2&#125; &#123;1 0&#125; &#123;0 0&#125; *&#123;1 2&#125;
+            <p>1.结构体struct</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">type</span> Vertex <span class="keyword">struct</span> &#123;</div><div class="line">  X <span class="keyword">int</span></div><div class="line">  Y <span class="keyword">int</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">  v := Vertex&#123;<span class="number">1</span>,<span class="number">2</span>&#125;</div><div class="line">  v.X = <span class="number">4</span></div><div class="line">  fmt.Println(v.X) <span class="comment">// 4</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>2.结构体指针</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">v := Vertex&#123;<span class="number">1</span>,<span class="number">2</span>&#125;</div><div class="line">p := &amp;amp;v</div><div class="line">p.X = <span class="number">1e9</span></div><div class="line">fmt.Println(p.X) <span class="comment">//1000000000</span></div></pre></td></tr></table></figure>
+<p>3.结构体语法，可以仅列出部分字段；&amp;可以指向结构体的指针</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> (</div><div class="line">  v1 = Vertex&#123;<span class="number">1</span>, <span class="number">2</span>&#125;</div><div class="line">  v2 = Vertex&#123;X: <span class="number">1</span>&#125;</div><div class="line">  v3 = Vertex&#123;&#125;</div><div class="line">  p = *Vertex&#123;<span class="number">1</span>, <span class="number">2</span>&#125;</div><div class="line">)</div><div class="line">fmt.Println(v1, v2, v3, p)<span class="comment">//&#123;1 2&#125; &#123;1 0&#125; &#123;0 0&#125; *&#123;1 2&#125;</span></div></pre></td></tr></table></figure>
           
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/09/02/go-e6-8c-87-e5-8d-97-e5-ad-a6-e4-b9-a0-e7-ac-94-e8-ae-b0-e5-9b-9b/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
         
       
     </div>
