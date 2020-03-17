@@ -533,8 +533,17 @@ curl -u username:password http://172.21.1.19/api/users
 
 但是通过restclient访问时像curl一样添加-u参数，需要在Header中增加参数
 
-Authorization:
-          ...
+Authorization: Basic base64encoded(user:pass)
+
+如：
+123Builder builder = restClient.target(url + "/api/users").request();String auth = Base64.getEncoder().encodeToString("user:password".getBytes())；builder.header("Authorization","Basic " + auth);
+在JAVA8中，可以直接使用Base64工具类。
+参考链接:
+
+https://stackoverflow.com/questions/29116595/how-to-send-u-data-of-curl-in-rest-client
+
+
+          
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/09/25/harbor-api-token/#more" rel="contents">
@@ -853,8 +862,8 @@ Authorization:
 和其它语言不同，类型实现接口不需要显示声明，不需要implements关键字
 
 定义接口和实现接口互不依赖
-1234567891011121314151617181920212223242526272829303132333435type Abser inter
-          ...
+1234567891011121314151617181920212223242526272829303132333435type Abser interface &#123;  Abs() float64&#125;type MyFloat float64func (f MyFloat) Abs() float64 &#123;  if f &lt; 0 &#123;    return float64(-f)  &#125;  return float64(f)&#125;type Vertex struct &#123;  X, Y float64&#125;func (v *Vertex) Abs() float64 &#123;  return math.Sqrt(v.X*v.X + v.Y*v.Y)&#125;func main() &#123;  var a Abser  f := MyFloat(-math.Sqrt2)  v := Vertex&#123;3, 4&#125;  a = f  // a MyFloat 实现了 Abser  a = &amp;v // a *Vertex 实现了 Abser  // 下面一行，v 是一个 Vertex（而不是 *Vertex）  // 所以没有实现 Abser。  a = v  fmt.Println(a.Abs())&#125;
+          
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/09/15/go-e6-8c-87-e5-8d-97-e5-ad-a6-e4-b9-a0-e7-ac-94-e8-ae-b0-e4-b9-9d/#more" rel="contents">
@@ -1003,8 +1012,21 @@ Authorization:
           
           1.结构体方法
 Go语言不像JAVA，没有类的定义，但是依然可以为结构体定义方法。
-123456789101112131415package mainimport (  "fmt"  "math")type Vertex struct &#123;  X, Y float64&#125;func (
-          ...
+123456789101112131415package mainimport (  "fmt"  "math")type Vertex struct &#123;  X, Y float64&#125;func (v *Vertex) Abs() float64 &#123;  return math.Sqrt(v.X * v.X + v.Y * v.Y)&#125;func main()&#123;  v := &amp;Vertex&#123;3,4&#125;  fmt.Println(v.Abs()) // 5&#125;
+2.还可以对包内任意类型定义任意方法，但是不能对包外的类型或者基础类型定义方法
+1234567891011121314151617181920package mainimport (  "fmt"  "math")type MyFloat float64func (f MyFloat) Abs() float64 &#123;  if f &lt; 0 &#123;  return float64(-f)  &#125;  return float64(f)&#125;func main()&#123;  f := MyFloat(-math.Sqrt2)  fmt.Println(f.Abs()) // 1.4142135623730951&#125;
+3.方法可以与类型和类型的指针相关联
+如1中的Abs方法是作用的*Vertex指针类型上
+1234func (v *Vertex) Scale(f float64)&#123;  v.X = v.X * f  v.Y = v.Y * f&#125;
+与
+1234func (v Vertex) Scale(f float64)&#123;  v.X = v.X * f  v.Y = v.Y * f&#125;
+的区别
+v := *Vertex(3,5)
+v.Scale(5)
+
+前边的是用*Vertex指针类型接受，是引用传递，所以会改变接受者v的原始值，而后边的是用变量（后者说是对象）接受，是值传递，会对v进行一份copy,而不会对原始值做更改。
+
+          
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/09/11/go-e6-8c-87-e5-8d-97-e5-ad-a6-e4-b9-a0-e7-ac-94-e8-ae-b0-e5-85-ab/#more" rel="contents">
@@ -1157,8 +1179,10 @@ Go语言不像JAVA，没有类的定义，但是依然可以为结构体定义�
 闭包是一个函数值，他引用了函数体之外的变量
 这个函数值可以对引用的变量进行修改或者赋值
 
-1234567891011121314151617181920package mainimport (  "fmt")func a
-          ...
+1234567891011121314151617181920package mainimport (  "fmt")func adder() func(int) int &#123;  sum := 0  return func(x int) int &#123;    sum += x	return sum  &#125;&#125;func main() &#123;  pos, neg := adder(), adder()  for i := 0; i &lt; 10; i++ &#123;    fmt.Println(pos(i), neg(-2*i))  &#125;&#125;
+输出结果：
+12345678910111213[Running] go run "/Users/badwolf/Documents/go/hello/tempCodeRunnerFile.go"0 01 -23 -66 -1210 -2015 -3021 -4228 -5636 -7245 -90[Done] exited with code=0 in 0.605 seconds
+          
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/09/07/go-e6-8c-87-e5-8d-97-e5-ad-a6-e4-b9-a0-e7-ac-94-e8-ae-b0-e4-b8-83/#more" rel="contents">
@@ -1311,8 +1335,53 @@ Go语言不像JAVA，没有类的定义，但是依然可以为结构体定义�
 
 tar -zxvf&nbsp;zookeeper-3.4.10.tar.gz
 
-3.修改配
-          ...
+3.修改配置文件
+
+zookeeper-3.4.10/confmv zoo_sample.cfg zoo.cfg
+
+zoo.cfg可以根据需要修改配置信息,如clientPort=2181
+4.启动zookeeper
+
+cd ../bin./zkServer.sh start
+
+启动成功信息：
+ZooKeeper JMX enabled by default
+Using config: /root/zookeeper-3.4.10/bin/../conf/zoo.cfg
+Starting zookeeper … STARTED
+查看端口占用信息：
+
+netstat -an|grep 2181
+
+5.客户端连接测试
+
+./zkCli.sh -server 127.0.0.1
+
+连接成功后执行help命令可以查看帮助命令
+[zk: 127.0.0.1(CONNECTED) 0] help
+ZooKeeper -server host:port cmd args
+ stat path [watch]
+ set path data [version]
+ ls path [watch]
+ delquota [-n|-b] path
+ ls2 path [watch]
+ setAcl path acl
+ setquota -n|-b val path
+ history&nbsp;
+ redo cmdno
+ printwatches on|off
+ delete path [version]
+ sync path
+ listquota path
+ rmr path
+ get path [watch]
+ create [-s] [-e] path data acl
+ addauth scheme auth
+ quit&nbsp;
+ getAcl path
+ close&nbsp;
+ connect host:port
+
+          
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/09/06/zookeeper-e5-ae-89-e8-a3-85/#more" rel="contents">
@@ -1461,8 +1530,20 @@ tar -zxvf&nbsp;zookeeper-3.4.10.tar.gz
           
           1.map
 map在使用之前必须使用make来创建，值为nil的map是空的，并且不能对它赋值
-1234567891011121314151617package mainimport (  "fmt")type Vertex struct&#123;  Lat, Long float64&#125;
-          ...
+1234567891011121314151617package mainimport (  "fmt")type Vertex struct&#123;  Lat, Long float64&#125;var m map[string]Vertexfunc main() &#123;  m = make(map[string]Vertex)  m["Bell Labs"] = Vertex&#123;40.68433, -74.39967&#125;  fmt.Println(m["Bell Labs"])// &#123;40.68433 -74.39967&#125;&#125;
+2.和结构体语法类似
+12345var n = map[string]Vertex &#123;  "Bell Labs": Vertex&#123;40.68433, -74.39967,&#125;,  "Google":Vertex&#123;37.42202, -122.08408,&#125;,&#125;fmt.Println(n) //map[Bell Labs:&#123;40.68433 -74.39967&#125; Google:&#123;37.42202 -122.08408&#125;]
+如果map的value值只是一个类型，可以在{}中将类型省略
+1234var k = map[string]Vertex&#123;  "Bell Labs": &#123;40.68433, -74.39967&#125;,  "Google": &#123;37.42202, -122.08408&#125;,&#125;
+3.修改map
+
+插入或者修改元素: m[key] =&nbsp;elem
+获得元素:&nbsp;elem = m[key]
+删除元素: delete(m,key)
+检测是否存在: elem, ok = m[key]
+
+
+          
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/09/05/go-e6-8c-87-e5-8d-97-e5-ad-a6-e4-b9-a0-e7-ac-94-e8-ae-b0-e5-85-ad/#more" rel="contents">
@@ -1615,7 +1696,21 @@ var a [10] int
 
 变量a是一个有10个整数的数组。
 数组不能改变大小
-12345678910package mainimport "fmt"func main() &#123;  var a [10]string  a[0] = "h
+12345678910package mainimport "fmt"func main() &#123;  var a [10]string  a[0] = "hello"  a[1] = "world"  fmt.Println(a[0], a[1]) //hello world  fmt.Println(a) // [hello world&#125;
+2.slice(切片),[]T为一个类型为T的slice,len(s)返回切片s的长度
+123456789101112131415s := []int&#123;2, 3, 5, 7, 11, 13&#125;fmt.Println("s == ", s)for i := 0; i &lt; len(s); i++ &#123;  fmt.Printf("s[%d] = %d\n", i, s[i])&#125;//输出结果s == [2 3 5 7 11 13]s[0] = 2s[1] = 3s[2] = 5s[3] = 7s[4] = 11s[5] = 13
+3.slice 可以包含任意的类型，包括另一个 slice。
+123456game := [][] string&#123;  []string&#123;"","",""&#125;,  []string&#123;"","",""&#125;,  []string&#123;"","",""&#125;,&#125;
+4.对slice切片
+
+s[lo:hi] // 包含lo元素，不包含hi元素
+
+5.构造slice,slice由make创建，这会分配一个全是零值的数组并返回一个slice并指向这个数组
+1a := make([]int, 5)
+可以传递第三个参数来执行容量
+1b := make([]int, 0 , 5) // len(b) = 0, cap(b) = 5
+如：
+1234567891011121314func printlnSlice(s string, x []int) &#123;  fmt.Printf("%s len=%d, cap=%d %v\n", s, len(x), cap(x), 
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1764,8 +1859,12 @@ var a [10] int
         
           
           1.结构体struct
-12345678910type Vertex struct &#123;  X int  Y int&#125;func main()&#123;  v := Vertex&#123;1,2&#125;  v.X = 4  fmt.Println(v.X) // 4&#125
-          ...
+12345678910type Vertex struct &#123;  X int  Y int&#125;func main()&#123;  v := Vertex&#123;1,2&#125;  v.X = 4  fmt.Println(v.X) // 4&#125;
+2.结构体指针
+1234v := Vertex&#123;1,2&#125;p := &amp;amp;vp.X = 1e9fmt.Println(p.X) //1000000000
+3.结构体语法，可以仅列出部分字段；&amp;可以指向结构体的指针
+1234567var (  v1 = Vertex&#123;1, 2&#125;  v2 = Vertex&#123;X: 1&#125;  v3 = Vertex&#123;&#125;  p = *Vertex&#123;1, 2&#125;)fmt.Println(v1, v2, v3, p)//&#123;1 2&#125; &#123;1 0&#125; &#123;0 0&#125; *&#123;1 2&#125;
+          
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/09/02/go-e6-8c-87-e5-8d-97-e5-ad-a6-e4-b9-a0-e7-ac-94-e8-ae-b0-e5-9b-9b/#more" rel="contents">

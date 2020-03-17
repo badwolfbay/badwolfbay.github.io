@@ -375,7 +375,30 @@
           
           U盘启动盘制作manjaro的U盘启动盘如果使用UltroISO或者其他工具制作以后并不能启动,推荐使用Rufus,并且需要低版本.
 在制作镜像过程中,要选择以DD镜像模式写入.
-安装完成之后的设置设置中国源123sudo pacman-mirrors -i -c China -m rank # 之
+安装完成之后的设置设置中国源123sudo pacman-mirrors -i -c China -m rank # 之后会弹出框,进行选择即可#更新系统软件sudo pacman -Syu
+之后还需要添加archlinuxcn源,不然很多软件找不到,编辑/etc/pacman.conf文件,添加
+123[archlinuxcn]SigLevel = TrustAllServer = https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/$arch
+然后执行
+1sudo pacman -S archlinuxcn-keyring
+然后就可以通过pacman命令安装各种软件了.
+安装软件如安装archlinuxcn库中的搜狗输入法
+1sudo pacman -S fcitx-sogoupinyin
+
+安装搜狗输入法以后需要配置~/.xprofile文件,加入
+1234&gt; export GTK_IM_MODULE=fcitx&gt; export QT_IM_MODULE=fcitx&gt; export XMODIFIERS=&quot;@im=fcitx&quot;&gt;
+不然无法识别
+
+ AUR是Arch User Repository(Arch用户软件源),大多数情况下,pacman是不会对AUR的软件包进行更新的，因此需要安装专门的工具进行管理。
+安装yay工具
+1sudo pacman -S yay
+然后就可以通过yay命令安装AUR仓库中的软件了.
+美化主题安装numix cicle图标
+1yay -S numix-circle-icon-theme-git
+安装Latte dock软件
+1sudo pacman -S latte-dock
+在latte dock软件启动后,右键布局-&gt;配置中选择下载,可以联网下载macOS主题,然后选择应用即可.
+同理,在系统设置中,可以从互联网上下载自己喜欢的主题,图标,开机登录界面,锁屏等.
+字体在不修改字体渲染的情况下,各种软件的中文字体会大小不一,包括在使用chrome浏览网站时
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -526,8 +549,19 @@
           在基于electron开发时使用vuex的dispatch方法传值无效
 1vue.$store.dispatch(VUEX_ACTION_UPDATE_INFO, info)
 并且不报任何错误.经查找是vuex-electron的问题.
-解决方法1:在store/index.js中去掉createS
-          ...
+解决方法1:在store/index.js中去掉createSharedMutations
+12345678export default new Vuex.Store(&#123;  modules,  plugins: [    createPersistedState(),    createSharedMutations() // 注释掉这一行  ],  strict: process.env.NODE_ENV !== &apos;production&apos;&#125;)
+这是因为 vuex-electron 引入了一个用于多进程间共享 Vuex Store 的状态的插件.如果没有多进程交互的需求，完全可以不引入这个插件.
+解决方法2https://github.com/vue-electron/vuex-electron#installation
+看第 3 条：
+
+In case if you enabled createSharedMutations() plugin you need to create an instance of store in the main process. To do it just add this line into your main process (for example src/main.js):
+12&gt; import './path/to/your/store'&gt;
+
+这种时候就不能用第一种方法来解决问题了。
+找到 /src/main/index.js，在前面加上一句：
+1import '../renderer/store'
+          
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2020/03/15/eletron-vuex-not-working/#more" rel="contents">
@@ -678,8 +712,12 @@
 
 因为经常使用python,在win下开发很难受,所以将笔记本系统换成了manjaro,在执行镜像,安装系统,安装软件,美化和字体渲染方面也遇到了很多问题.晒一下截图.并记录一下遇到的大的问题,等有时间统一整理记录.
 
-openvpn配置文件是openssl1.0版本编译
-          ...
+openvpn配置文件是openssl1.0版本编译,并修改qopenvpn图形界面
+Electron版本的docker客户端图形工具开发
+字体渲染,在设置中设置字体后软件字体不生效问题
+
+
+          
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2020/03/13/manjaro-desktop/#more" rel="contents">
@@ -989,8 +1027,9 @@ openvpn配置文件是openssl1.0版本编译
       
         
           
-          应用程序作为provider注册到Dubbo的注册中心后，作为提供者一直被消费者访问不到，报出一个超时链接的错误。    &ensp;&ensp;一开始怀疑是网络问题(提供者将自身的服务注册到注册中心后，消费者会从注册中心获取提供者的真实地址和端口，从而通过RPC进行远程调用，所以提供者的地址信息会
-          ...
+          应用程序作为provider注册到Dubbo的注册中心后，作为提供者一直被消费者访问不到，报出一个超时链接的错误。    &ensp;&ensp;一开始怀疑是网络问题(提供者将自身的服务注册到注册中心后，消费者会从注册中心获取提供者的真实地址和端口，从而通过RPC进行远程调用，所以提供者的地址信息会在消费者的客户端缓存一份)，可是从消费者到注册者的网络环境能ping通，telnet其提供者的端口也是通的。    &ensp;&ensp;从浏览器中通过Http的方式访问提供者的接口，浏览器就一直处于访问的挂起状态，得不到返回信息。同样后台也看不到任何报错信息，怀疑是不是Dubbo的问题，可是检查注册中心后发现一切正常，其他服务都能够正常访问。    &ensp;&ensp;最后在部署程序时发现Tomcat的控制台日志一直卡住。悲催的因为程序只能部署在Windows上，之前一直在Linux下部署,只有开发在Windows下开发，可是从来没有遇到这种问题。Tomcat是通过双击startup.bat启动的，后来决定从cmd中启动试一下，程序居然可以访问了!!!    &ensp;&ensp;百度后发现原来是Windows下Console设置的问题。在Console中右键，选择属性，然后再选项中勾掉编辑选项的快速编辑模式，默认是打勾的，去掉那个勾勾，然后再确认就可以了。Windows下的大坑啊。。。折腾了一下午！
+
+          
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/01/30/window-tomcat-start/#more" rel="contents">
@@ -1297,7 +1336,13 @@ openvpn配置文件是openssl1.0版本编译
           
           BaiduExporter插件被Google下架，安装BaiduExporter插件只能离线安装，但是会提示只能通过Chrome网上应用商店安装该程序的错误(可以通过加压后再进行安装)，如果不想安装这个插件，可以安装YAAW。
 因为公司换了电脑，不再使用Mac，重新在Win7上安装Aria2。
-下载
+下载安装aria21.进入官网下载页面Aria22.下载win版本的压缩包3.解压后放到一个目录下，如：D:\Aria2,然后在这个目录下建立3个文件，分别为
+
+Aria2.log(日志，空文件)
+aria2.session(日志，空文件)
+aria2.conf(配置文件)
+
+配置aria2打开aria2.conf文件，将一下内容复制到文件123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101dir=D:\Download\log=D:\Aria2\Aria2.loginput-file=D:\Aria2\aria2.sessionsave-session=D:\Aria2\aria2.sessionsave-session-interval=60force-save=truelog-level=error# see --split optionmax-concurrent-downloads=5continue=truemax-overall-download-limit=0max-overall-upload-limit=50Kmax-upload-limit=20# Http/FTP optionsconnect-timeout=120lowest-speed-limit=10Kmax-connection-per-server=10max-file-not-found=2min-split-size=1Msplit=5check-certificate=falsehttp-no-cache=true# FTP Specific Optio
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1452,7 +1497,22 @@ openvpn配置文件是openssl1.0版本编译
 https://www.python.org/getit注:安装时选择安装pip
 
 2.配置环境
-在W
+在Windows的环境变量中path中添加C:\Python\Python36-32;C:\Python\Python36-32\Scripts
+3.安装Django
+在cmd中执行1pip install Django==2.0
+配置Django根据数据库反向生成model
+1.新建项目
+在想要存储的目录下执行命令
+1django-admin startproject cwtb
+2.修改数据库修改新建项目的settings.py文件数据库连接
+12345678910DATABASES = &#123;    &apos;default&apos;: &#123;        &apos;ENGINE&apos;: &apos;django.db.backends.mysql&apos;,        &apos;NAME&apos;: &apos;fms_cwtb&apos;,        &apos;USER&apos;: &apos;jxq&apos;,        &apos;PASSWORD&apos;: &apos;jxq&apos;,        &apos;HOST&apos;: &apos;192.168.157.61&apos;,        &apos;PORT&apos;: &apos;3306&apos;,	&#125;&#125;
+3.执行命令
+1234#安装MySQL客户端pip install mysqlclient#生成modelspython manage.py inspectdb
+4.创建app，导入models
+123python manage.py startapp apppython manage.py inspectdb &gt; app/models.py
+5.生成admin需要的表到数据库
+12python manage.py migrate authpython manage.py migrate
+6.创建登录用
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1739,7 +1799,8 @@ https://www.python.org/getit注:安装时选择安装pip
 对象锁
 类锁
 
-1.synchronized作用于普通方法时依靠对象锁工作，多线程访问synchronized方法，一旦某个线程抢到锁后，其他进程排队等待等效于1234void method&#123;    synchronized(
+1.synchronized作用于普通方法时依靠对象锁工作，多线程访问synchronized方法，一旦某个线程抢到锁后，其他进程排队等待等效于1234void method&#123;    synchronized(this)&#123;    &#125;&#125;
+示例：123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657public class TestSynchronized &#123;    public synchronized void method1() throws InterruptedException &#123;        System.out.println(&quot;Method1 start at :&quot; + System.currentTimeMillis());        Thread.sleep(6000);        System.out.println(&quot;Method1 end at :&quot; + System.currentTimeMillis());    &#125;    public synchronized void method2() throws InterruptedException &#123;        while (true) &#123;            System.out.println(&quot;method2 running&quot;);            Thread.sleep(200);        &#125;    &#125;    static TestSynchronized instance = new TestSynchronized();    public static void main(String[] args) &#123;        Thread thread1 = new Thread(new Runnable() &#123;            
           ...
           <!--noindex-->
           <div class="post-button text-center">

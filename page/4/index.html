@@ -380,8 +380,12 @@
 输出结果为
 
 *表示指针指向底层的值
-1fmt.P
-          ...
+1fmt.Println(*p)
+并且可以通过修改指针修改底层的值
+1*p = 21
+这就是常说的”间接引用”。与C语言不同，go语言的指针没有运算。
+
+          
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/09/01/go-e6-8c-87-e5-8d-97-e5-ad-a6-e4-b9-a0-e7-ac-94-e8-ae-b0-e4-b8-89/#more" rel="contents">
@@ -530,8 +534,24 @@
           
           Dockerhub可以根据github工程中Dockerfile自动生成镜像，一般情况下，我们需要google下gcr的镜像，因为网络原因连接不上，我们可以将Dockerfile文件提交到github,然后生成我们自己的镜像，如：
 
-前提是已经注册自己的Dockerhub帐号，登录https://h
-          ...
+前提是已经注册自己的Dockerhub帐号，登录https://hub.docker.com
+点击右上角Create -&gt; Create Automated Build
+
+后登录自己的github帐号
+
+从自己的github工程中选择要创建镜像的工程
+
+后输入要生成的镜像名称
+
+在Build Setting的Tab页中输入Dockerfile的位置以及tag
+
+/目录为相对于github中工程的位置，如github中Dockerfile在/centos下
+
+则输入/centos，再点击save changes后，点击Trigger后就可以构建镜像了，后续如果github中代码有更改，构建动作会自动触发。点击build details可以查看每次构建日志
+
+
+
+          
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/08/31/e5-88-a9-e7-94-a8dockerhubgithub-e8-87-aa-e5-ae-9a-e4-b9-89-e5-88-b6-e4-bd-9c-e9-95-9c-e5-83-8f/#more" rel="contents">
@@ -685,7 +705,38 @@ go语言只有一个循环语句，即for.
 1234sum := 0for i:= 0;i&lt;10;i++&#123;  sum += i&#125;
 
 不像java,python等，条件表达式不需要()小括号，循环体需要{}
-初始化条件和后置判断条件不是必须的，如for ; i&
+初始化条件和后置判断条件不是必须的，如for ; i&lt;10; {}
+在java等语言中while循环在go语言中写法
+
+123for i &lt; 10 &#123;  sum += i&#125;
+
+死循环
+
+123for &#123;  sum += i&#125;
+2.if语句
+
+同for循环一样,if语句的判断条件语句也不需要()
+
+12if i&lt;10 &#123;&#125;
+
+同for循环一样，条件之前也可以是一个简单的语句
+
+1234567i := 10if j := 10; i&lt;j &#123;  return j&#125; else &#123;  return i&#125;
+3.switch语句
+123456789101112131415161718package mainimport (  "fmt"  "runtime")func main() &#123;  fmt.Print("Go runs on ")  switch os := runtime.GOOS; os &#123;  case "darwin":    fmt.Println("OS X.")  case "linux":    fmt.Println("Linux.")  default:    fmt.Printf("%s.", os)  &#125;&#125;
+
+按照条件从上到下执行，直到匹配到成功为止，执行成功后，后边的条件不再执行
+没有条件的switch，如switch {},同switch true {}一样
+
+4.defer语句
+
+defer 语句会延迟函数的执行直到上层函数返回。
+延迟调用的参数会立刻生成，但是在上层函数返回前函数都不会被调用
+
+
+12345678package mainimport "fmt";func main()&#123;  defer fmt.Println("world&amp;quot;)  fmt.Print("hello")&#125;
+
+defer栈，延迟的
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -839,8 +890,17 @@ go语言只有一个循环语句，即for.
 ssh-keygen -t rsa
 
 
-2.命令会在当前用户的家目录的.ssh的目录下生成id_rsa和id_rsa.pub文件
-          ...
+2.命令会在当前用户的家目录的.ssh的目录下生成id_rsa和id_rsa.pub文件，将id_rsa.pub文件copy到其他主机(172.21.3.125)的.ssh/authorized_keys目录下
+
+因为我的是root用户，所以copy到/root/.ssh目录下。
+3.这样再登陆172.21.3.125就可以不用输入密码了。需要注意的是
+authorized_keys的权限需要是600。(chmod 600 .ssh/authorized_keys)
+将id_rsa.pub文件Copy到172.21.3.126上就可以免密码登陆到172.21.3.126了。
+将以上的命令和步骤重复在172.21.3.125/126分别执行，
+注意已经存在authorized_keys文件不能覆盖，需要在文件内容后追加其他主机的id_rsa.pub的内容。
+这样就可以三台机器 间互相免密码访问了。
+
+          
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/08/30/ssh-e5-85-8d-e5-af-86-e7-a0-81-e7-99-bb-e9-99-86/#more" rel="contents">
@@ -997,8 +1057,8 @@ ssh-keygen -t rsa
 
 注意：同时使用args和**kwargs时，args参数必须在**kwargs前边
 
-123456789def foo(*args, **kwar
-          ...
+123456789def foo(*args, **kwargs):	print 'args = ', args	print 'kwargs = ', kwargs    if name == '__main__':	foo(1,2,3,4)	foo(a=1, b=2, c=3, d=4)	foo(1,2,3,4,a=1, b=2, c=3, b=4)	foo('a', 1, None, a=1, b='2', c=3)
+          
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/08/29/python-args-kwargs-e7-90-86-e8-a7-a3/#more" rel="contents">
@@ -1150,8 +1210,41 @@ Golang提供了官方的学习手册，tour地址：https://tour.go-zh.org同时
 
 1go get github.com/Go-zh/tour/gotour
 然后就可以得到go tour了
-12cd $GOPATH/bin./g
-          ...
+12cd $GOPATH/bin./gotour
+2.包
+每个 Go 程序都是由包组成的。
+程序运行的入口是包 main 。
+一般情况下，包名与导入路径的最后一个目录一致。
+3.包的导入
+12import "fmt"import "math"
+或者更多时候是下面的导入形式
+1234import (	"fmt"	"math")
+4.大小写
+首字母大写的名字是被导出的，可以被其他包引用，名称为小写的名称不会被导出
+如：
+可以引用fmt.Println()，而不能是fmt.println()
+5.函数定义
+123func add(x int, y int) int&#123;	return x + y&#125;
+Golang和其他语言不同，变量名在类型之前,函数返回值再最后。
+如果参数类型相同，则可以合并，如上可以写成 x, y int 。
+函数返回值可以返回多个，形式为(int, int)
+6.变量定义
+
+var x ,y
+
+可以定义在包级别或者函数级别。
+函数赋值var x int = 1,可以省略类型，如var x = 1。
+更可以简写成x :=1,这种情况下不能在函数外使用。
+变量在没有初始化为默认为零值：
+
+数值类型为 0 ，
+布尔类型为 false ，
+字符串为 &quot;&quot; （空字符串）不同类型之间的转换需要显示转换,如 int(i)
+
+7.常量
+常量定义与变量类似，不同的是不能使用:=定义
+
+          
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/08/28/golang-tour-e5-ad-a6-e4-b9-a0-e7-ac-94-e8-ae-b0-e4-b8-80/#more" rel="contents">
@@ -1304,8 +1397,32 @@ sudo apt-get install openvpn
 
 2.配置文件
 复制认证所需要的文件(ca.crt xxxxx_client_vpn.ovpn xxxxx.crt xxxxx.key ta.key)到/etc/openvpn目录下
-3.启动
-          ...
+3.启动openvpn客户端
+
+sudo openvpn /etc/openvpn/xxxxx_client_vpn.ovpn
+
+注意：命令需要在/etc/openvpn目录下执行，否则可能出现No such file or directory错误
+
+MAC下安装
+MAC有tunnelblick软件进行图形化安装，下边主要是通过命令行安装
+1.安装brew2.通过brew进行安装
+
+brew install openvpn
+
+To have launchd start openvpn now and restart at startup（如果想要启动openvpn或者在启动时重启可以执行命令）:
+
+sudo brew services start openvpn
+
+3.安装目录
+
+ /usr/local/Cellar/openvpn/2.4.3/
+
+4.在xxxxx_client_vpn.ovpn所在目录执行命令
+
+sudo /usr/local/Cellar/openvpn/2.4.3/sbin/openvpn ./xxxxx_client_vpn.ovpn
+
+
+          
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/08/28/ubuntu-e4-b8-8b-e5-ae-89-e8-a3-85-e9-85-8d-e7-bd-aeopenvpn-e5-ae-a2-e6-88-b7-e7-ab-af/#more" rel="contents">
@@ -1463,8 +1580,13 @@ sudo yum install -y nginx
 
 3.启动nginx服务
 
-sudo syste
-          ...
+sudo systemctl start nginx
+
+4.如果在docker中安装nginx，Dockerfile如下：
+1234567FROM cenos:7CMD yum install -y epel-releaseCMD yum install -y nginxENTRYPOINT ["nginx", "-g", "daemon off;"]
+在docker中不能使用systemctl start nginx命令启动nginx
+
+          
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/08/28/centos7-e5-ae-89-e8-a3-85nginx/#more" rel="contents">
@@ -1614,7 +1736,7 @@ sudo syste
           1.官网开发指南
 https://wiki.jenkins.io/display/JENKINS/Plugin+tutorial
 2.修改Maven的settting.xml文件
-12345678910111213141516171819202122232425262728293031323334&
+12345678910111213141516171819202122232425262728293031323334&lt;settings&gt;  &lt;pluginGroups&gt;    &lt;pluginGroup&gt;org.jenkins-ci.tools&lt;/pluginGroup&gt;  &lt;/pluginGroups&gt;   &lt;profiles&gt;    &lt;!-- Give access to Jenkins plugins --&gt;    &lt;profile&gt;      &lt;id&gt;jenkins&lt;/id&gt;      &lt;activation&gt;        &lt;activeByDefault&gt;true&lt;/activeByDefault&gt; &lt;!-- change this to false, if you don't like to have it on per default --&gt;      &lt;/activation&gt;      &lt;repositories&gt;        &lt;repository&gt;          &lt;id&gt;repo.jenkins-ci.org&lt;/id&gt;          &lt;url&gt;https://repo.jenkins-ci.org/public/&lt;/url&gt;        &lt;/repository&gt;      &lt;/repositories&gt;      &lt;pluginRepositories&gt;        &lt;pluginRepository&gt;          &lt;id&gt;repo.jenkins-ci.org&lt;/id&gt;          &lt;url&gt;https://repo.jenkins-ci.org/public/&lt;/url&gt;        &lt
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1765,8 +1887,10 @@ https://wiki.jenkins.io/display/JENKINS/Plugin+tutorial
           1.设置代理命令
 12npm config set proxy http://username:password@127.0.0.1:8080npm config set https-proxy http://username:password@127.0.0.1:8080
 2.删除代理命令
-12n
-          ...
+12npm config delete https-proxynpm config delete proxy
+3.查看代理设置
+12npm config get proxynpm config get https-proxy
+          
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/08/28/npm-e8-ae-be-e7-bd-ae-e4-bb-a3-e7-90-86-e6-9c-8d-e5-8a-a1-e5-99-a8/#more" rel="contents">

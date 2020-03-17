@@ -529,8 +529,17 @@
           
 基于Map接口实现，允许null键/值，非同步(线程不安全)，不保证有序，也不保证顺序不随时间变化；存储着Entry（hash,key,value,next）对象
 两个重要参数容量(Capacity)和负载因子(Load factor)
-HashMap在new后并不会分配数组，而是在第一次put时
-          ...
+HashMap在new后并不会分配数组，而是在第一次put时进行初始化，类似ArrayList在第一次add时分配内存空间
+HashMap的bucket数组大小一定是2的幂，如果是new的时候指定了容量且不是2的幂，实际容量会是最接近且大于指定容量的2的幂，如new HashMap&lt;&gt;(19)，实际容量为32
+HashMap在put的元素大于Capacity*LoadFactor(默认16*0.75)之后会进行扩容
+JDK8处于提升性能的考虑，在哈希碰撞的链表长度达到TREEIFY_THRESHOLD(默认8)后，会把该链表转变成树结构
+JDK8在resize的时候，通过巧妙的设计，减少了rehash的性能消耗;resize是扩容的两倍
+
+
+http://yikun.github.io
+
+
+          
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/11/15/java-hashmap/#more" rel="contents">
@@ -993,8 +1002,23 @@ Threadlocal有哪些特点，描述使用场景
 Mysql事务隔离级别(Spring事务隔离级别)
 字符串常量池
 类加载器
-SpringMVC和Struts2有什么区别？(需要跟
-          ...
+SpringMVC和Struts2有什么区别？(需要跟进新技术，为什么SpringMVC替代Struts2)
+Java，Python和Go三个相比各自有什么优点和缺点(需要自己总结思考)
+网络传输,应用层有哪些协议?(并问了Http头的详细信息)
+设计一个互联网架构
+接上：当访问量多比如秒杀可能的瓶颈在哪里,怎么解决这些瓶颈问题
+数据库怎么读写分离，怎么分库分表
+Java中HashMap的containsKey和containsValue的时间复杂度
+线程池的最大线程数和核心线程数
+Spring事务的处理及回滚机制（事务的一致性）
+JAVA的装饰者模式和IO流
+Mybatis插入的返回值
+Synchrosized的静态方法和普通方法上的区别
+时间复杂度/空间复杂度
+
+需要自己接下来深入学习JVM，网络层。由底层原理–&gt;架构–&gt;项目/应用/数据/性能
+
+          
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/10/26/java-interview/#more" rel="contents">
@@ -1298,8 +1322,12 @@ https://notes.wanghao.work/2017-07-11-Docker非Root用户运行.html
 
 
 
-Docker Engine的Deamon进程是以root权限运行的，如果是普通用户要与之交互，需要使用sudo命令来提权与之交互。之前使用Docker官方
-          ...
+Docker Engine的Deamon进程是以root权限运行的，如果是普通用户要与之交互，需要使用sudo命令来提权与之交互。之前使用Docker官方的安装脚本安装完成之后，会给出一个提示将当前非root用户添加到doker组之中，以避免每次都需要输入sudo的麻烦。
+
+然而随着Docker版本的迭代和官网的安装方式的更改，现在官方给出的安装方式是添加仓库源地址，然后使用默认的apt或者yum包管理工具来完成后安装。并不再提示用户添加非root用户到组。
+默认情况下，完成Docker Engine的安装之后，Docker将会自动创建一个名为docker的用户组，所以root用户和在docker组中的用户都可以免去sudo来与Docker Engine交互。知道原理之后就简单了：
+1sudo usermod -aG docker $&#123;whoami&#125; #添加当前用户到docker组
+          
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/10/13/not-root-run-docker/#more" rel="contents">
@@ -1449,8 +1477,8 @@ Docker Engine的Deamon进程是以root权限运行的，如果是普通用户要
           Stringers普遍存在的接口是fmt包中定义的Stringer
 123type Stringer inferface &#123;    String() string&#125;
 Stringer是一个可以用字符串描述自己的类型。
-12345678910111213141516171819pa
-          ...
+12345678910111213141516171819package mainimport (    &quot;fmt&quot;)type Person struct &#123;    Name string    Age  int&#125;func (p Person) String() string &#123;    return fmt.Sprintf(&quot;%v (%v years)&quot;, p.Name, p.Age)&#125;func main() &#123;    a := Person&#123;&quot;Dent&quot;, 42&#125;    z := Person&#123;&quot;Foo&quot;, 90&#125;    fmt.Println(a, z) // 输出Dent (42 years) Foo (90 years)&#125;
+          
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/10/12/go-tour-note-10/#more" rel="contents">

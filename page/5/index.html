@@ -379,8 +379,31 @@ sudo apt-get install openvpn
 
 2.配置文件
 复制认证所需要的文件(ca.crt xxxxx_client_vpn.ovpn xxxxx.crt xxxxx.key ta.key)到/etc/openvpn目录下
-3.启动
-          ...
+3.启动openvpn客户端
+
+sudo openvpn /etc/openvpn/xxxxx_client_vpn.ovpn
+
+注意：命令需要在/etc/openvpn目录下执行，否则可能出现No such file or directory错误
+
+MAC下安装MAC有tunnelblick软件进行图形化安装，下边主要是通过命令行安装
+1.安装brew2.通过brew进行安装
+
+brew install openvpn
+
+To have launchd start openvpn now and restart at startup（如果想要启动openvpn或者在启动时重启可以执行命令）:
+
+sudo brew services start openvpn
+
+3.安装目录
+
+ /usr/local/Cellar/openvpn/2.4.3/
+
+4.在xxxxx_client_vpn.ovpn所在目录执行命令
+
+sudo /usr/local/Cellar/openvpn/2.4.3/sbin/openvpn ./xxxxx_client_vpn.ovpn
+
+
+          
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/08/22/ubuntu-e4-b8-8b-e5-ae-89-e8-a3-85-e9-85-8d-e7-bd-aeopenvpn-e5-ae-a2-e6-88-b7-e7-ab-af-trashed/#more" rel="contents">
@@ -538,8 +561,13 @@ sudo yum install -y nginx
 
 3.启动nginx服务
 
-sudo syste
-          ...
+sudo systemctl start nginx
+
+4.如果在docker中安装nginx，Dockerfile如下：
+1234567FROM cenos:7CMD yum install -y epel-releaseCMD yum install -y nginxENTRYPOINT ["nginx", "-g", "daemon off;"]
+在docker中不能使用systemctl start nginx命令启动nginx
+
+          
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/08/22/centos7-e5-ae-89-e8-a3-85nginx-trashed/#more" rel="contents">
