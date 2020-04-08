@@ -4,6 +4,26 @@
 
     
   <url>
+    <loc>http://www.badwolfbay.cn/2020/04/08/Element-Table-cell-merge/</loc>
+    <lastmod>2020-04-08T11:32:40.355Z</lastmod>
+    <data>
+        <display>
+        <title>VUE(Element-ui)开发使用Table合并单元格</title>
+        <pubTime>2020-04-08T11:05:01.000Z</pubTime>
+        
+        <tag>vue</tag>
+         
+         
+           
+             
+              <breadCrumb title="vue" url="http://www.badwolfbay.cn/categories/vue/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.badwolfbay.cn/2020/03/17/manjaro-setting/</loc>
     <lastmod>2020-03-17T16:34:10.758Z</lastmod>
     <data>
@@ -31,9 +51,9 @@
         <title>eletron中使用vuex不生效问题</title>
         <pubTime>2020-03-15T15:31:49.000Z</pubTime>
         
-        <tag>electron</tag>
-         
         <tag>vue</tag>
+         
+        <tag>electron</tag>
          
          
            
